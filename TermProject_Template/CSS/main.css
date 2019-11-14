@@ -1,0 +1,204 @@
+﻿ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    background-color: #333;
+    height: 50px;
+}
+
+li {
+    float: left;
+}
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        /* Change the link color to #111 (black) on hover */
+        li a:hover {
+            background-color: #111;
+        }
+
+html {
+    height: 100%;
+    margin: 0px;
+}
+
+
+body {
+    height: 100%;
+    margin: 0px;
+    position: relative;
+    font-family: Raleway,sans serif;
+    color: #fdfdfd;
+}
+
+.imageT {
+    top: 9px;
+    position: absolute;
+    width: 30px;
+    padding-right: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    left: -3px;
+    height: 34px;
+}
+
+.btnLogin {
+    background-color: aliceblue;
+    border-radius: 10px;
+}
+
+.container {
+    height: 100%;
+}
+
+.jumbotron {
+    position: relative;
+    background-color: #a1e4f2;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0px;
+    top: 15%;
+}
+
+
+#home {
+    background-color: #a1e4f2;
+    background-image: url('../Uluwatu.jpg');
+    height: 100%;
+}
+
+#about {
+    background-color: #FFAF78;
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    border: 0px;
+    margin: 0px;
+    font-size: 18px;
+}
+
+#projects {
+    background-color: #FFA0A9;
+    position: relative;
+    min-height: 100%;
+    height: 100%;
+    border: 0px;
+    margin: 0px;
+}
+
+#testimonials {
+    background-color: #a3d285;
+}
+
+#contact {
+    background-color: #fdd04b;
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    border: 0px;
+    margin: 0px;
+    font-size: 18px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.thumbnail {
+    background-color: #fdfdfd;
+}
+
+    .thumbnail:hover {
+        background-color: grey;
+    }
+
+#aboutheader {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#projectsheader {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#contactsheader {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+#homeicons {
+    position: relative;
+    ;
+    padding: 0px;
+}
+
+#arrow {
+    font-size: 40px;
+    text-align: center;
+    padding: 0px;
+}
+
+.arrowwhite {
+    color: #fdfdfd;
+}
+
+.iconwhite {
+    color: #fdfdfd;
+}
+
+#contacticons {
+    text-align: center;
+    margin: auto;
+}
+input[type=text], select {
+    width: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: .5px solid #9D2235;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+input[type =submit] {
+    background-color: #9D2235; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-radius: 2px;
+    border: 1px solid #9D2235;
+}
+    input[type=submit]:hover {
+        background-color: #9D2235; /* Green */
+        color: white;
+    }
