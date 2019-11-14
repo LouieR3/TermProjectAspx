@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterLogReg.Master" AutoEventWireup="true" CodeBehind="UserLogin.aspx.cs" Inherits="TermProject_Template.UserLogin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Login
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <meta charset="UTF-8" />
@@ -26,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <!--===============================================================================================-->
 </asp:Content>
@@ -54,16 +54,17 @@
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="flex-sb-m w-full">
+                    <div class="flex-sb-m w-full p-b-48">
                         <div class="contact100-form-checkbox">
-                            <asp:CheckBox ID="chkRememberMe" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" />
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                             <label class="label-checkbox100" for="ckb1">
                                 Remember me
                             </label>
                         </div>
 
                         <div>
-                            <a href="ForgotPassword.aspx" class="txt3">Forgot Password?</a>
+                            <a href="#" class="txt3">Forgot Password?
+                            </a>
                         </div>
                     </div>
 
@@ -76,6 +77,7 @@
             </div>
         </div>
     </div>
+    <div id="dropDownSelect1"></div>
 
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>

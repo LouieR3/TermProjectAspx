@@ -179,6 +179,10 @@ input[type=text], select {
     border: .5px solid #9D2235;
     border-radius: 2px;
     box-sizing: border-box;
+    z-index: 1;
+    left: 134px;
+    top: 130px;
+    position: absolute;
 }
 input[type =submit] {
     background-color: #9D2235; /* Green */

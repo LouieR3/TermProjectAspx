@@ -24,7 +24,27 @@ namespace Utilities
 
             inputEmail.Direction = ParameterDirection.Input;
             inputEmail.SqlDbType = SqlDbType.VarChar;
-            outputCount.Direction = ParameterDirection.Input;
+            outputCount.Direction = ParameterDirection.Output;
+            outputCount.SqlDbType = SqlDbType.VarChar;
+
+            dbCommand.Parameters.Add(inputEmail);
+            dbCommand.Parameters.Add(outputCount);
+
+            db.GetDataSetUsingCmdObj(dbCommand);
+            int count = int.Parse(dbCommand.Parameters["@Count"].Value.ToString());
+            return count;
+        }
+        public int CheckMerchantExists(string AccountEmail)
+        {
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_CheckMerchantExists";
+            SqlParameter inputEmail = new SqlParameter("@Account_Email", AccountEmail.ToString());
+            SqlParameter outputCount = new SqlParameter("@Count", 0);
+
+            inputEmail.Direction = ParameterDirection.Input;
+            inputEmail.SqlDbType = SqlDbType.VarChar;
+            outputCount.Direction = ParameterDirection.Output;
             outputCount.SqlDbType = SqlDbType.VarChar;
 
             dbCommand.Parameters.Add(inputEmail);

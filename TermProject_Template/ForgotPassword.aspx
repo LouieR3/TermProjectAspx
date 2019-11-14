@@ -8,4 +8,5 @@
     <asp:label runat="server" text="Please Enter Email:" style="z-index: 1; left: 434px; top: 267px; position: absolute" ID="lblEnterEmail" Font-Size="Large" ForeColor="Black"></asp:label>
     <asp:textbox runat="server" style="z-index: 1; left: 433px; top: 282px; position: absolute" ID="txtEnterEmail"></asp:textbox>
     <asp:button runat="server" text="Button" style="z-index: 1; left: 545px; top: 340px; position: absolute" ID="btnEnterEmail" OnClick="btnEnterEmail_Click"/>
+    <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 439px; top: 238px; position: absolute" ForeColor="Red" Visible="False"></asp:Label>
 </asp:Content>
