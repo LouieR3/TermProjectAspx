@@ -4,3 +4,9 @@ C:\Users\gavinr\Desktop\3342_TermProject\Utilities\obj\Debug\Utilities.csprojAss
 C:\Users\gavinr\Desktop\3342_TermProject\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.cache
 C:\Users\gavinr\Desktop\3342_TermProject\Utilities\obj\Debug\Utilities.dll
 C:\Users\gavinr\Desktop\3342_TermProject\Utilities\obj\Debug\Utilities.pdb
+C:\Users\louie\Desktop\TermProjectAspx\TermProjectAspx\Utilities\bin\Debug\Utilities.dll
+C:\Users\louie\Desktop\TermProjectAspx\TermProjectAspx\Utilities\bin\Debug\Utilities.pdb
+C:\Users\louie\Desktop\TermProjectAspx\TermProjectAspx\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache
+C:\Users\louie\Desktop\TermProjectAspx\TermProjectAspx\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.cache
+C:\Users\louie\Desktop\TermProjectAspx\TermProjectAspx\Utilities\obj\Debug\Utilities.dll
+C:\Users\louie\Desktop\TermProjectAspx\TermProjectAspx\Utilities\obj\Debug\Utilities.pdb
