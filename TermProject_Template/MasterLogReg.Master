@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterLogReg.master.cs" Inherits="TermProject_Template.MasterLogReg" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="Title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
+    <%--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <div>
+                <ul>
+                    <li><img class="imageT" src="images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
+                    <li><a href="StudentFillData.aspx">Student URP</a></li>
+                    <li><a href="AdminTasks.aspx">Admin Tasks</a></li>
+                    <li><a href="DeanFillData.aspx">Dean URP</a></li>
+                    <li><a href="AdminSearchStudents.aspx">Admin Students</a></li>
+                    <li><a href="Default.aspx">Student Tasks</a></li>
+                </ul>
+            </div>
+            <div>
+                <asp:ContentPlaceHolder ID="Content1" runat="server">
+                   
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="footer">
+                <p>Pronto</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
