@@ -44,8 +44,10 @@ namespace Utilities
 
             inputEmail.Direction = ParameterDirection.Input;
             inputEmail.SqlDbType = SqlDbType.VarChar;
+            inputEmail.Size = 50;
             outputCount.Direction = ParameterDirection.Output;
             outputCount.SqlDbType = SqlDbType.VarChar;
+            outputCount.Size = 50;
 
             dbCommand.Parameters.Add(inputEmail);
             dbCommand.Parameters.Add(outputCount);
@@ -53,6 +55,60 @@ namespace Utilities
             db.GetDataSetUsingCmdObj(dbCommand);
             int count = int.Parse(dbCommand.Parameters["@Count"].Value.ToString());
             return count;
+        }
+
+        public bool CheckUserLogin(string email, string password)
+        {
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_CheckUser";
+            SqlParameter inputParameter = new SqlParameter("@theEmail", email);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+            dbCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@thePassword", password);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+            dbCommand.Parameters.Add(inputParameter);
+
+            // Execute the stored procedure using the DBConnect object and the SQLCommand object
+            DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+
+            int size = myDS.Tables[0].Rows.Count;
+
+            if (size == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool checkReset(string password, string confirm)
+        {
+            if (password != confirm)
+            {
+                return false;
+            }
+            else if (password == "" || confirm == "")
+            {
+                return false;
+            }
+            //check if it is the same as old password or not
+            return true;
+        }
+        public bool checkLogin(string email, string password)
+        {
+            if (password == "" || email == "")
+            {
+                return false;
+            }
+            //check if it is the same as old password or not
+            return true;
         }
     }
 }

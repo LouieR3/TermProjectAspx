@@ -171,7 +171,7 @@ body {
     text-align: center;
     margin: auto;
 }
-input[type=text], select {
+.forgotPasswordText {
     width: 300px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -182,9 +182,8 @@ input[type=text], select {
     z-index: 1;
     left: 134px;
     top: 130px;
-    position: absolute;
 }
-input[type =submit] {
+.resetButton {
     background-color: #9D2235; /* Green */
     border: none;
     color: white;
@@ -202,7 +201,11 @@ input[type =submit] {
     border-radius: 2px;
     border: 1px solid #9D2235;
 }
-    input[type=submit]:hover {
+    .resetButton:hover {
         background-color: #9D2235; /* Green */
         color: white;
     }
+#forgotPage {
+    padding-top: 19%;
+    text-align: center;
+}
