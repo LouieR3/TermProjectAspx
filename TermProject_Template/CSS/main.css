@@ -95,7 +95,16 @@ body {
     border: 0px;
     margin: 0px;
 }
-
+#Settings {
+    margin-top:25%;
+    clear: both;
+}
+.SubSetting {
+    float: left;
+    width: 48%;
+    height: 100px;
+    padding: 10px;
+}
 #testimonials {
     background-color: #a3d285;
 }

@@ -9,7 +9,7 @@
         text-align: center;
     }
 </style>
-<table class="container" id="Table1" border="0" cellpadding="5" cellspacing="0"
+<table id="Table1" border="0" cellpadding="5" cellspacing="0"
        style="width: 542px">
     <tr>
         <td colspan="2">
@@ -30,5 +30,4 @@
             <asp:Button ID="btnUpdate" runat="server" Text="Update" />
             </td>
     </tr>
-
 </table>
