@@ -13,5 +13,10 @@ namespace TermProject_Template
         {
 
         }
+
+        protected void btnCreateAccount_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
