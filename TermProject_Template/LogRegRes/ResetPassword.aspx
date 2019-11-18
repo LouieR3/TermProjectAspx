@@ -25,8 +25,8 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="css/util.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/util.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
@@ -51,8 +51,8 @@
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="container-login101-form-btn">
-                        <asp:Button ID="btnNewPassword" class="login100-form-btn" runat="server" Text="Reset Password" OnClick="btnNewPassword_Click" />
+                    <div class="container-login102-form-btn">
+                        <asp:Button ID="btnNewPassword" class="logButton" runat="server" Text="Reset Password" OnClick="btnNewPassword_Click" />
                     </div>
                 </div>
             </div>

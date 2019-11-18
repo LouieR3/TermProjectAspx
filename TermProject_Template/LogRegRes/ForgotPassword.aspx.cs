@@ -17,14 +17,16 @@ namespace TermProject_Template
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
         Validation validate = new Validation();
+        HttpCookie restEmail = new HttpCookie("theResetEmail");
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnEnterEmail_Click(object sender, EventArgs e)
+        protected void btnEnterEmail_Click1(object sender, EventArgs e)
         {
-            if(validate.CheckUserExists(txtEnterEmail.Text) == 1)
+            if (validate.CheckUserExists(txtEnterEmail.Text) == 1)
             {
                 Email objEmail = new Email();
                 String strTO = txtEnterEmail.Text;
@@ -37,6 +39,9 @@ namespace TermProject_Template
                     txtEnterEmail.Visible = false;
                     btnEnterEmail.Visible = false;
                     lblError.Text = "Email was sent! Follow instructions to reset password";
+                    restEmail.Expires = new DateTime(2025, 1, 1);
+                    restEmail.Values["ResetEmail"] = txtEnterEmail.Text;
+                    Response.Cookies.Add(restEmail);
                 }
                 catch
                 {

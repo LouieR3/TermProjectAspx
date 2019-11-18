@@ -183,13 +183,14 @@ body {
     left: 134px;
     top: 130px;
 }
-.resetButton {
+.logButton {
     background-color: #9D2235; /* Green */
     border: none;
     color: white;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
+    font-weight: bold;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
@@ -201,7 +202,7 @@ body {
     border-radius: 2px;
     border: 1px solid #9D2235;
 }
-    .resetButton:hover {
+    .logButton:hover {
         background-color: #9D2235; /* Green */
         color: white;
     }
