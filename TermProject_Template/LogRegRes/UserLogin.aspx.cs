@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,24 +11,32 @@ namespace TermProject_Template
 {
     public partial class UserLogin : System.Web.UI.Page
     {
+        HttpCookie myCookie = new HttpCookie("theCookie");
         Validation validationOBJ = new Validation();
         int BoxChecked = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if(myCookie != null)
+                {
+                    txtEmail.Text = "";
+                    txtPassword.Text = "";
+                }
+            }
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text.ToString();
+            string login = txtEmail.Text.ToString();
             string pass = txtPassword.Text.ToString();
-            if (validationOBJ.checkLogin(email, pass) == false)
+            if (validationOBJ.checkLogin(login, pass) == false)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Please fill out the fields correctly');</script>");
                 return;
             }
-            else if (validationOBJ.CheckUserLogin(email, pass) == false)
+            else if (validationOBJ.CheckUserLogin(login, pass) == false)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Your login info is incorrect, try again');</script>");
@@ -37,9 +46,12 @@ namespace TermProject_Template
             {
                 if (chkRememberMe.Checked == true)
                 {
-
+                    myCookie.Expires = new DateTime(2025, 1, 1);
+                    myCookie.Values["AccountID"] = login;
+                    myCookie.Values["AccountPass"] = pass;
+                    Response.Cookies.Add(myCookie);
                 }
-                Response.Redirect("ForgotPassword.aspx");
+                Response.Redirect("User/UserDashboard.aspx");
             }
         }
 
