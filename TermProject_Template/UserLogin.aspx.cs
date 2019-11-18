@@ -11,6 +11,7 @@ namespace TermProject_Template
     public partial class UserLogin : System.Web.UI.Page
     {
         Validation validationOBJ = new Validation();
+        int BoxChecked = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -18,17 +19,27 @@ namespace TermProject_Template
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text;
-            int count = validationOBJ.CheckUserExists(email);
-            if (count == 1)
+            string email = txtEmail.Text.ToString();
+            string pass = txtPassword.Text.ToString();
+            if (validationOBJ.checkLogin(email, pass) == false)
             {
-                Response.Redirect("ForgotPassword.aspx");
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('Please fill out the fields correctly');</script>");
+                return;
+            }
+            else if (validationOBJ.CheckUserLogin(email, pass) == false)
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('Your login info is incorrect, try again');</script>");
+                return;
             }
             else
             {
-                Response.Write(@"<script langauge='text/javascript'>alert
-                ('No account was found with this information, be sure to fill out the fields correctly');</script>");
-                return;
+                if (chkRememberMe.Checked == true)
+                {
+
+                }
+                Response.Redirect("ForgotPassword.aspx");
             }
         }
 
@@ -39,7 +50,7 @@ namespace TermProject_Template
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            BoxChecked = 1;
         }
     }
 }
