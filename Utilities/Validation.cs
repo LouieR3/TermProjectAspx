@@ -25,7 +25,7 @@ namespace Utilities
             inputEmail.Direction = ParameterDirection.Input;
             inputEmail.SqlDbType = SqlDbType.VarChar;
             outputCount.Direction = ParameterDirection.Output;
-            outputCount.SqlDbType = SqlDbType.VarChar;
+            outputCount.SqlDbType = SqlDbType.Int;
 
             dbCommand.Parameters.Add(inputEmail);
             dbCommand.Parameters.Add(outputCount);
@@ -59,6 +59,7 @@ namespace Utilities
 
         public bool CheckUserLogin(string email, string password)
         {
+            dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;
             dbCommand.CommandText = "TP_CheckUser";
             SqlParameter inputParameter = new SqlParameter("@theEmail", email);
@@ -88,19 +89,29 @@ namespace Utilities
             }
         }
 
-        public bool checkReset(string password, string confirm)
+        public int checkReset(string email, string password, string confirm)
         {
             if (password != confirm)
             {
-                return false;
+                return 1;
             }
             else if (password == "" || confirm == "")
             {
-                return false;
+                return 2;
             }
-            //check if it is the same as old password or not
-            return true;
+            else
+            {
+                if (CheckUserLogin(email, password))
+                {
+                    return 3;
+                }
+                else
+                {
+                    return 4;
+                }
+            }
         }
+
         public bool checkLogin(string email, string password)
         {
             if (password == "" || email == "")
