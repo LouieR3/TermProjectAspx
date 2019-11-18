@@ -10,7 +10,7 @@
     </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <link rel="stylesheet" type="text/css" href="CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="~/CSS/main.css">
     <%--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
 </head>
 <body>
@@ -18,7 +18,7 @@
         <div class="container">
             <div>
                 <ul>
-                    <li><img class="imageT" src="images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
+                    <li><img class="imageT" src="~/images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
                     <li><a href="StudentFillData.aspx">Dashboard</a></li>
                     <li><a href="AdminSearchStudents.aspx">View Orders</a></li>
                     <li><a href="Default.aspx">Account Settings</a></li>
