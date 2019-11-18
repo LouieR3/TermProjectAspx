@@ -70,6 +70,8 @@
     <Content Include="CSS\main.css" />
     <Content Include="CSS\style.css" />
     <Content Include="CSS\util.css" />
+    <Content Include="CustomControls\AccountSettings.ascx" />
+    <Content Include="CustomControls\EditWallet.ascx" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
@@ -123,6 +125,20 @@
     <Content Include="LogRegRes\ResetPassword.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\AccountSettings.ascx.cs">
+      <DependentUpon>AccountSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\AccountSettings.ascx.designer.cs">
+      <DependentUpon>AccountSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\EditWallet.ascx.cs">
+      <DependentUpon>EditWallet.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\EditWallet.ascx.designer.cs">
+      <DependentUpon>EditWallet.ascx</DependentUpon>
+    </Compile>
     <Compile Include="LogRegRes\ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
