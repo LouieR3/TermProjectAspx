@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterLogReg.Master" AutoEventWireup="true" CodeBehind="ResetPassword.aspx.cs" Inherits="TermProject_Template.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterLogReg.Master" AutoEventWireup="true" CodeBehind="ResetPassword.aspx.cs" Inherits="TermProject_Template.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
     Reset Password
