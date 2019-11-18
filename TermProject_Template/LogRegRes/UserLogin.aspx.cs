@@ -30,13 +30,13 @@ namespace TermProject_Template
         {
             string login = txtEmail.Text.ToString();
             string pass = txtPassword.Text.ToString();
-            if (validationOBJ.checkLogin(email, pass) == false)
+            if (validationOBJ.checkLogin(login, pass) == false)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Please fill out the fields correctly');</script>");
                 return;
             }
-            else if (validationOBJ.CheckUserLogin(email, pass) == false)
+            else if (validationOBJ.CheckUserLogin(login, pass) == false)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Your login info is incorrect, try again');</script>");
