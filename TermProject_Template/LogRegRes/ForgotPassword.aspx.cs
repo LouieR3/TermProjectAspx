@@ -38,19 +38,25 @@ namespace TermProject_Template
                     objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
                     txtEnterEmail.Visible = false;
                     btnEnterEmail.Visible = false;
-                    lblError.Text = "Email was sent! Follow instructions to reset password";
                     restEmail.Expires = new DateTime(2025, 1, 1);
                     restEmail.Values["ResetEmail"] = txtEnterEmail.Text;
                     Response.Cookies.Add(restEmail);
+                    Response.Write(@"<script langauge='text/javascript'>alert
+                    ('Email was sent! Follow instructions in your email to reset password');</script>");
+                    return;
                 }
                 catch
                 {
-                    lblError.Text = "Email could not be sent try again";
+                    Response.Write(@"<script langauge='text/javascript'>alert
+                    ('Email could not be sent try again');</script>");
+                    return;
                 }
             }
             else
             {
-                lblError.Text = "Email could not be found in System. Please make sure you are entering a valid email";
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('Email could not be found in System. Please make sure you are entering a valid email');</script>");
+                return;
             }
         }
     }

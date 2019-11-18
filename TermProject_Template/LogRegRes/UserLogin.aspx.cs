@@ -51,7 +51,7 @@ namespace TermProject_Template
                     myCookie.Values["AccountPass"] = pass;
                     Response.Cookies.Add(myCookie);
                 }
-                Response.Redirect("User/UserDashboard.aspx");
+                Response.Redirect("../Users/UserDashboard.aspx");
             }
         }
 

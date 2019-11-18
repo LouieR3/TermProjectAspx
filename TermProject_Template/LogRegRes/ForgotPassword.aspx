@@ -43,7 +43,6 @@
                         <asp:TextBox ID="txtEnterEmail" class="input100" name="confirm" runat="server"></asp:TextBox>
                         <span class="focus-input100"></span>
                     </div>
-                    <asp:Label ID="lblError" runat="server" Text="" Visible="True" ForeColor="Black"></asp:Label>
                     <div class="container-login102-form-btn">
                         <asp:Button ID="btnEnterEmail" class="logButton" runat="server" Text="Reset Password" OnClick="btnEnterEmail_Click1" />
                     </div>
