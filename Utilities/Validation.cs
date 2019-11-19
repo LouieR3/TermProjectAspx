@@ -34,6 +34,7 @@ namespace Utilities
             int count = int.Parse(dbCommand.Parameters["@Count"].Value.ToString());
             return count;
         }
+
         public int CheckMerchantExists(string AccountEmail)
         {
             dbCommand.Parameters.Clear();
@@ -112,13 +113,32 @@ namespace Utilities
             }
         }
 
+        public int checkCreateAccount(string first, string last, string email, string billing, string delivery, string password)
+        {
+            if (first == "" || last == "" || email == "" || billing == "" || delivery == "" || password == "")
+            {
+                return 1;
+            }
+            else if (!email.Contains("@") || !email.Contains("."))
+            {
+                return 2;
+            }
+            else if (CheckUserExists(email) == 1)
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
+            }
+        }
+
         public bool checkLogin(string email, string password)
         {
             if (password == "" || email == "")
             {
                 return false;
             }
-            //check if it is the same as old password or not
             return true;
         }
     }

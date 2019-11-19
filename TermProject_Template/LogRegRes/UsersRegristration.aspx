@@ -31,15 +31,50 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-45">
+            <div class="wrap-login101 p-l-85 p-r-85 p-t-55 p-b-45">
                 <div class="login100-form validate-form flex-sb flex-w">
                     <span class="login100-form-title p-b-32">Account Creation
                     </span>
+
+                    <span class="txt1 p-b-11">First Name
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
+                        <asp:TextBox ID="txtFirstName" class="input100" name="firstName" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Last Name
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
+                        <asp:TextBox ID="txtLastName" class="input100" name="lastName" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
 
                     <span class="txt1 p-b-11">Email
                     </span>
                     <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
                         <asp:TextBox ID="txtCreateEmail" class="input100" name="email" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Login ID (Optional)
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
+                        <asp:TextBox ID="txtLoginID" class="input100" name="loginID" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Billing Address
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
+                        <asp:TextBox ID="txtBillingAddress" class="input100" name="billAddr" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Delivery Address
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
+                        <asp:TextBox ID="txtDeliveryAddress" class="input100" name="delAddr" runat="server"></asp:TextBox>
                         <span class="focus-input100"></span>
                     </div>
 
@@ -52,6 +87,8 @@
                         <asp:TextBox ID="txtCreatePW" class="input100" type="password" name="pass" runat="server"></asp:TextBox>
                         <span class="focus-input100"></span>
                     </div>
+
+                    
 
                     <div class="flex-sb-m w-full">
                         <div class="contact100-form-checkbox">
