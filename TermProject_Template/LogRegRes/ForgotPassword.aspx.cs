@@ -17,16 +17,14 @@ namespace TermProject_Template
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
         Validation validate = new Validation();
-        HttpCookie restEmail = new HttpCookie("theResetEmail");
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnEnterEmail_Click1(object sender, EventArgs e)
+        protected void btnEnterEmail_Click(object sender, EventArgs e)
         {
-            if (validate.CheckUserExists(txtEnterEmail.Text) == 1)
+            if(validate.CheckUserExists(txtEnterEmail.Text) == 1)
             {
                 Email objEmail = new Email();
                 String strTO = txtEnterEmail.Text;
@@ -38,25 +36,16 @@ namespace TermProject_Template
                     objEmail.SendMail(strTO, strFROM, strSubject, strMessage);
                     txtEnterEmail.Visible = false;
                     btnEnterEmail.Visible = false;
-                    restEmail.Expires = new DateTime(2025, 1, 1);
-                    restEmail.Values["ResetEmail"] = txtEnterEmail.Text;
-                    Response.Cookies.Add(restEmail);
-                    Response.Write(@"<script langauge='text/javascript'>alert
-                    ('Email was sent! Follow instructions in your email to reset password');</script>");
-                    return;
+                    lblError.Text = "Email was sent! Follow instructions to reset password";
                 }
                 catch
                 {
-                    Response.Write(@"<script langauge='text/javascript'>alert
-                    ('Email could not be sent try again');</script>");
-                    return;
+                    lblError.Text = "Email could not be sent try again";
                 }
             }
             else
             {
-                Response.Write(@"<script langauge='text/javascript'>alert
-                ('Email could not be found in System. Please make sure you are entering a valid email');</script>");
-                return;
+                lblError.Text = "Email could not be found in System. Please make sure you are entering a valid email";
             }
         }
     }

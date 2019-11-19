@@ -7,7 +7,6 @@
     overflow: hidden;
     background-color: #333;
     height: 50px;
-    z-index: 1;
 }
 
 li {
@@ -184,14 +183,13 @@ body {
     left: 134px;
     top: 130px;
 }
-.logButton {
+.resetButton {
     background-color: #9D2235; /* Green */
     border: none;
     color: white;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
@@ -203,7 +201,7 @@ body {
     border-radius: 2px;
     border: 1px solid #9D2235;
 }
-    .logButton:hover {
+    .resetButton:hover {
         background-color: #9D2235; /* Green */
         color: white;
     }

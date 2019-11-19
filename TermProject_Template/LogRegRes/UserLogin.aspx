@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterLogReg.Master" AutoEventWireup="true" CodeBehind="UserLogin.aspx.cs" Inherits="TermProject_Template.UserLogin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterLogReg.Master" AutoEventWireup="true" CodeBehind="UserLogin.aspx.cs" Inherits="TermProject_Template.UserLogin" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
     Login Here
@@ -25,8 +25,8 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../css/util.css" />
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
@@ -68,9 +68,9 @@
                     </div>
 
                     <div class="container-login101-form-btn">
-                        <asp:Button ID="btnLogin" class="logButton" runat="server" Text="Login" OnClick="btnLogin_Click" />
+                        <asp:Button ID="btnLogin" class="login100-form-btn" runat="server" Text="Login" OnClick="btnLogin_Click" />
                         <p>.       </p>
-                        <asp:Button ID="btnCreate" class="logButton" runat="server" Text="Create Account" OnClick="btnCreate_Click" />
+                        <asp:Button ID="btnCreate" class="login100-form-btn" runat="server" Text="Create Account" OnClick="btnCreate_Click" />
                     </div>
                 </div>
             </div>
