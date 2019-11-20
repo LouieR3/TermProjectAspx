@@ -112,6 +112,26 @@ namespace Utilities
             }
         }
 
+        public int checkCreateAccount(string first, string last, string email, string password, string billing, string delivery)
+        {
+            if (first == "" || last == "" || email == "" || password == "" || billing == "" || delivery == "")
+            {
+                return 1;
+            }
+            else if (!email.Contains("@") || !email.Contains("."))
+            {
+                return 2;
+            }
+            else if (CheckUserExists(email) == 1)
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
+            }
+        }
+
         public bool checkLogin(string email, string password)
         {
             if (password == "" || email == "")

@@ -16,7 +16,13 @@ namespace TermProject_Template
 
         protected void btnCreateAccount_Click(object sender, EventArgs e)
         {
-
+            string loginID = txtLoginID.Text;
+            string email = txtCreateEmail.Text;
+            string first = txtFirstName.Text;
+            string last = txtLastName.Text;
+            string pass = txtCreatePW.Text;
+            string billing = txtBilling.Text;
+            string delivery = txtDelivery.Text;
         }
     }
 }
