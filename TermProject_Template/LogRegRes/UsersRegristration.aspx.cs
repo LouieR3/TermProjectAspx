@@ -51,53 +51,100 @@ namespace TermProject_Template
             }
             else if (validationOBJ.checkCreateAccount(first, last, email, pass, billing, delivery) == 4)
             {
-                dbCommand.Parameters.Clear();
-                dbCommand.CommandType = CommandType.StoredProcedure;
-                dbCommand.CommandText = "TP_AddUser";
-                SqlParameter inputParameter = new SqlParameter("@theLoginID", loginID);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                if (loginID == "")
+                {
+                    dbCommand.Parameters.Clear();
+                    dbCommand.CommandType = CommandType.StoredProcedure;
+                    dbCommand.CommandText = "TP_AddUserNoLoginID";
+                    SqlParameter inputParameter = new SqlParameter("@theEmail", email);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@theEmail", email);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@thePassword", pass);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@thePassword", pass);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@theFirstName", first);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@theFirstName", first);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@theLastName", last);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@theLastName", last);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@theBilling", billing);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@theBilling", billing);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@theDelivery", delivery);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@theDelivery", delivery);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                    // Execute the stored procedure using the DBConnect object and the SQLCommand object
+                    DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+                }
+                else
+                {
+                    dbCommand.Parameters.Clear();
+                    dbCommand.CommandType = CommandType.StoredProcedure;
+                    dbCommand.CommandText = "TP_AddUser";
+                    SqlParameter inputParameter = new SqlParameter("@theLoginID", loginID);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
 
-                // Execute the stored procedure using the DBConnect object and the SQLCommand object
-                DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+                    inputParameter = new SqlParameter("@theEmail", email);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+
+                    inputParameter = new SqlParameter("@thePassword", pass);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+
+                    inputParameter = new SqlParameter("@theFirstName", first);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+
+                    inputParameter = new SqlParameter("@theLastName", last);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+
+                    inputParameter = new SqlParameter("@theBilling", billing);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+
+                    inputParameter = new SqlParameter("@theDelivery", delivery);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+
+                    // Execute the stored procedure using the DBConnect object and the SQLCommand object
+                    DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+                }
 
                 if(chkRememberMeCreate.Checked == true)
                 {

@@ -18,11 +18,11 @@ namespace TermProject_Template
         {
             if (!IsPostBack)
             {
-                if(myCookie != null)
-                {
-                    txtEmail.Text = myCookie.Values["AccountID"].ToString();
-                    txtPassword.Text = myCookie.Values["AccountPass"].ToString();
-                }
+                //if(myCookie != null)
+                //{
+                //    txtEmail.Text = myCookie.Values["AccountID"].ToString();
+                //    txtPassword.Text = myCookie.Values["AccountPass"].ToString();
+                //}
             }
         }
 
