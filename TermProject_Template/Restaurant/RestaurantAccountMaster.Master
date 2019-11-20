@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ResturantAccountMaster.master.cs" Inherits="TermProject_Template.ResturantAccountMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="RestaurantAccountMaster.Master.cs" Inherits="TermProject_Template.ResturantAccountMaster" %>
 
 <!DOCTYPE html>
 
