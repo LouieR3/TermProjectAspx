@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterLogReg.Master" AutoEventWireup="true" CodeBehind="UsersRegristration.aspx.cs" Inherits="TermProject_Template.UsersRegristration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterLogReg.Master" AutoEventWireup="true" CodeBehind="UsersRegistration.aspx.cs" Inherits="TermProject_Template.UsersRegristration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
     Create Account
 </asp:Content>
