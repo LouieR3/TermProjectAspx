@@ -71,6 +71,25 @@
                         <span class="focus-input100"></span>
                     </div>
 
+                    <span class="txt1 p-b-11">Password
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-12">
+                        <span class="btn-show-pass">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        <asp:TextBox ID="txtRPass" class="input100" type="password" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full">
+                        <div class="contact100-form-checkbox">
+                            <asp:CheckBox ID="chkRememberMePass" runat="server" />
+                            <label class="label-checkbox100" for="ckb1">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="container-login102-form-btn">
                         <asp:Button ID="btnCreateRestuarant" class="logButton" runat="server" Text="Create Account" OnClick="btnCreateRestuarant_Click" />
                     </div>
