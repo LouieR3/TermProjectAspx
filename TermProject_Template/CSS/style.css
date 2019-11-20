@@ -230,6 +230,16 @@ background-c
     position: relative;
 }
 
+.wrap-login101 {
+    width: 560px;
+    background: #e6e6e6;
+    border-radius: 10px;
+    position: relative;
+    overflow-y: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
 
 /*==================================================================
 [ Form ]*/
