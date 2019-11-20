@@ -31,6 +31,7 @@ namespace TermProject_Template
             string confirm = txtConfirm.Text.ToString();
             if (validationOBJ.checkReset(email, pass, confirm) == 4)
             {
+                dbCommand.Parameters.Clear();
                 dbCommand.CommandType = CommandType.StoredProcedure;
                 dbCommand.CommandText = "TP_UpdatePassword";
                 SqlParameter inputParameter = new SqlParameter("@theEmail", email);
