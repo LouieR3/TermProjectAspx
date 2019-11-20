@@ -24,6 +24,7 @@ namespace TermProject_Template.LogRegRes
         {
             string name = txtRName.Text;
             string email = txtContactEmail.Text;
+            string pass = txtRPass.Text;
             string address = txtRAddress.Text;
             string phone = txtRPhone.Text;
             string image = txtRImage.Text;
@@ -63,11 +64,11 @@ namespace TermProject_Template.LogRegRes
                 inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
                 dbCommand.Parameters.Add(inputParameter);
 
-                //inputParameter = new SqlParameter("@thePassword", pass);
-                //inputParameter.Direction = ParameterDirection.Input;
-                //inputParameter.SqlDbType = SqlDbType.VarChar;
-                //inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                //dbCommand.Parameters.Add(inputParameter);
+                inputParameter = new SqlParameter("@thePassword", pass);
+                inputParameter.Direction = ParameterDirection.Input;
+                inputParameter.SqlDbType = SqlDbType.VarChar;
+                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                dbCommand.Parameters.Add(inputParameter);
 
                 inputParameter = new SqlParameter("@theAddress", address);
                 inputParameter.Direction = ParameterDirection.Input;

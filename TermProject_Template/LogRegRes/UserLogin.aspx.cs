@@ -36,7 +36,7 @@ namespace TermProject_Template
                 ('Please fill out the fields correctly');</script>");
                 return;
             }
-            else if (validationOBJ.CheckUserLogin(login, pass) == false)
+            else if (validationOBJ.CheckUserLogin(login, pass) == false && validationOBJ.CheckRestaurantLogin(login, pass) == false)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Your login info is incorrect, try again');</script>");
@@ -51,18 +51,30 @@ namespace TermProject_Template
                     myCookie.Values["AccountPass"] = pass;
                     Response.Cookies.Add(myCookie);
                 }
-                Response.Redirect("../Users/UserDashboard.aspx");
+                if (validationOBJ.CheckUserLogin(login, pass) == true)
+                {
+                    Response.Redirect("../Users/UserDashboard.aspx");
+                }
+                else if (validationOBJ.CheckRestaurantLogin(login, pass) == true)
+                {
+                    Response.Redirect("../Restaurant/RestaurantDashboard.aspx");
+                }
             }
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UserLogin.aspx");
+            Response.Redirect("UserRegistration.aspx");
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             BoxChecked = 1;
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RestaurantRegistration.aspx");
         }
     }
 }

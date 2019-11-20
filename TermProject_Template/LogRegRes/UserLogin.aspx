@@ -67,10 +67,13 @@
                         </div>
                     </div>
 
-                    <div class="container-login101-form-btn">
+                    <div class="container-login100-form-btn">
                         <asp:Button ID="btnLogin" class="logButton" runat="server" Text="Login" OnClick="btnLogin_Click" />
-                        <p>.       </p>
+                    </div>
+                    <div class="container-login101-form-btn">
                         <asp:Button ID="btnCreate" class="logButton" runat="server" Text="Create Account" OnClick="btnCreate_Click" />
+                        <p>.       </p>
+                        <asp:Button ID="btnRegister" class="logButton1" runat="server" Text="Register Restaurant" OnClick="btnRegister_Click" />
                     </div>
                 </div>
             </div>

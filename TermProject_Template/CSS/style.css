@@ -391,7 +391,7 @@ background-c
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 30%;
     padding-top: 20px;
 }
 
@@ -404,8 +404,8 @@ background-c
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
-    padding-top: 20px;
+    width: 100%;
+    padding-top: 10px;
 }
 
 .container-login102-form-btn {
