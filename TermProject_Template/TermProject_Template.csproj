@@ -91,7 +91,7 @@
     <Content Include="LogRegRes\RestaurantRegistration.aspx" />
     <Content Include="Merchant\MerchantRegristration.aspx" />
     <Content Include="LogRegRes\UserLogin.aspx" />
-    <Content Include="LogRegRes\UsersRegristration.aspx" />
+    <Content Include="LogRegRes\UsersRegistration.aspx" />
     <Content Include="Users\UserDashboard.aspx" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
@@ -184,12 +184,12 @@
     <Compile Include="LogRegRes\UserLogin.aspx.designer.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LogRegRes\UsersRegristration.aspx.cs">
-      <DependentUpon>UsersRegristration.aspx</DependentUpon>
+    <Compile Include="LogRegRes\UsersRegistration.aspx.cs">
+      <DependentUpon>UsersRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LogRegRes\UsersRegristration.aspx.designer.cs">
-      <DependentUpon>UsersRegristration.aspx</DependentUpon>
+    <Compile Include="LogRegRes\UsersRegistration.aspx.designer.cs">
+      <DependentUpon>UsersRegistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogRegRes\ResetPassword.aspx.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
