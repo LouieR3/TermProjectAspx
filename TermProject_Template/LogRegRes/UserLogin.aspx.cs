@@ -20,8 +20,8 @@ namespace TermProject_Template
             {
                 if(myCookie != null)
                 {
-                    txtEmail.Text = "";
-                    txtPassword.Text = "";
+                    txtEmail.Text = myCookie.Values["AccountID"].ToString();
+                    txtPassword.Text = myCookie.Values["AccountPass"].ToString();
                 }
             }
         }
