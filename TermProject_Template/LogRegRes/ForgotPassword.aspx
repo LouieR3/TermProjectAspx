@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿<%@ Page Title="" Language="C#" MasterPageFile="../MasterLogReg.Master" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="TermProject_Template.ForgotPassword" %>
-=======
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterLogReg.Master" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="TermProject_Template.ForgotPassword" %>
->>>>>>> dff3a18655ba81e0fda09e5d27f824666f42f867
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
     Forgot Password
