@@ -51,6 +51,7 @@ namespace TermProject_Template
                     myCookie.Values["AccountPass"] = pass;
                     Response.Cookies.Add(myCookie);
                 }
+                Session["AccountID"] = txtEmail.Text;
                 if (validationOBJ.CheckUserLogin(login, pass) == true)
                 {
                     Response.Redirect("../Users/UserDashboard.aspx");
