@@ -89,9 +89,9 @@ namespace TermProject_Template.Users
         }
         public void displayPreviousOrders(string ID)
         {
-            String url = "http://cis-iis2.temple.edu/users/pascucci/CIS3342/CoreWebAPI/api/Calculator/" + operation;
+            String url = "http://cis-iis2.temple.edu/users/pascucci/CIS3342/CoreWebAPI/api/Calculator/";
 
-            url = url + "/" + value1 + "/" + value2;
+            url = url + "/" + ID;
             // Create an HTTP Web Request and get the HTTP Web Response from the server.
             WebRequest request = WebRequest.Create(url);
             WebResponse response = request.GetResponse();
@@ -104,7 +104,7 @@ namespace TermProject_Template.Users
             // Deserialize a JSON string into a double.
             JavaScriptSerializer js = new JavaScriptSerializer();
             double result = js.Deserialize<double>(data);
-            return result;
+            
         }
     }
 }
