@@ -95,11 +95,19 @@ body {
     border: 0px;
     margin: 0px;
 }
-#Settings {
-    margin-top:25%;
-    clear: both;
+.Restaurants {
+    position: absolute;
+    width:100%;
+    background-color: slategray;
+    border-radius: 3px;
+}
+.Settings {
+    position:absolute;
+    margin:auto;
+    width:100%;
 }
 .SubSetting {
+    border-radius:3px;
     float: left;
     width: 48%;
     height: 100px;
