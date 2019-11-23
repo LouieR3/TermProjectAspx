@@ -89,6 +89,70 @@ namespace Utilities
             }
         }
 
+        public bool CheckRestaurantLogin(string email, string password)
+        {
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_CheckRestaurantLogin";
+            SqlParameter inputParameter = new SqlParameter("@theEmail", email);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+            dbCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@thePassword", password);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+            dbCommand.Parameters.Add(inputParameter);
+
+            // Execute the stored procedure using the DBConnect object and the SQLCommand object
+            DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+
+            int size = myDS.Tables[0].Rows.Count;
+
+            if (size == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public bool CheckRestaurantExists(string name, string email)
+        {
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_CheckRestaurantExists";
+            SqlParameter inputParameter = new SqlParameter("@theEmail", email);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+            dbCommand.Parameters.Add(inputParameter);
+
+            inputParameter = new SqlParameter("@theName", name);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+            dbCommand.Parameters.Add(inputParameter);
+
+            // Execute the stored procedure using the DBConnect object and the SQLCommand object
+            DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+
+            int size = myDS.Tables[0].Rows.Count;
+
+            if (size == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         public int checkReset(string email, string password, string confirm)
         {
             if (password != confirm)
@@ -112,13 +176,52 @@ namespace Utilities
             }
         }
 
+        public int checkCreateAccount(string first, string last, string email, string password, string billing, string delivery)
+        {
+            if (first == "" || last == "" || email == "" || password == "" || billing == "" || delivery == "")
+            {
+                return 1;
+            }
+            else if (!email.Contains("@") || !email.Contains("."))
+            {
+                return 2;
+            }
+            else if (CheckUserExists(email) == 1)
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
+            }
+        }
+
+        public int checkRestuarant(string name, string email, string address, string phone, string image)
+        {
+            if (name == "" || email == "" || address == "" || phone == "" || image == "")
+            {
+                return 1;
+            }
+            else if (!email.Contains("@") || !email.Contains("."))
+            {
+                return 2;
+            }
+            else if (CheckRestaurantExists(name, email))
+            {
+                return 3;
+            }
+            else
+            {
+                return 4;
+            }
+        }
+
         public bool checkLogin(string email, string password)
         {
             if (password == "" || email == "")
             {
                 return false;
             }
-            //check if it is the same as old password or not
             return true;
         }
     }

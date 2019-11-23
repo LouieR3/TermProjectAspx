@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="MasterLogReg.Master" AutoEventWireup="true" CodeBehind="UsersRegristration.aspx.cs" Inherits="TermProject_Template.UsersRegristration" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LogRegRes/MasterLogReg.Master" AutoEventWireup="true" CodeBehind="RestaurantRegistration.aspx.cs" Inherits="TermProject_Template.LogRegRes.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
-    Create Account
+    Register Restaurant
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
     <meta charset="UTF-8" />
@@ -31,31 +31,59 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-45">
+            <div class="wrap-login101 p-l-85 p-r-85 p-t-55 p-b-45">
                 <div class="login100-form validate-form flex-sb flex-w">
-                    <span class="login100-form-title p-b-32">Account Creation
+                    <span class="login100-form-title p-b-32">Register Restaurant
                     </span>
 
-                    <span class="txt1 p-b-11">Email
+                    <span class="txt1 p-b-11">Restaurant Name
                     </span>
-                    <div class="wrap-input100 validate-input m-b-36" data-validate="Email is required">
-                        <asp:TextBox ID="txtCreateEmail" class="input100" name="email" runat="server"></asp:TextBox>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtRName" class="input100" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Contact Email
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtContactEmail" class="input100" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Restaurant Address
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtRAddress" class="input100" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Phone Number
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtRPhone" class="input100" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Restaurant Image
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtRImage" class="input100" runat="server"></asp:TextBox>
                         <span class="focus-input100"></span>
                     </div>
 
                     <span class="txt1 p-b-11">Password
                     </span>
-                    <div class="wrap-input100 validate-input m-b-12" data-validate="Password is required">
+                    <div class="wrap-input100 validate-input m-b-12">
                         <span class="btn-show-pass">
                             <i class="fa fa-eye"></i>
                         </span>
-                        <asp:TextBox ID="txtCreatePW" class="input100" type="password" name="pass" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRPass" class="input100" type="password" runat="server"></asp:TextBox>
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="flex-sb-m w-full">
                         <div class="contact100-form-checkbox">
-                            <asp:CheckBox ID="chkRememberMeCreate" runat="server" />
+                            <asp:CheckBox ID="chkRememberMePass" runat="server" />
                             <label class="label-checkbox100" for="ckb1">
                                 Remember me
                             </label>
@@ -63,7 +91,7 @@
                     </div>
 
                     <div class="container-login102-form-btn">
-                        <asp:Button ID="btnCreateAccount" class="logButton" runat="server" Text="Create Account" OnClick="btnCreateAccount_Click" />
+                        <asp:Button ID="btnCreateRestuarant" class="logButton" runat="server" Text="Create Account" OnClick="btnCreateRestuarant_Click" />
                     </div>
                 </div>
             </div>

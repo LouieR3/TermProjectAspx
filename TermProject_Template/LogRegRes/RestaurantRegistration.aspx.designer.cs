@@ -7,63 +7,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TermProject_Template.Users {
+namespace TermProject_Template.LogRegRes {
     
     
     public partial class WebForm1 {
         
         /// <summary>
-        /// rptRest control.
+        /// txtRName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptRest;
+        protected global::System.Web.UI.WebControls.TextBox txtRName;
         
         /// <summary>
-        /// txtHidden control.
+        /// txtContactEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtHidden;
+        protected global::System.Web.UI.WebControls.TextBox txtContactEmail;
         
         /// <summary>
-        /// lnkBtnPrev control.
+        /// txtRAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBtnPrev;
+        protected global::System.Web.UI.WebControls.TextBox txtRAddress;
         
         /// <summary>
-        /// lnkBtnNext control.
+        /// txtRPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBtnNext;
+        protected global::System.Web.UI.WebControls.TextBox txtRPhone;
         
         /// <summary>
-        /// EditWallet control.
+        /// txtRImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject_Template.CustomControls.EditWallet EditWallet;
+        protected global::System.Web.UI.WebControls.TextBox txtRImage;
         
         /// <summary>
-        /// AccountSettings control.
+        /// txtRPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject_Template.CustomControls.AccountSettings AccountSettings;
+        protected global::System.Web.UI.WebControls.TextBox txtRPass;
+        
+        /// <summary>
+        /// chkRememberMePass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkRememberMePass;
+        
+        /// <summary>
+        /// btnCreateRestuarant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateRestuarant;
     }
 }

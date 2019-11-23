@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Utilities;
+using System.Web.Script.Serialization;
+using System.IO;
+using System.Net;
+using System.Collections;
 namespace TermProject_Template
 {
  
@@ -22,7 +26,21 @@ namespace TermProject_Template
             int count = validate.CheckMerchantExists(txtContactEmail.Text);
             if(count == 1)
             {
-                String url = "http://cis-iis2.temple.edu/users/pascucci/CIS3342/CoreWebAPI/api/Calculator/" + APIKey;
+                String url = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/Project4API/CreateMerchant/" 
+                + txtMerchantsName.Text + "/" + txtContactEmail.Text;
+                // Create an HTTP Web Request and get the HTTP Web Response from the server.
+                WebRequest request = WebRequest.Create(url);
+                WebResponse response = request.GetResponse();
+                // Read the data from the Web Response, which requires working with streams.
+                Stream theDataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(theDataStream);
+                String data = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
+                // Deserialize a JSON string into a double.
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string result = js.Deserialize<string>(data);
+                lblMessage.Text = result;
             }
         }
     }
