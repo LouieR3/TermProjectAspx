@@ -66,8 +66,6 @@
             <uc1:AccountSettings runat="server" ID="AccountSettings" />
         </div>
     </div>
-    <div id ="Orders">
-
-    </div>
+    <div id ="divOrders" runat="server"></div>
 
 </asp:Content>

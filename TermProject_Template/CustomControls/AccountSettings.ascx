@@ -25,6 +25,15 @@
         </td>
     </tr>
     <tr>
+        <td Class ="style1">
+            <asp:Label ID="lblEmail" runat="server" Text="Account Email:" ForeColor="Black"></asp:Label>
+
+        </td>
+        <td style="width: 300px">
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
         <td class="style2">
             <asp:Button ID="btnEdit" runat="server" Text="Edit" />
             <asp:Button ID="btnUpdate" runat="server" Text="Update" />

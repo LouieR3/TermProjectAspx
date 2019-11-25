@@ -224,5 +224,27 @@ namespace Utilities
             }
             return true;
         }
+        public void getAccountInfo(string name, string email)
+        {
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_CheckAccountInfo";
+            SqlParameter inputEmail = new SqlParameter("@Account_Email","");
+            SqlParameter outputCount = new SqlParameter("@Count", 0);
+
+            inputEmail.Direction = ParameterDirection.Input;
+            inputEmail.SqlDbType = SqlDbType.VarChar;
+            inputEmail.Size = 50;
+            outputCount.Direction = ParameterDirection.Output;
+            outputCount.SqlDbType = SqlDbType.VarChar;
+            outputCount.Size = 50;
+
+            dbCommand.Parameters.Add(inputEmail);
+            dbCommand.Parameters.Add(outputCount);
+
+            db.GetDataSetUsingCmdObj(dbCommand);
+            int count = int.Parse(dbCommand.Parameters["@Count"].Value.ToString());
+            return count;
+        }
     }
 }

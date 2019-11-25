@@ -12,12 +12,14 @@ using System.Collections;
 using System.Web.Script.Serialization;
 using System.IO;
 using System.Net;
+using System.Text;
+
+
 
 namespace TermProject_Template.Users
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        ArrayList previousOrders = new ArrayList();
         int total = 0;
         DataSet dsRest = new DataSet();
         SqlCommand objCommand = new SqlCommand();
@@ -89,6 +91,7 @@ namespace TermProject_Template.Users
         }
         public void displayPreviousOrders(string ID)
         {
+            string strHTML = "";
             String url = "http://cis-iis2.temple.edu/users/pascucci/CIS3342/CoreWebAPI/api/Calculator/";
 
             url = url + "/" + ID;
@@ -103,8 +106,44 @@ namespace TermProject_Template.Users
             response.Close();
             // Deserialize a JSON string into a double.
             JavaScriptSerializer js = new JavaScriptSerializer();
-            double result = js.Deserialize<double>(data);
+            DataSet result = js.Deserialize<DataSet>(data);
             
+            DataTable dtPreviousOrders = result.Tables[0];
+            DataRow drPreviousOrders;
+            if (dtPreviousOrders.Rows.Count != 0)
+            {
+                strHTML = strHTML + "<table>" +
+                             "<tr style='font-weight:bold'>" +
+                             "<td> Product ID </td>" +
+                             "<td> Description </td>" +
+                             "<td> Quantity in Stock </td>" +
+                             "<td> Price </td>" +
+                             "</tr>";
+                for(int row = 0; row <= dtPreviousOrders.Rows.Count; row++)
+                {
+                    drPreviousOrders = dtPreviousOrders.Rows[row];
+                    Button select = new Button();
+                    select.Text = "View Order";
+                    select.ID = drPreviousOrders["Transaction_ID"].ToString();
+
+                    StringBuilder strBuilder = new StringBuilder();
+                    StringWriter strWriter = new StringWriter(strBuilder);
+                    HtmlTextWriter htmlWriter = new HtmlTextWriter(strWriter);
+
+
+                    strHTML = strHTML + "<tr>" +
+                                        "<td>" + drPreviousOrders["Wallet_ID"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Transaction_Amount"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Type"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Card_Number"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Merchant_ID"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Card_Number"] + "</td>" +
+                                        "<td>" + select + "</td>" +
+                                        "</tr>";
+                }
+                strHTML += "</table>";
+            }
+            divOrders.InnerHtml = strHTML;
         }
     }
 }

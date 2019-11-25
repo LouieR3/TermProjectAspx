@@ -7,7 +7,7 @@ using Utilities;
 
 namespace Utilities
 {
-    class Transaction
+    public class Transaction
     {
         private int walletID = 0;
         private double amount = 0.0;

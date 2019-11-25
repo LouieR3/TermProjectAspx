@@ -11,7 +11,7 @@ namespace TermProject_Template.CustomControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

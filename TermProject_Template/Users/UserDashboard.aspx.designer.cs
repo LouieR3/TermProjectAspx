@@ -65,5 +65,14 @@ namespace TermProject_Template.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::TermProject_Template.CustomControls.AccountSettings AccountSettings;
+        
+        /// <summary>
+        /// divOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOrders;
     }
 }
