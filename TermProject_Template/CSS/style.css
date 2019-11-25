@@ -421,6 +421,19 @@ background-c
     width: 80%;
 }
 
+.container-login103-form-btn {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
+
 .login100-form-btn {
     font-family: Raleway-Bold;
     font-size: 16px;

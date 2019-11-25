@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="container-login102-form-btn">
-                        <asp:Button ID="btnCreateRestuarant" class="logButton" runat="server" Text="Create Account" OnClick="btnCreateRestuarant_Click" />
+                        <asp:Button ID="btnCreateRestuarant" class="logButton" runat="server" Text="Register Restaurant" OnClick="btnCreateRestuarant_Click" />
                     </div>
                 </div>
             </div>
