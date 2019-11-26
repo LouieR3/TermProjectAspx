@@ -224,7 +224,7 @@ namespace Utilities
             }
             return true;
         }
-        public void getAccountInfo(string name, string email)
+        public int getAccountInfo(string name, string email)
         {
             dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;
