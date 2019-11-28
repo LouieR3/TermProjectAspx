@@ -162,7 +162,7 @@ namespace TermProject_Template
                     Response.Cookies.Add(myCookie);
                 }
 
-                Response.Redirect("UserLogin.aspx");
+                Response.Redirect("Login.aspx");
             }
         }
     }

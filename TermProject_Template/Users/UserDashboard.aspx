@@ -9,10 +9,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <div class="Restaurants" style="top:70px;padding-bottom:10px;">
+    <div class="Restaurants" style="top: 70px; padding-bottom: 10px;">
         <div>
             <table style="width: 752px">
-                <tr style="color:cornsilk; padding-left: 15px;">
+                <tr style="color: cornsilk; padding-left: 15px;">
                     <th>Image</th>
                     <th>Restaurant</th>
                     <th>Email</th>
@@ -66,6 +66,6 @@
             <uc1:AccountSettings runat="server" ID="AccountSettings" />
         </div>
     </div>
-    <div id ="divOrders" runat="server"></div>
+    <div id="divOrders" runat="server"></div>
 
 </asp:Content>
