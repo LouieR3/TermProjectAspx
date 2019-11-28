@@ -90,9 +90,13 @@
     <Content Include="js\main.js" />
     <Content Include="LogRegRes\RestaurantRegistration.aspx" />
     <Content Include="Merchant\MerchantRegristration.aspx" />
-    <Content Include="LogRegRes\UserLogin.aspx" />
+    <Content Include="LogRegRes\Login.aspx" />
     <Content Include="LogRegRes\UsersRegistration.aspx" />
+    <Content Include="Restaurant\CreateMenu.aspx" />
+    <Content Include="Restaurant\ViewAllOrders.aspx" />
     <Content Include="Users\UserDashboard.aspx" />
+    <Content Include="Users\ViewMenu.aspx" />
+    <Content Include="Users\ViewOrder.aspx" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
     <Content Include="vendor\animsition\css\animsition.min.css" />
@@ -177,12 +181,12 @@
     <Compile Include="Restaurant\RestaurantAccountMaster.Master.designer.cs">
       <DependentUpon>RestaurantAccountMaster.Master</DependentUpon>
     </Compile>
-    <Compile Include="LogRegRes\UserLogin.aspx.cs">
-      <DependentUpon>UserLogin.aspx</DependentUpon>
+    <Compile Include="LogRegRes\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LogRegRes\UserLogin.aspx.designer.cs">
-      <DependentUpon>UserLogin.aspx</DependentUpon>
+    <Compile Include="LogRegRes\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogRegRes\UsersRegistration.aspx.cs">
       <DependentUpon>UsersRegistration.aspx</DependentUpon>
@@ -198,6 +202,20 @@
     <Compile Include="LogRegRes\ResetPassword.aspx.designer.cs">
       <DependentUpon>ResetPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Restaurant\CreateMenu.aspx.cs">
+      <DependentUpon>CreateMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\CreateMenu.aspx.designer.cs">
+      <DependentUpon>CreateMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant\ViewAllOrders.aspx.cs">
+      <DependentUpon>ViewAllOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\ViewAllOrders.aspx.designer.cs">
+      <DependentUpon>ViewAllOrders.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\UsersMaster.Master.cs">
       <DependentUpon>UsersMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -211,6 +229,20 @@
     </Compile>
     <Compile Include="Users\UserDashboard.aspx.designer.cs">
       <DependentUpon>UserDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ViewMenu.aspx.cs">
+      <DependentUpon>ViewMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ViewMenu.aspx.designer.cs">
+      <DependentUpon>ViewMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ViewOrder.aspx.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ViewOrder.aspx.designer.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

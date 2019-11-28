@@ -91,7 +91,7 @@ namespace TermProject_Template.LogRegRes
                 // Execute the stored procedure using the DBConnect object and the SQLCommand object
                 DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
 
-                Response.Redirect("UserLogin.aspx");
+                Response.Redirect("Login.aspx");
             }
         }
     }
