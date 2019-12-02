@@ -20,8 +20,7 @@
                 <ul>
                     <li><img class="imageT" src="~/images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
                     <li><a href="StudentFillData.aspx">Dashboard</a></li>
-                    <li><a href="AdminSearchStudents.aspx">View Orders</a></li>
-                    <li><a href="Default.aspx">Account Settings</a></li>
+                    <li><a href="CreateMenu.aspx">Create Menu</a></li>
                 </ul>
             </div>
             <div>

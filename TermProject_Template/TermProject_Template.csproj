@@ -93,6 +93,7 @@
     <Content Include="LogRegRes\Login.aspx" />
     <Content Include="LogRegRes\UsersRegistration.aspx" />
     <Content Include="Restaurant\CreateMenu.aspx" />
+    <Content Include="Restaurant\ResturantDashboard.aspx" />
     <Content Include="Restaurant\ViewAllOrders.aspx" />
     <Content Include="Users\UserDashboard.aspx" />
     <Content Include="Users\ViewMenu.aspx" />
@@ -208,6 +209,13 @@
     </Compile>
     <Compile Include="Restaurant\CreateMenu.aspx.designer.cs">
       <DependentUpon>CreateMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant\ResturantDashboard.aspx.cs">
+      <DependentUpon>ResturantDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\ResturantDashboard.aspx.designer.cs">
+      <DependentUpon>ResturantDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Restaurant\ViewAllOrders.aspx.cs">
       <DependentUpon>ViewAllOrders.aspx</DependentUpon>

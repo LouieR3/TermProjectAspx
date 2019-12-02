@@ -10,51 +10,69 @@
 namespace TermProject_Template.Restaurant {
     
     
-    public partial class WebForm1 {
+    public partial class ResturantDashboard {
         
         /// <summary>
-        /// btnEdit control.
+        /// rptRest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.Repeater rptRest;
         
         /// <summary>
-        /// gvMenu control.
+        /// txtHidden control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMenu;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtHidden;
         
         /// <summary>
-        /// btnDelete control.
+        /// lnkBtnPrev control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnPrev;
         
         /// <summary>
-        /// btnChange control.
+        /// lnkBtnNext control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnChange;
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnNext;
         
         /// <summary>
-        /// btnNewItem control.
+        /// EditWallet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewItem;
+        protected global::TermProject_Template.CustomControls.EditWallet EditWallet;
+        
+        /// <summary>
+        /// AccountSettings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::TermProject_Template.CustomControls.AccountSettings AccountSettings;
+        
+        /// <summary>
+        /// divOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divOrders;
     }
 }

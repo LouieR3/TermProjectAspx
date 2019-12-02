@@ -21,22 +21,58 @@
 
         </td>
         <td style="width: 300px">
-            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" Enabled="False"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td Class ="style1">
-            <asp:Label ID="lblEmail" runat="server" Text="Account Email:" ForeColor="Black"></asp:Label>
+            <asp:Label ID="lblAddress" runat="server" Text="Account Address:" ForeColor="Black"></asp:Label>
 
         </td>
         <td style="width: 300px">
-            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtAddress" runat="server" Enabled="False"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td Class ="style1">
+            <asp:Label ID="lblBankName" runat="server" Text="Bank Name:" ForeColor="Black"></asp:Label>
+
+        </td>
+        <td style="width: 300px">
+            <asp:TextBox ID="txtBankName" runat="server" Enabled="False"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td Class ="style1">
+            <asp:Label ID="lblCardType" runat="server" Text="Card Type:" ForeColor="Black"></asp:Label>
+
+        </td>
+        <td style="width: 300px">
+            <asp:TextBox ID="txtCardType" runat="server" Enabled="False"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td Class ="style1">
+            <asp:Label ID="lblCardNumber" runat="server" Text="CardNumber:" ForeColor="Black"></asp:Label>
+
+        </td>
+        <td style="width: 300px">
+            <asp:TextBox ID="txtCardNumber" runat="server" Enabled="False"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td Class ="style1">
+            <asp:Label ID="lblEmail" runat="server" Text="Email:" ForeColor="Black"></asp:Label>
+
+        </td>
+        <td style="width: 300px">
+            <asp:TextBox ID="txtEmail" runat="server" Enabled="False"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td class="style2">
-            <asp:Button ID="btnEdit" runat="server" Text="Edit" />
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" />
+            <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
             </td>
     </tr>
 </table>
