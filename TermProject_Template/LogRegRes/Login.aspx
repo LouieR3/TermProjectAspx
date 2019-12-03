@@ -56,7 +56,7 @@
 
                     <div class="flex-sb-m w-full">
                         <div class="contact100-form-checkbox">
-                            <asp:CheckBox ID="chkRememberMe" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" />
+                            <asp:CheckBox ID="chkRememberMe" runat="server" />
                             <label class="label-checkbox100" for="ckb1">
                                 Remember me
                             </label>

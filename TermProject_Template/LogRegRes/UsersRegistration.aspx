@@ -88,15 +88,6 @@
                         <span class="focus-input100"></span>
                     </div>
 
-                    <div class="flex-sb-m w-full">
-                        <div class="contact100-form-checkbox">
-                            <asp:CheckBox ID="chkRememberMeCreate" runat="server" />
-                            <label class="label-checkbox100" for="ckb1">
-                                Remember me
-                            </label>
-                        </div>
-                    </div>
-
                     <div class="container-login102-form-btn">
                         <asp:Button ID="btnCreateAccount" class="logButton" runat="server" Text="Create Account" OnClick="btnCreateAccount_Click" />
                     </div>

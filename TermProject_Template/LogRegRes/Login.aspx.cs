@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Utilities;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TermProject_Template
 {
@@ -13,16 +15,18 @@ namespace TermProject_Template
     {
         HttpCookie myCookie = new HttpCookie("theCookie");
         Validation validationOBJ = new Validation();
-        int BoxChecked = 0;
+        DBConnect db = new DBConnect();
+        SqlCommand dbCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //if(myCookie != null)
-                //{
-                //    txtEmail.Text = myCookie.Values["AccountID"].ToString();
-                //    txtPassword.Text = myCookie.Values["AccountPass"].ToString();
-                //}
+                if (Request.Cookies["theCookie"] != null)
+                {
+                    txtEmail.Text = Request.Cookies["theCookie"]["AccountID"].ToString();
+                    txtPassword.Text = Request.Cookies["theCookie"]["AccountPass"].ToString();
+                    chkRememberMe.Checked = true;
+                }
             }
         }
 
@@ -46,12 +50,36 @@ namespace TermProject_Template
             {
                 if (chkRememberMe.Checked == true)
                 {
-                    myCookie.Expires = new DateTime(2025, 1, 1);
                     myCookie.Values["AccountID"] = login;
                     myCookie.Values["AccountPass"] = pass;
+                    myCookie.Expires = new DateTime(2025, 1, 1);
                     Response.Cookies.Add(myCookie);
                 }
-                Session["AccountID"] = txtEmail.Text;
+                else
+                {
+                    Response.Cookies["theCookie"].Expires = DateTime.Now.AddDays(-1);
+                }
+                if (txtEmail.Text.Contains("@"))
+                {
+                    Session["AccountID"] = txtEmail.Text;
+                }
+                else
+                {
+                    string loginID = txtEmail.Text;
+                    dbCommand.Parameters.Clear();
+                    dbCommand.CommandType = CommandType.StoredProcedure;
+                    dbCommand.CommandText = "TP_GetEmail";
+                    SqlParameter inputParameter = new SqlParameter("@theID", loginID);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
+                    dbCommand.Parameters.Add(inputParameter);
+                    
+                    DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+                    string email = Convert.ToString(myDS.Tables[0].Rows[0]["UserEmail"]);
+
+                    Session["AccountID"] = email;
+                }
                 if (validationOBJ.CheckUserLogin(login, pass) == true)
                 {
                     Response.Redirect("../Users/UserDashboard.aspx");
@@ -66,11 +94,6 @@ namespace TermProject_Template
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("UsersRegistration.aspx");
-        }
-
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            BoxChecked = 1;
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)

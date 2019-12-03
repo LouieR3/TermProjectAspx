@@ -24,8 +24,7 @@ namespace TermProject_Template
         protected void btnNewPassword_Click(object sender, EventArgs e)
         {
             objCookie = Request.Cookies["theResetEmail"];
-            string email = "qwe@rty.com";
-                //objCookie.ToString();
+            string email = objCookie.ToString();
 
             string pass = txtPass.Text.ToString();
             string confirm = txtConfirm.Text.ToString();

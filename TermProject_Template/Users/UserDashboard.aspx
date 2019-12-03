@@ -5,6 +5,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
+    Dashboard
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
