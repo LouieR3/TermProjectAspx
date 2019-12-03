@@ -12,7 +12,6 @@ namespace TermProject_Template
 {
     public partial class UsersRegristration : System.Web.UI.Page
     {
-        HttpCookie myCookie = new HttpCookie("theCookie");
         Validation validationOBJ = new Validation();
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
@@ -144,22 +143,6 @@ namespace TermProject_Template
 
                     // Execute the stored procedure using the DBConnect object and the SQLCommand object
                     DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
-                }
-
-                if(chkRememberMeCreate.Checked == true)
-                {
-                    myCookie.Expires = new DateTime(2025, 1, 1);
-                    if (loginID != "")
-                    {
-                        myCookie.Values["AccountID"] = loginID;
-                    }
-                    else
-                    {
-                        myCookie.Values["AccountID"] = email;
-                    }
-                    
-                    myCookie.Values["AccountPass"] = pass;
-                    Response.Cookies.Add(myCookie);
                 }
 
                 Response.Redirect("Login.aspx");
