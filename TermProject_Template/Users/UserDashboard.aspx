@@ -2,6 +2,7 @@
 
 <%@ Register Src="../CustomControls/AccountSettings.ascx" TagPrefix="uc1" TagName="AccountSettings" %>
 <%@ Register Src="~/CustomControls/EditWallet.ascx" TagPrefix="uc1" TagName="EditWallet" %>
+<%@ Register Src="~/CustomControls/WalletBalance.ascx" TagPrefix="uc1" TagName="WalletBalance" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
@@ -10,6 +11,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
+    <div class ="Balance" style="top: 70px; padding-bottom: 10px; left: 0px; height: 35px;">
+        <uc1:WalletBalance runat="server" id="WalletBalance" />
+    </div>
     <div class="Restaurants" style="top: 70px; padding-bottom: 10px;">
         <div>
             <table style="width: 752px">
@@ -67,6 +71,6 @@
             <uc1:AccountSettings runat="server" ID="AccountSettings" />
         </div>
     </div>
-    <div id="divOrders" runat="server"></div>
+    <div id ="divOrders" class="Orders" runat="server" style="color: black; top: 550px"></div>
 
 </asp:Content>

@@ -13,6 +13,15 @@ namespace TermProject_Template.Users {
     public partial class WebForm1 {
         
         /// <summary>
+        /// WalletBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::TermProject_Template.CustomControls.WalletBalance WalletBalance;
+        
+        /// <summary>
         /// rptRest control.
         /// </summary>
         /// <remarks>

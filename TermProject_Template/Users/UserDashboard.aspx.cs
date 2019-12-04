@@ -27,11 +27,14 @@ namespace TermProject_Template.Users
         DBConnect db = new DBConnect();
         private string APIKey = "nV17vFTeaH";
         private int MerchantAccountID = 2;
+        string accountID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string accountID = Session["AccountID"].ToString();
+                //string accountID = Session["AccountID"].ToString();
+                accountID = "gav@gmail.com";
+                Session["AccountID"] = accountID;
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_GetRestaurants";
@@ -62,7 +65,7 @@ namespace TermProject_Template.Users
             if (countValue <= 0)
             {
                 countValue = 0;
-            } 
+            }
             rptRest.DataSource = dsRest;
             rptRest.DataBind();
 
@@ -93,58 +96,62 @@ namespace TermProject_Template.Users
         public void displayPreviousOrders(string ID)
         {
             string strHTML = "";
-            String url = "http://cis-iis2.temple.edu/users/pascucci/CIS3342/CoreWebAPI/api/Calculator/";
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "Tp_GetUserOrders";
+            SqlParameter inputEmail = new SqlParameter("@Email", accountID);
 
-            url = url + "/" + ID;
-            // Create an HTTP Web Request and get the HTTP Web Response from the server.
-            WebRequest request = WebRequest.Create(url);
-            WebResponse response = request.GetResponse();
-            // Read the data from the Web Response, which requires working with streams.
-            Stream theDataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(theDataStream);
-            String data = reader.ReadToEnd();
-            reader.Close();
-            response.Close();
-            // Deserialize a JSON string into a double.
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            DataSet result = js.Deserialize<DataSet>(data);
-            
+            objCommand.Parameters.Add(inputEmail);
+            DataSet result = db.GetDataSetUsingCmdObj(objCommand);
+
             DataTable dtPreviousOrders = result.Tables[0];
             DataRow drPreviousOrders;
             if (dtPreviousOrders.Rows.Count != 0)
             {
                 strHTML = strHTML + "<table>" +
                              "<tr style='font-weight:bold'>" +
-                             "<td> Product ID </td>" +
-                             "<td> Description </td>" +
-                             "<td> Quantity in Stock </td>" +
-                             "<td> Price </td>" +
+                             "<td> OrderID </td>" +
+                             "<td> Order Name </td>" +
+                             "<td> Order Email </td>" +
+                             "<td> Restaurant Email </td>" +
+                             "<td> Order Status </td>" +
+                             "<td> Order Cost </td>" +
                              "</tr>";
-                for(int row = 0; row <= dtPreviousOrders.Rows.Count; row++)
+                for (int row = 0; row < dtPreviousOrders.Rows.Count; row++)
                 {
                     drPreviousOrders = dtPreviousOrders.Rows[row];
                     Button select = new Button();
+                    String selectHTML = "";
                     select.Text = "View Order";
-                    select.ID = drPreviousOrders["Transaction_ID"].ToString();
+                    select.ID = "btn" + drPreviousOrders["Order_ID"].ToString();
+                    select.Click += new EventHandler(this.SelectButtonHandler);
+                    select.Width = 120;
 
                     StringBuilder strBuilder = new StringBuilder();
                     StringWriter strWriter = new StringWriter(strBuilder);
                     HtmlTextWriter htmlWriter = new HtmlTextWriter(strWriter);
 
+                    select.RenderControl(htmlWriter);
+                    selectHTML = strBuilder.ToString();
 
                     strHTML = strHTML + "<tr>" +
-                                        "<td>" + drPreviousOrders["Wallet_ID"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Transaction_Amount"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Type"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Card_Number"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Merchant_ID"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Card_Number"] + "</td>" +
-                                        "<td>" + select + "</td>" +
+                                        "<td>" + drPreviousOrders["Order_ID"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Order_name"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Order_User_Email"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Restaurant_Email"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Order_Status"] + "</td>" +
+                                        "<td>" + drPreviousOrders["Order_Cost"] + "</td>" +
+                                        "<td>" + selectHTML + "</td>" +
                                         "</tr>";
                 }
                 strHTML += "</table>";
             }
             divOrders.InnerHtml = strHTML;
+        }
+        public void SelectButtonHandler(Object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
         }
     }
 }
