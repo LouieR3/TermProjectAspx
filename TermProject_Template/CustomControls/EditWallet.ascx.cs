@@ -23,8 +23,11 @@ namespace TermProject_Template.CustomControls
         protected void Page_Load(object sender, EventArgs e)
         {
             //email = Session["AccountID"].ToString();
-            email = "gav@gmail.com";
-            DisplayWalletInformation();
+            if (!IsPostBack)
+            {
+                email = "gav@gmail.com";
+                DisplayWalletInformation();
+            }
         }
         public void DisplayWalletInformation()
         {
@@ -42,18 +45,20 @@ namespace TermProject_Template.CustomControls
             txtAddress.Text = customers.Address.ToString();
             txtEmail.Text = customers.Email.ToString();
             txtBankName.Text = customers.BankName.ToString();
-            txtCardType.Text = customers.CardType.ToString();
+            ddlType.SelectedValue = customers.CardType.ToString();
             txtCardNumber.Text = customers.CardNumber.ToString();
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             EnableFields();
+            btnEdit.Enabled = false;
+            btnUpdate.Enabled = true;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (txtName.Text != "" && txtAddress.Text != "" && txtBankName.Text != "" && txtCardType.Text != "")
+            if (txtName.Text != "" && txtAddress.Text != "" && txtBankName.Text != "")
             {
                 int cardNumber = 0;
                 if (int.TryParse(txtCardNumber.Text, out cardNumber))
@@ -61,9 +66,11 @@ namespace TermProject_Template.CustomControls
                     Wallet wallet = new Wallet();
                     wallet.Name = txtName.Text;
                     wallet.Address = txtAddress.Text;
+                    wallet.Email = txtEmail.Text;
                     wallet.BankName = txtBankName.Text;
-                    wallet.CardType = txtCardType.Text;
-                    wallet.CardNumber = int.Parse(txtCardType.Text);
+                    wallet.CardType = ddlType.SelectedValue;
+                    wallet.CardNumber = int.Parse(txtCardNumber.Text);
+                    wallet.MerchantAccountID = MerchantAccountID;
 
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     String jsonCustomer = js.Serialize(wallet);
@@ -84,9 +91,16 @@ namespace TermProject_Template.CustomControls
                         Stream theDataStream = response.GetResponseStream();
                         StreamReader reader = new StreamReader(theDataStream);
                         String data = reader.ReadToEnd();
-                        if (data == "True")
+                        if (data == "true")
                         {
+                            btnUpdate.Enabled = false;
+                            btnEdit.Enabled = true;
                             DisableFields();
+                            txtName.Text =wallet.Name;
+                            txtAddress.Text = wallet.Address;
+                            txtBankName.Text = wallet.BankName;
+                            ddlType.SelectedValue = wallet.CardType;
+                            txtCardNumber.Text = wallet.CardNumber.ToString() ;
                         }
                     }
                     catch
@@ -101,16 +115,18 @@ namespace TermProject_Template.CustomControls
             txtName.Enabled = true;
             txtAddress.Enabled = true;
             txtBankName.Enabled = true;
-            txtCardType.Enabled = true;
+            ddlType.Enabled = true;
             txtCardNumber.Enabled = true;
+            ddlType.Enabled = true;
         }
         public void DisableFields()
         {
             txtName.Enabled = false;
             txtAddress.Enabled = false;
             txtBankName.Enabled = false;
-            txtCardType.Enabled = false;
+            ddlType.Enabled = false;
             txtCardNumber.Enabled = false;
+            ddlType.Enabled = false;
         }
     }
 }

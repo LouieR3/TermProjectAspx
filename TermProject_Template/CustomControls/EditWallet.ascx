@@ -48,7 +48,10 @@
 
         </td>
         <td style="width: 300px">
-            <asp:TextBox ID="txtCardType" runat="server" Enabled="False"></asp:TextBox>
+            <asp:DropDownList ID="ddlType" runat="server" Width="127px" Enabled="False">
+                <asp:ListItem>Credit</asp:ListItem>
+                <asp:ListItem>Debit</asp:ListItem>
+            </asp:DropDownList>
         </td>
     </tr>
     <tr>
@@ -72,7 +75,7 @@
     <tr>
         <td class="style2">
             <asp:Button ID="btnEdit" runat="server" Text="Edit" OnClick="btnEdit_Click" />
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" Enabled="False" />
             </td>
     </tr>
 </table>
