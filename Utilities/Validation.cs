@@ -10,6 +10,10 @@ using System.Data.OleDb;
 using Utilities;
 using System.Collections;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.IO;
+using System.Web.Script.Serialization;
+
 
 namespace Utilities
 {
@@ -17,6 +21,9 @@ namespace Utilities
     {
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
+        private int MerchantAccountID = 2;
+        private string APIKey = "nV17vFTeaH";
+        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPI/api/service/PaymentProcessor/";
         public int CheckUserExists(string AccountEmail)
         {
             dbCommand.Parameters.Clear();
@@ -264,6 +271,23 @@ namespace Utilities
                 }
 
             }
+        }
+        public string GetUserBalance(string email)
+        {
+            string balance = "";
+
+            WebRequest request = WebRequest.Create(webApiUrl + "GetBalance/" + email + "/" + MerchantAccountID + "/" + APIKey);
+            WebResponse response = request.GetResponse();
+            // Read the data from the Web Response, which requires working with streams.
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            balance = js.Deserialize<string>(data);
+            
+            return balance;
         }
     }
 }

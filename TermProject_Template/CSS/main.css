@@ -96,9 +96,21 @@ body {
     border: 0px;
     margin: 0px;
 }
+.Balance {
+    position: absolute;
+    width: 100%;
+    background-color: slategray;
+    border-radius: 3px;
+}
 .Restaurants {
     position: absolute;
     width:100%;
+    background-color: slategray;
+    border-radius: 3px;
+}
+.Orders {
+    position: absolute;
+    width: 100%;
     background-color: slategray;
     border-radius: 3px;
 }

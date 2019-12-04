@@ -95,7 +95,7 @@ namespace TermProject_Template.Restaurant
             string strHTML = "";
             objCommand.Parameters.Clear();
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "Tp_GetOrders";
+            objCommand.CommandText = "Tp_GetUserOrders";
             SqlParameter inputEmail = new SqlParameter("@Email", accountID);
 
             objCommand.Parameters.Add(inputEmail);
@@ -114,17 +114,22 @@ namespace TermProject_Template.Restaurant
                              "<td> Order Status </td>" +
                              "<td> Order Cost </td>" +
                              "</tr>";
-                for (int row = 0; row <= dtPreviousOrders.Rows.Count; row++)
+                for (int row = 0; row < dtPreviousOrders.Rows.Count; row++)
                 {
                     drPreviousOrders = dtPreviousOrders.Rows[row];
                     Button select = new Button();
+                    String selectHTML = "";
                     select.Text = "View Order";
-                    select.ID = drPreviousOrders["Transaction_ID"].ToString();
+                    select.ID = "btn"+ drPreviousOrders["Order_ID"].ToString();
+                    select.Click += new EventHandler(this.SelectButtonHandler);
+                    select.Width = 120;
 
                     StringBuilder strBuilder = new StringBuilder();
                     StringWriter strWriter = new StringWriter(strBuilder);
                     HtmlTextWriter htmlWriter = new HtmlTextWriter(strWriter);
 
+                    select.RenderControl(htmlWriter);
+                    selectHTML = strBuilder.ToString();
 
                     strHTML = strHTML + "<tr>" +
                                         "<td>" + drPreviousOrders["Order_ID"] + "</td>" +
@@ -133,12 +138,17 @@ namespace TermProject_Template.Restaurant
                                         "<td>" + drPreviousOrders["Restaurant_Email"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_Status"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_Cost"] + "</td>" +
-                                        "<td>" + select + "</td>" +
+                                        "<td>" + selectHTML + "</td>" +
                                         "</tr>";
                 }
                 strHTML += "</table>";
             }
             divOrders.InnerHtml = strHTML;
+        }
+        public void SelectButtonHandler(Object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+           
         }
     }
 }
