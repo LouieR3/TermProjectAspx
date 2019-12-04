@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Restaurant/RestaurantAccountMaster.Master" AutoEventWireup="true" CodeBehind="ResturantDashboard.aspx.cs" Inherits="TermProject_Template.Restaurant.ResturantDashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Restaurant/RestaurantAccountMaster.Master" AutoEventWireup="true" CodeBehind="RestaurantDashboard.aspx.cs" Inherits="TermProject_Template.Restaurant.ResturantDashboard" %>
 <%@ Register Src="../CustomControls/AccountSettings.ascx" TagPrefix="uc1" TagName="AccountSettings" %>
 <%@ Register Src="~/CustomControls/EditWallet.ascx" TagPrefix="uc1" TagName="EditWallet" %>
 

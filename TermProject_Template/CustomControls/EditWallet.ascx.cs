@@ -19,16 +19,16 @@ namespace TermProject_Template.CustomControls
         private int MerchantAccountID = 2;
         private string APIKey = "nV17vFTeaH";
         private string email = "";
-        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPITest/api/service/PaymentProcessor/";
+        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPI/api/service/PaymentProcessor/";
         protected void Page_Load(object sender, EventArgs e)
         {
-            email = Session["AccountID"].ToString();
+            //email = Session["AccountID"].ToString();
+            email = "gav@gmail.com";
             DisplayWalletInformation();
         }
         public void DisplayWalletInformation()
         {
-            WebRequest request = WebRequest.Create(webApiUrl + "GetAccountInformation/" +email
-              +  "/"+ MerchantAccountID+ "/"+ APIKey);
+            WebRequest request = WebRequest.Create(webApiUrl + "GetAccountInformation/" + email + "/" + MerchantAccountID + "/" + APIKey);
             WebResponse response = request.GetResponse();
             // Read the data from the Web Response, which requires working with streams.
             Stream theDataStream = response.GetResponseStream();

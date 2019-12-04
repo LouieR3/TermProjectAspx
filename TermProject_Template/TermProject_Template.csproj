@@ -92,8 +92,9 @@
     <Content Include="Merchant\MerchantRegristration.aspx" />
     <Content Include="LogRegRes\Login.aspx" />
     <Content Include="LogRegRes\UsersRegistration.aspx" />
+    <Content Include="Restaurant\BuildMenuItem.aspx" />
     <Content Include="Restaurant\CreateMenu.aspx" />
-    <Content Include="Restaurant\ResturantDashboard.aspx" />
+    <Content Include="Restaurant\RestaurantDashboard.aspx" />
     <Content Include="Restaurant\ViewAllOrders.aspx" />
     <Content Include="Users\UserDashboard.aspx" />
     <Content Include="Users\ViewMenu.aspx" />
@@ -175,6 +176,13 @@
       <DependentUpon>MerchantRegristration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurant\BuildMenuItem.aspx.cs">
+      <DependentUpon>BuildMenuItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\BuildMenuItem.aspx.designer.cs">
+      <DependentUpon>BuildMenuItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Restaurant\RestaurantAccountMaster.Master.cs">
       <DependentUpon>RestaurantAccountMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,12 +218,12 @@
     <Compile Include="Restaurant\CreateMenu.aspx.designer.cs">
       <DependentUpon>CreateMenu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Restaurant\ResturantDashboard.aspx.cs">
-      <DependentUpon>ResturantDashboard.aspx</DependentUpon>
+    <Compile Include="Restaurant\RestaurantDashboard.aspx.cs">
+      <DependentUpon>RestaurantDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Restaurant\ResturantDashboard.aspx.designer.cs">
-      <DependentUpon>ResturantDashboard.aspx</DependentUpon>
+    <Compile Include="Restaurant\RestaurantDashboard.aspx.designer.cs">
+      <DependentUpon>RestaurantDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Restaurant\ViewAllOrders.aspx.cs">
       <DependentUpon>ViewAllOrders.aspx</DependentUpon>

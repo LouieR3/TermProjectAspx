@@ -12,7 +12,7 @@
                     <asp:CheckBox ID="chkSelect" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:ImageField ControlStyle-CssClass="img" DataImageUrlField="Avatar" HeaderText="Item Photo">
+            <asp:ImageField ControlStyle-CssClass="img" DataImageUrlField="Item_Image" HeaderText="Item Photo">
                 <ControlStyle CssClass="img" Height="30px" Width="30px" />
                 <HeaderStyle Height="20px" />
                 <ItemStyle Height="20px" HorizontalAlign="Center" VerticalAlign="Middle" Width="20px" />
@@ -24,7 +24,7 @@
                     <asp:ListBox ID="lsbxAddOns" runat="server"></asp:ListBox>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField HeaderText="ItemID" Visible="False" />
+            <asp:BoundField HeaderText="ItemID" Visible="False" DataField="MenuID" />
         </Columns>
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <EditRowStyle BackColor="#999999" />
@@ -39,6 +39,6 @@
         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <asp:Button ID="btnDelete" runat="server" style="z-index: 1; left: 541px; top: 71px; position: absolute" Text="Delete" Visible="False" OnClick="btnDelete_Click" />
-    <asp:Button ID="btnChange" runat="server" style="z-index: 1; left: 615px; top: 71px; position: absolute" Text="Change" Visible="False" />
-    <asp:Button ID="btnNewItem" runat="server" style="z-index: 1; left: 395px; top: 70px; position: absolute" Text="New Item" />
+    <asp:Button ID="btnChange" runat="server" style="z-index: 1; left: 615px; top: 71px; position: absolute" Text="Change" Visible="False" OnClick="btnChange_Click" />
+    <asp:Button ID="btnNewItem" runat="server" style="z-index: 1; left: 395px; top: 70px; position: absolute" Text="New Item" OnClick="btnNewItem_Click" />
 </asp:Content>

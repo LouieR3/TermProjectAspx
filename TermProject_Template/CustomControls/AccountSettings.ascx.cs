@@ -13,37 +13,37 @@ namespace TermProject_Template.CustomControls
 {
     public partial class AccountSettings : System.Web.UI.UserControl
     {
-        private string email = "";
+        string email = "";
         Validation validate = new Validation();
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
             string email = Session["AccountID"].ToString();
-            DisplayAccountInformation();
+            DisplayAccountInformation(email);
         }
-        public void DisplayAccountInformation()
+        public void DisplayAccountInformation(string email)
         {
             dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;
             dbCommand.CommandText = "TP_GetAccountInformation";
 
-            SqlParameter inputVirtualWalletID = new SqlParameter("@Email", email);
+            SqlParameter inputEmailID = new SqlParameter("@Email", email);
 
-            inputVirtualWalletID.Direction = ParameterDirection.Input;
-            inputVirtualWalletID.SqlDbType = SqlDbType.VarChar;
+            inputEmailID.Direction = ParameterDirection.Input;
+            inputEmailID.SqlDbType = SqlDbType.VarChar;
 
-            dbCommand.Parameters.Add(inputVirtualWalletID);
+            dbCommand.Parameters.Add(inputEmailID);
 
-            db.GetDataSetUsingCmdObj(dbCommand);
+            DataSet ds = db.GetDataSetUsingCmdObj(dbCommand);
 
-            txtLoginID.Text = db.GetField("LoginID",0).ToString();
-            txtPassword.Text = db.GetField("UserPassword", 0).ToString();
-            txtUserFirstName.Text = db.GetField("UserFirstName", 0).ToString();
-            txtUserLastName.Text = db.GetField("UserLastName", 0).ToString();
-            txtBillingAddress.Text = db.GetField("UserPassword", 0).ToString();
-            txtDeliveryAddress.Text = db.GetField("UserPassword", 0).ToString();
-            txtEmail.Text = db.GetField("UserEmail", 0).ToString();
+            txtLoginID.Text = Convert.ToString(ds.Tables[0].Rows[0]["LoginID"]);          
+            txtPassword.Text = Convert.ToString(ds.Tables[0].Rows[0]["UserPassword"]);
+            txtUserFirstName.Text = Convert.ToString(ds.Tables[0].Rows[0]["UserFirstName"]);
+            txtUserLastName.Text = Convert.ToString(ds.Tables[0].Rows[0]["UserLastName"]);
+            txtBillingAddress.Text = Convert.ToString(ds.Tables[0].Rows[0]["BillingAddress"]);
+            txtDeliveryAddress.Text = Convert.ToString(ds.Tables[0].Rows[0]["DeliveryAddress"]);
+            txtEmail.Text = email;
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
