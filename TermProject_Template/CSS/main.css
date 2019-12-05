@@ -60,7 +60,9 @@ body {
 .container {
     height: 100%;
 }
-
+table img{
+    width: 30px;
+}
 .jumbotron {
     position: relative;
     background-color: #a1e4f2;

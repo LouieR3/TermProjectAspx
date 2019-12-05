@@ -72,6 +72,6 @@
         <td class="style2">
             <asp:Button ID="btnEdit" class="logButton1" runat="server" Text="Edit" OnClick="btnEdit_Click" />
             <asp:Button ID="btnUpdate" class="logButton1" runat="server" Text="Update" OnClick="btnUpdate_Click" Enabled="False" />
-        </td>
+      </td>
     </tr>
 </table>

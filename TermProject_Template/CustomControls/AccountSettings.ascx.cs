@@ -19,8 +19,11 @@ namespace TermProject_Template.CustomControls
         SqlCommand dbCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string email = Session["AccountID"].ToString();
-            DisplayAccountInformation(email);
+            if (!IsPostBack)
+            {
+                email = Session["AccountID"].ToString();
+                DisplayAccountInformation(email);
+            }
         }
         public void DisplayAccountInformation(string email)
         {
@@ -49,24 +52,25 @@ namespace TermProject_Template.CustomControls
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             EnableFields();
+            btnUpdate.Enabled = true;
+            btnEdit.Enabled = false;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             if (txtPassword.Text != "" && txtUserFirstName.Text != "" && txtUserLastName.Text != "" && txtBillingAddress.Text != "" && txtDeliveryAddress.Text != "")
             {
-                DisableFields();
                 dbCommand.Parameters.Clear();
                 dbCommand.CommandType = CommandType.StoredProcedure;
                 dbCommand.CommandText = "TP_UpdateAccountInformation";
 
-                SqlParameter inputEmail = new SqlParameter("@Email", email);
-                SqlParameter inputLoginID = new SqlParameter("@LoginID", email);
-                SqlParameter inputPassword = new SqlParameter("@Password", email);
-                SqlParameter inputFirstName = new SqlParameter("@FirstName", email);
-                SqlParameter inputLastName = new SqlParameter("@LastName", email);
-                SqlParameter inputBillingAddress = new SqlParameter("@BillingAddress", email);
-                SqlParameter inputDeliveryAddress = new SqlParameter("@DeliveryAddress", email);
+                SqlParameter inputEmail = new SqlParameter("@Email", txtEmail.Text);
+                SqlParameter inputLoginID = new SqlParameter("@LoginID", txtLoginID.Text);
+                SqlParameter inputPassword = new SqlParameter("@Password", txtPassword.Text);
+                SqlParameter inputFirstName = new SqlParameter("@FirstName", txtUserFirstName.Text);
+                SqlParameter inputLastName = new SqlParameter("@LastName", txtUserLastName.Text);
+                SqlParameter inputBillingAddress = new SqlParameter("@BillingAddress", txtBillingAddress.Text);
+                SqlParameter inputDeliveryAddress = new SqlParameter("@DeliveryAddress", txtDeliveryAddress.Text);
 
                 inputEmail.Direction = ParameterDirection.Input;
                 inputEmail.SqlDbType = SqlDbType.VarChar;
@@ -92,26 +96,27 @@ namespace TermProject_Template.CustomControls
                 dbCommand.Parameters.Add(inputDeliveryAddress);
 
                 int count = db.DoUpdateUsingCmdObj(dbCommand);
-                if(count == 1)
+                if (count >= 1)
                 {
                     DisableFields();
+                    btnEdit.Enabled = true;
+                    btnUpdate.Enabled = false;
                 }
             }
         }
         public void EnableFields()
         {
             txtLoginID.Enabled = true;
-            txtEmail.Enabled = true;
             txtPassword.Enabled = true;
             txtUserFirstName.Enabled = true;
             txtUserLastName.Enabled = true;
             txtBillingAddress.Enabled = true;
             txtDeliveryAddress.Enabled = true;
+            
         }
         public void DisableFields()
         {
             txtLoginID.Enabled = false;
-            txtEmail.Enabled = false;
             txtPassword.Enabled = false;
             txtUserFirstName.Enabled = false;
             txtUserLastName.Enabled = false;

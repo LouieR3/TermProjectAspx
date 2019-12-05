@@ -14,7 +14,7 @@ namespace Utilities
         string bankName;
         string cardType;
         int cardNumber;
-        string merchantAccountID;
+        int merchantAccountID;
         public Wallet()
         {
         }
@@ -48,7 +48,7 @@ namespace Utilities
             get { return cardNumber; }
             set { cardNumber = value; }
         }
-        public string MerchantAccountID
+        public int MerchantAccountID
         {
             get { return merchantAccountID; }
             set { merchantAccountID = value; }

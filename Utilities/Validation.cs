@@ -289,5 +289,18 @@ namespace Utilities
             
             return balance;
         }
+        public void checkChecks(GridView gvInput, out int checkCount)
+        {
+            checkCount = 0;                              // used to count the number of selected products
+            for (int row = 0; row < gvInput.Rows.Count; row++)
+            {
+                CheckBox CBox;
+                CBox = (CheckBox)gvInput.Rows[row].FindControl("chkSelect");
+                if (CBox.Checked)
+                {
+                    checkCount = checkCount + 1;
+                }
+            }
+        }
     }
 }
