@@ -3,56 +3,93 @@
 <%@ Register Src="~/CustomControls/WalletBalance.ascx" TagPrefix="uc1" TagName="WalletBalance" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
+    View Menu
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../css/util.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <div>
-        <uc1:WalletBalance runat="server" ID="WalletBalance" />
-    </div>
-    <div>
-     <asp:GridView ID="gvMenu" runat="server" AutoGenerateColumns="False" style="z-index: 1;padding-bottom:10px; left: 50px; top: 107px; position: absolute; height: 194px; width: 829px; margin-top: 9px;" CellPadding="0" >
+    <div class="container-login101">
+        <div class="wrap-login10 p-l-85 p-r-85 p-t-35 p-b-45">
+            <div>
+                <uc1:WalletBalance runat="server" ID="WalletBalance" />
+            </div>
+            <span class="login101-form-title p-t-32">Restaurant Menu</span>
+            <asp:GridView ID="gvMenu" runat="server" AutoGenerateColumns="False" class="gv" CellPadding="3" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
+                <AlternatingRowStyle BackColor="#CCCCCC" />
                 <Columns>
-                    <asp:TemplateField HeaderText="Select">
+                    <asp:TemplateField HeaderText="Select" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:CheckBox ID="chkSelect" runat="server" />
                         </ItemTemplate>
-                        <HeaderStyle ForeColor="Black" />
+                        <HeaderStyle ForeColor="White" />
                         <ItemStyle ForeColor="Black" />
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Item_Type" HeaderText="Category">
-                    <HeaderStyle ForeColor="Black" />
-                    <ItemStyle ForeColor="Black" />
+                    <asp:BoundField HeaderText="ItemID" DataField="Menu_ID" ItemStyle-HorizontalAlign="Center">
+                        <HeaderStyle ForeColor="White" />
+                        <ItemStyle ForeColor="Black" />
                     </asp:BoundField>
-                    <asp:ImageField HeaderText="Image" DataImageUrlField="Item_Photo" ControlStyle-Font-Size="XX-Small">
+                    <asp:BoundField HeaderText="Title" DataField="Item_Name" ItemStyle-HorizontalAlign="Center">
                         <ControlStyle ForeColor="Black" />
-                        <HeaderStyle ForeColor="Black" />
+                        <HeaderStyle ForeColor="White" />
+                        <ItemStyle ForeColor="Black" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="Item_Type" HeaderText="Category" ItemStyle-HorizontalAlign="Center">
+                        <HeaderStyle ForeColor="White" />
+                        <ItemStyle ForeColor="Black" />
+                    </asp:BoundField>
+                    <asp:ImageField HeaderText="Image" DataImageUrlField="Item_Photo" ControlStyle-Font-Size="XX-Small" ItemStyle-HorizontalAlign="Center">
+                        <ControlStyle ForeColor="Black" />
+                        <HeaderStyle ForeColor="White" />
                         <ItemStyle ForeColor="Black" />
                     </asp:ImageField>
-                    <asp:BoundField HeaderText="Title" DataField="Item_Name" >
-                    <ControlStyle ForeColor="Black" />
-                    <HeaderStyle ForeColor="Black" />
-                    <ItemStyle ForeColor="Black" />
+                    <asp:BoundField HeaderText="Price" DataField="Item_Price" DataFormatString="{0:c}" ItemStyle-HorizontalAlign="Center">
+                        <HeaderStyle ForeColor="White" />
+                        <ItemStyle ForeColor="Black" />
                     </asp:BoundField>
-                    <asp:BoundField HeaderText="Price" DataField="Item_Price" DataFormatString="{0:c}" >
-                    <HeaderStyle ForeColor="Black" />
-                    <ItemStyle ForeColor="Black" />
-                    </asp:BoundField>
-                    <asp:BoundField HeaderText="ItemID" DataField="Menu_ID">
-                    <HeaderStyle ForeColor="Black" />
-                    <ItemStyle ForeColor="Black" />
-                    </asp:BoundField>
-                    <asp:TemplateField HeaderText="Add Ons">
+                    <asp:TemplateField HeaderText="Add Ons" ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
-                            <asp:ListBox ID="lbAddOns" runat="server" AutoPostBack="false" SelectionMode="Multiple" ViewStateMode="Enabled" ></asp:ListBox>
+                            <asp:ListBox ID="lbAddOns" runat="server" AutoPostBack="false" SelectionMode="Multiple" ViewStateMode="Enabled"></asp:ListBox>
                         </ItemTemplate>
-                        <HeaderStyle ForeColor="Black" />
+                        <HeaderStyle ForeColor="White" />
                         <ItemStyle ForeColor="Black" />
                     </asp:TemplateField>
                 </Columns>
+                <FooterStyle BackColor="#CCCCCC" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#808080" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
+            <asp:Button ID="btnPlaceOrder" runat="server" class="logButton placeOrder" Text="Place Order" OnClick="btnPlaceOrder_Click" />
+            <asp:Label ID="Label1" runat="server" ForeColor="Black" Style="z-index: 1; left: 41px; top: 82px; position: absolute" Text=""></asp:Label>
         </div>
-     <asp:Button ID="btnPlaceOrder" runat="server" style="z-index: 1; left: 782px; top: 84px; position: absolute" Text="PlaceOrder" OnClick="btnPlaceOrder_Click" />
-    <asp:Label ID="Label1" runat="server" ForeColor="Black" style="z-index: 1; left: 41px; top: 82px; position: absolute" Text="Label"></asp:Label>
-</asp:Content>
+    </div>
 
+</asp:Content>

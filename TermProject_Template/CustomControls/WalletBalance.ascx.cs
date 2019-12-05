@@ -41,6 +41,7 @@ namespace TermProject_Template.CustomControls
             btnAdd.Visible = false;
             btnCancel.Visible = false;
             txtAddFunds.Visible = false;
+            btnAddFunds.Enabled = true;
             txtAddFunds.Text = "";
         }
 

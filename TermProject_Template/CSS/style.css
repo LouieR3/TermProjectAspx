@@ -79,7 +79,6 @@ ul, li {
 /*---------------------------------------------*/
 input {
     outline: none;
-    border: none;
 }
 
 textarea {
@@ -234,6 +233,12 @@ background-c
     align-items: center;
 }
 
+.wrap-login10 {
+    background: #e6e6e6;
+    border-radius: 10px;
+    position: relative;
+}
+
 .wrap-login100 {
     width: 560px;
     background: #e6e6e6;
@@ -282,7 +287,18 @@ background-c
     display: block;
 }
 
-
+.login101-form-title {
+    font-family: Raleway-Medium;
+    font-size: 30px;
+    text-align: center;
+    color: black;
+    padding-left: 35%;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    display: block;
+}
 
 /*------------------------------------------------------------------
 [ Input ]*/
