@@ -104,7 +104,6 @@ table img{
     border-radius: 3px;
 }
 .Restaurants {
-    position: absolute;
     width:100%;
     background-color: slategray;
     border-radius: 3px;
@@ -268,6 +267,10 @@ table img{
     margin-left: 43%;
 }
 
+.placeOrder1 {
+    margin-left: 45%;
+}
+
 #forgotPage {
     padding-top: 19%;
     text-align: center;
@@ -289,3 +292,27 @@ table img{
     width: 1000px;
     text-align: center;
 }
+
+.smallButton {
+    background-color: #9D2235;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-radius: 2px;
+    border: 1px solid #9D2235;
+}
+
+    .smallButton:hover {
+        background-color: #9D2235;
+        color: white;
+    }

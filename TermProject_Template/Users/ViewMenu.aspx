@@ -32,12 +32,13 @@
     <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <div class="container-login101">
+    <div class="container-login101 m-t-20">
         <div class="wrap-login10 p-l-85 p-r-85 p-t-35 p-b-45">
             <div>
                 <uc1:WalletBalance runat="server" ID="WalletBalance" />
             </div>
-            <span class="login101-form-title p-t-32">Restaurant Menu</span>
+            <span class="login101-form-title p-t-32 p-b-30">Restaurant Menu</span>
+            <asp:Label ID="Label1" class="txt1" runat="server" ForeColor="Black" Text="If you are selecting more than one add on, hold SHIFT or CTRL and select"></asp:Label>
             <asp:GridView ID="gvMenu" runat="server" AutoGenerateColumns="False" class="gv" CellPadding="3" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
                 <AlternatingRowStyle BackColor="#CCCCCC" />
                 <Columns>
@@ -88,7 +89,6 @@
                 <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
             <asp:Button ID="btnPlaceOrder" runat="server" class="logButton placeOrder" Text="Place Order" OnClick="btnPlaceOrder_Click" />
-            <asp:Label ID="Label1" runat="server" ForeColor="Black" Style="z-index: 1; left: 41px; top: 82px; position: absolute" Text=""></asp:Label>
         </div>
     </div>
 

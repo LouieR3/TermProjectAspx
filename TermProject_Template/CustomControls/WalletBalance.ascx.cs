@@ -49,35 +49,46 @@ namespace TermProject_Template.CustomControls
         {
             if (txtAddFunds.Text.Contains(".") && txtAddFunds.Text != "")
             {
-                Fund fund = new Fund();
-                double amount = 0;
-                double.TryParse(txtAddFunds.Text,out amount);
-                fund.Amount = amount;
-                fund.Email = email;
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                String jsonCustomer = js.Serialize(fund);
+                if (txtAddFunds.Text.Contains("qwertyuiop[]\asdfghjkl;'zxcvbnm,/_~`!@#$%^&*()+"))
+                {
+                    Response.Write(@"<script langauge='text/javascript'>alert
+                    ('You can only enter numbers with a period in between');</script>");
+                    return;
+                }
+                else
+                {
+                    Fund fund = new Fund();
+                    double amount = 0;
+                    double.TryParse(txtAddFunds.Text, out amount);
+                    fund.Amount = amount;
+                    fund.Email = email;
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    String jsonCustomer = js.Serialize(fund);
 
-                WebRequest request = WebRequest.Create(webApiUrl + "FundAccount/"+MerchantAccountID +"/" +APIKey);
-                request.Method = "PUT";
-                request.ContentType = "application/json";
+                    WebRequest request = WebRequest.Create(webApiUrl + "FundAccount/" + MerchantAccountID + "/" + APIKey);
+                    request.Method = "PUT";
+                    request.ContentType = "application/json";
 
-                StreamWriter writer = new StreamWriter(request.GetRequestStream());
-                writer.Write(jsonCustomer);
-                writer.Flush();
-                writer.Close();
-                WebResponse response = request.GetResponse();
-                Stream theDataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(theDataStream);
-                String data = reader.ReadToEnd();
-                reader.Close();
-                response.Close();
-                string Balance = validate.GetUserBalance(email);
-                lblBalance.Text = Balance;
-                txtAddFunds.Text = "";
+                    StreamWriter writer = new StreamWriter(request.GetRequestStream());
+                    writer.Write(jsonCustomer);
+                    writer.Flush();
+                    writer.Close();
+                    WebResponse response = request.GetResponse();
+                    Stream theDataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(theDataStream);
+                    String data = reader.ReadToEnd();
+                    reader.Close();
+                    response.Close();
+                    string Balance = validate.GetUserBalance(email);
+                    lblBalance.Text = Balance;
+                    txtAddFunds.Text = "";
+                }
             }
             else
             {
-                
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('You must enter some amount before adding to your account');</script>");
+                return;
             }
         }
     }
