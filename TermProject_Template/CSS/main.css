@@ -117,7 +117,7 @@ table img{
     border-radius: 3px;
 }
 .Settings {
-    position:absolute;
+    padding-top: 15%;
     margin:auto;
     width:100%;
 }
@@ -267,4 +267,12 @@ table img{
 #forgotPage {
     padding-top: 19%;
     text-align: center;
+}
+
+.contentAlign{
+    margin-left: 10%;
+}
+
+.tblStyle {
+    font-family: Raleway-Medium;
 }

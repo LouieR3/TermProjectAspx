@@ -1,75 +1,107 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Restaurant/RestaurantAccountMaster.Master" AutoEventWireup="true" CodeBehind="RestaurantDashboard.aspx.cs" Inherits="TermProject_Template.Restaurant.ResturantDashboard" %>
+
 <%@ Register Src="../CustomControls/AccountSettings.ascx" TagPrefix="uc1" TagName="AccountSettings" %>
 <%@ Register Src="~/CustomControls/EditWallet.ascx" TagPrefix="uc1" TagName="EditWallet" %>
 <%@ Register Src="~/CustomControls/WalletBalance.ascx" TagPrefix="uc1" TagName="WalletBalance" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
+    Dashboard
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../css/util.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <div class ="Balance" style="top: 70px; padding-bottom: 10px; left: 0px; height: 35px;">
-        <uc1:WalletBalance runat="server" id="WalletBalance" />
+    <!--
+    <div class="Balance" style="top: 70px; padding-bottom: 10px; left: 0px; height: 35px;">
+        <uc1:WalletBalance runat="server" ID="WalletBalance" />
     </div>
-    <div class="Restaurants" style="top: 90px; padding-bottom: 10px;">
-        <div>
-            <table style="width: 752px">
-                <tr style="color: cornsilk; padding-left: 15px;">
-                    <th>Image</th>
-                    <th>Restaurant</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Phone Number</th>
-                </tr>
-                <asp:Repeater ID="rptRest" runat="server" OnItemCommand="repeaterRest_ItemCommand">
-                    <ItemTemplate>
-                        <tr>
-                            <td>
-                                <asp:Label ID="lblRestImage" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestImage") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lblRestName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestName") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lblRestEmail" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestEmail") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lblRestAddress" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestAddress") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lblRestPhone" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestPhone") %>'></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Button ID="btnSelect" Text="Select Restaurant" runat="server" />
-                            </td>
-                            <br />
-                        </tr>
-                    </ItemTemplate>
-                    <SeparatorTemplate>
-                        <hr>
-                    </SeparatorTemplate>
-                </asp:Repeater>
-            </table>
-        </div>
-        <input id="txtHidden" style="width: 28px" type="hidden" value="0"
-            runat="server" />
-        <hr />
-        <asp:LinkButton ID="lnkBtnPrev" runat="server" Font-Underline="False"
-            Font-Bold="True" OnClick="lnkBtnPrev_Click"><< Prev </asp:LinkButton>
+    -->
+    <div class="limiter">
+        <!--
+        <div class="Restaurants" style="top: 90px; padding-bottom: 10px;">
+            <div>
+                <table style="width: 752px">
+                    <tr style="color: cornsilk; padding-left: 15px;">
+                        <th>Image</th>
+                        <th>Restaurant</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    <asp:Repeater ID="rptRest" runat="server" OnItemCommand="repeaterRest_ItemCommand">
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lblRestImage" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestImage") %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblRestName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestName") %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblRestEmail" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestEmail") %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblRestAddress" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestAddress") %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblRestPhone" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestPhone") %>'></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Button ID="btnSelect" Text="Select Restaurant" runat="server" />
+                                </td>
+                                <br />
+                            </tr>
+                        </ItemTemplate>
+                        <SeparatorTemplate>
+                            <hr>
+                        </SeparatorTemplate>
+                    </asp:Repeater>
+                </table>
+            </div>
+            <input id="txtHidden" style="width: 28px" type="hidden" value="0"
+                runat="server" />
+            <hr />
+            <asp:LinkButton ID="lnkBtnPrev" runat="server" Font-Underline="False"
+                Font-Bold="True" OnClick="lnkBtnPrev_Click"><< Prev </asp:LinkButton>
 
-        <asp:LinkButton ID="lnkBtnNext" runat="server" Font-Underline="False"
-            Font-Bold="True" OnClick="lnkBtnNext_Click">Next >></asp:LinkButton>
-    </div>
-    <div class="Settings" style="top: 280px">
-        <div class="SubSetting" style="background-color: aliceblue">
-            <uc1:EditWallet runat="server" ID="EditWallet" />
+            <asp:LinkButton ID="lnkBtnNext" runat="server" Font-Underline="False"
+                Font-Bold="True" OnClick="lnkBtnNext_Click">Next >></asp:LinkButton>
         </div>
-        <div class="SubSetting" style="background-color: darkgray">
-            <uc1:AccountSettings runat="server" ID="AccountSettings" />
+        -->
+        <div class="container-login101">
+            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-45">
+                <uc1:EditWallet runat="server" ID="EditWallet" />
+            </div>
+            <div class="wrap-login100 contentAlign p-l-85 p-r-85 p-t-42 p-b-38"  >
+                <uc1:AccountSettings runat="server" ID="AccountSettings" />
+            </div>
         </div>
+        <div id="divOrders" class="wrap-login102 p-l-50 p-r-50 p-t-55 p-b-45" runat="server"></div>
     </div>
-    <div id ="divOrders" class="Orders" runat="server" style="color: black; top: 550px">
-         
-    </div>
+
 
 </asp:Content>

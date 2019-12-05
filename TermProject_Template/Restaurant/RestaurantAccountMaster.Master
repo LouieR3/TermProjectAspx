@@ -18,7 +18,7 @@
         <div class="container">
             <div>
                 <ul>
-                    <li><img class="imageT" src="~/images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
+                    <li><img class="imageT" src="../images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
                     <li><a href="StudentFillData.aspx">Dashboard</a></li>
                     <li><a href="CreateMenu.aspx">Create Menu</a></li>
                 </ul>
