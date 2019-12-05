@@ -54,14 +54,11 @@
                 </asp:Repeater>
             </table>
         </div>
-        <input id="txtHidden" style="width: 28px" type="hidden" value="0"
-            runat="server" />
+        <input id="txtHidden" style="width: 28px" type="hidden" value="0" runat="server" />
         <hr />
-        <asp:LinkButton ID="lnkBtnPrev" runat="server" Font-Underline="False"
-            Font-Bold="True" OnClick="lnkBtnPrev_Click"><< Prev </asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnPrev" runat="server" Font-Underline="False" Font-Bold="True" OnClick="lnkBtnPrev_Click"><< Prev </asp:LinkButton>
 
-        <asp:LinkButton ID="lnkBtnNext" runat="server" Font-Underline="False"
-            Font-Bold="True" OnClick="lnkBtnNext_Click">Next >></asp:LinkButton>
+        <asp:LinkButton ID="lnkBtnNext" runat="server" Font-Underline="False" Font-Bold="True" OnClick="lnkBtnNext_Click">Next >></asp:LinkButton>
     </div>
     <div class="Settings" style="top: 280px">
         <div class="SubSetting" style="background-color: aliceblue">
@@ -72,5 +69,4 @@
         </div>
     </div>
     <div id ="divOrders" class="Orders" runat="server" style="color: black; top: 550px"></div>
-
 </asp:Content>
