@@ -2,7 +2,6 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    position: fixed;
     width: 100%;
     overflow: hidden;
     background-color: #333;
@@ -264,6 +263,11 @@ table img{
         color: white;
     }
 
+.placeOrder {
+    margin-top: 3%;
+    margin-left: 43%;
+}
+
 #forgotPage {
     padding-top: 19%;
     text-align: center;
@@ -275,4 +279,13 @@ table img{
 
 .tblStyle {
     font-family: Raleway-Medium;
+}
+
+.gv {
+    font-family: Raleway-Medium;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    text-align: center;
 }

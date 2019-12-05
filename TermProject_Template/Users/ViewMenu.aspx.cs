@@ -14,7 +14,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-
 namespace TermProject_Template.Users
 {
     public partial class WebForm2 : System.Web.UI.Page
@@ -34,6 +33,7 @@ namespace TermProject_Template.Users
                 LoadMenu(restaurantID);
             }
         }
+
         public void LoadMenu(string restID)
         {
             objCommand.Parameters.Clear();
@@ -42,16 +42,34 @@ namespace TermProject_Template.Users
             SqlParameter inputEmail = new SqlParameter("@Email", restID);
             objCommand.Parameters.Add(inputEmail);
             DataSet result = db.GetDataSetUsingCmdObj(objCommand);
-            ListBox lb;
             gvMenu.DataSource = result;
             gvMenu.DataBind();
+
+            ListBox lb;
             for (int i = 0; i < result.Tables[0].Rows.Count; i++)
-            {                
-                lb = (ListBox)gvMenu.Rows[i].FindControl("lbAddOns");
-                lb.DataSource = result;
-                lb.DataTextField = "Add_On_Name";
-                lb.DataValueField = "Add_On_Name";
-                lb.DataBind();
+            {
+                objCommand.Parameters.Clear();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "Tp_GetMenuID";
+                SqlParameter menuID = new SqlParameter("@theEmail", restID);
+                objCommand.Parameters.Add(menuID);
+                DataSet idResult = db.GetDataSetUsingCmdObj(objCommand);
+                string theMenuID = Convert.ToString(idResult.Tables[0].Rows[i]["Menu_ID"]);
+                int mID = int.Parse(theMenuID);
+                for (int j = 0; j < idResult.Tables[0].Rows.Count; j++)
+                {
+                    objCommand.Parameters.Clear();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "Tp_GetAddOns";
+                    SqlParameter menuAddOn = new SqlParameter("@MenuID", mID);
+                    objCommand.Parameters.Add(menuAddOn);
+                    DataSet lbResult = db.GetDataSetUsingCmdObj(objCommand);
+                    lb = (ListBox)gvMenu.Rows[i].FindControl("lbAddOns");
+                    lb.DataSource = lbResult;
+                    lb.DataTextField = "Add_On_Name";
+                    lb.DataValueField = "Add_On_Name";
+                    lb.DataBind();
+                }
             }
         }
 
@@ -65,7 +83,7 @@ namespace TermProject_Template.Users
                 {
                     CheckBox CBox;
                     // Get the reference for the chkSelect control in the current row
-                    CBox = (CheckBox)gvMenu.Rows[row].FindControl("checkSelect");
+                    CBox = (CheckBox)gvMenu.Rows[row].FindControl("chkSelect");
                     ListBox lb = (ListBox)gvMenu.Rows[row].FindControl("lbAddOns");
                     if (CBox.Checked == true)
                     {
@@ -80,7 +98,12 @@ namespace TermProject_Template.Users
                     }
                 }
             }
+            else
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('You must select something to order before checking out');</script>");
+                return;
+            }
         }
-
     }
 }
