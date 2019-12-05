@@ -41,17 +41,17 @@ namespace TermProject_Template.Restaurant
                 displayPreviousOrders(accountID);
             }
         }
-        protected void lnkBtnNext_Click(object sender, EventArgs e)
-        {
-            txtHidden.Value = Convert.ToString(Convert.ToInt16(txtHidden.Value) + 5);
-            bindData();
-        }
+        //protected void lnkBtnNext_Click(object sender, EventArgs e)
+        //{
+        //    txtHidden.Value = Convert.ToString(Convert.ToInt16(txtHidden.Value) + 5);
+        //    bindData();
+        //}
 
-        protected void lnkBtnPrev_Click(object sender, EventArgs e)
-        {
-            txtHidden.Value = Convert.ToString(Convert.ToInt16(txtHidden.Value) - 5);
-            bindData();
-        }
+        //protected void lnkBtnPrev_Click(object sender, EventArgs e)
+        //{
+        //    txtHidden.Value = Convert.ToString(Convert.ToInt16(txtHidden.Value) - 5);
+        //    bindData();
+        //}
         public void bindData()
         {
             objCommand.Parameters.Clear();

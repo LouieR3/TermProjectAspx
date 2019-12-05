@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LogRegRes/MasterLogReg.Master" AutoEventWireup="true" CodeBehind="RestaurantRegistration.aspx.cs" Inherits="TermProject_Template.LogRegRes.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
     Register Restaurant
 </asp:Content>
@@ -66,9 +67,8 @@
 
                     <span class="txt1 p-b-11">Restaurant Image
                     </span>
-                    <div class="wrap-input100 validate-input m-b-36">
-                        <asp:TextBox ID="txtRImage" class="input100" runat="server"></asp:TextBox>
-                        <span class="focus-input100"></span>
+                    <div class="wrap-input100 m-b-36">
+                        <asp:FileUpload ID="fuImage" runat="server" />
                     </div>
 
                     <span class="txt1 p-b-11">Password

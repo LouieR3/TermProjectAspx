@@ -27,7 +27,7 @@ namespace TermProject_Template.LogRegRes
             string pass = txtRPass.Text;
             string address = txtRAddress.Text;
             string phone = txtRPhone.Text;
-            string image = txtRImage.Text;
+            string image = fuImage.ToString();
 
             if (validationOBJ.checkRestuarant(name, email, address, phone, image) == 1)
             {
