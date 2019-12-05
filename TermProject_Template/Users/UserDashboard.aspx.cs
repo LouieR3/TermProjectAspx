@@ -90,8 +90,10 @@ namespace TermProject_Template.Users
         protected void repeaterRest_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int rowIndex = e.Item.ItemIndex;
-            Label myLabel = (Label)rptRest.Items[rowIndex].FindControl("lblProductID");
+            Label myLabel = (Label)rptRest.Items[rowIndex].FindControl("lblRestEmail");
             String productNumber = myLabel.Text;
+            Session["RestaurantID"] = productNumber;
+            Response.Redirect("ViewMenu.aspx");
         }
         public void displayPreviousOrders(string ID)
         {
