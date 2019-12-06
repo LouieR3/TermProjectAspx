@@ -206,9 +206,9 @@ namespace Utilities
             }
         }
 
-        public int checkRestuarant(string name, string email, string address, string phone, string image)
+        public int checkRestuarant(string name, string email, string address, string phone, string image, string pass, string cardNum, string bankName, string cardType)
         {
-            if (name == "" || email == "" || address == "" || phone == "" || image == "")
+            if (name == "" || email == "" || address == "" || phone == "" || image == "" || pass == "" || cardNum == "" || cardType == "" || bankName == "")
             {
                 return 1;
             }
@@ -220,9 +220,13 @@ namespace Utilities
             {
                 return 3;
             }
-            else
+            else if (cardNum.Contains("qwertyuiop[]\asdfghjkl;'zxcvbnm,/_~`!@#$%^&*()+"))
             {
                 return 4;
+            }
+            else
+            {
+                return 5;
             }
         }
 

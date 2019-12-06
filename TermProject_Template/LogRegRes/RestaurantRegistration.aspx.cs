@@ -35,23 +35,32 @@ namespace TermProject_Template.LogRegRes
             string address = txtRAddress.Text;
             string phone = txtRPhone.Text;
             string image = fuImage.ToString();
+            string cardNum = txtCardNum.Text;
+            string bankName = txtBankName.Text;
+            string cardType = ddlCardType.Text;
 
-            if (validationOBJ.checkRestuarant(name, email, address, phone, image) == 1)
+            if (validationOBJ.checkRestuarant(name, email, address, phone, image, pass, cardNum, cardType, bankName) == 1)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Please fill out all the fields before creating an account');</script>");
                 return;
             }
-            else if (validationOBJ.checkRestuarant(name, email, address, phone, image) == 2)
+            else if (validationOBJ.checkRestuarant(name, email, address, phone, image, pass, cardNum, cardType, bankName) == 2)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('Please fill out the email in the correct format. Emails must contain an '@' symbol and a '.'');</script>");
                 return;
             }
-            else if (validationOBJ.checkRestuarant(name, email, address, phone, image) == 3)
+            else if (validationOBJ.checkRestuarant(name, email, address, phone, image, pass, cardNum, cardType, bankName) == 3)
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
                 ('This Email or Restaurant Name already belongs to an existing account, please try another Email or Restaurant Name');</script>");
+                return;
+            }
+            else if (validationOBJ.checkRestuarant(name, email, address, phone, image, pass, cardNum, cardType, bankName) == 4)
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('The card number can only contain numbers');</script>");
                 return;
             }
             else
@@ -104,9 +113,9 @@ namespace TermProject_Template.LogRegRes
                     wall.Name = txtRName.Text;
                     wall.Address = txtRAddress.Text;
                     wall.Email = txtContactEmail.Text;
-                    wall.BankName = "Wells";
-                    wall.CardType = "Debit";
-                    wall.CardNumber = 12345555;
+                    wall.BankName = txtBankName.Text;
+                    wall.CardType = ddlCardType.Text;
+                    wall.CardNumber = int.Parse(txtCardNum.Text);
                     wall.MerchantAccountID = MerchantAccountID;
                     
                     JavaScriptSerializer js = new JavaScriptSerializer();
