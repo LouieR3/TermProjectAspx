@@ -302,5 +302,20 @@ namespace Utilities
                 }
             }
         }
+        public int GetCardNumber(string email)
+        {
+            WebRequest request = WebRequest.Create(webApiUrl + "GetAccountInformation/" + email + "/" + MerchantAccountID + "/" + APIKey);
+            WebResponse response = request.GetResponse();
+            // Read the data from the Web Response, which requires working with streams.
+            Stream theDataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(theDataStream);
+            String data = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            Wallet customers = js.Deserialize<Wallet>(data);
+            int number = customers.CardNumber;
+            return number;
+        }
     }
 }

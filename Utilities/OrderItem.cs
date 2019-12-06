@@ -10,9 +10,9 @@ namespace Utilities
    public class OrderItem
     {
         string ItemName = "";
-        string ItemPrice = "";
+        float ItemPrice = 0;
         string ItemType = "";
-        ArrayList AddOns = new ArrayList();
+        string AddOns = "";
         public OrderItem()
         {
 
@@ -22,7 +22,7 @@ namespace Utilities
             get { return ItemName; }
             set { ItemName = value; }
         }
-        public string Price
+        public float Price
         {
             get { return ItemPrice; }
             set { ItemPrice = value; }
@@ -34,9 +34,9 @@ namespace Utilities
         }
         public void createAddOn(string addOn)
         {
-            AddOns.Add(addOn);
+            AddOns = string.Join(",", addOn);
         }
-        public ArrayList AddOn
+        public string AddOn
         {
             get { return AddOns; }
         }

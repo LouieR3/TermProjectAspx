@@ -97,9 +97,11 @@
     <Content Include="Restaurant\CreateMenu.aspx" />
     <Content Include="Restaurant\RestaurantDashboard.aspx" />
     <Content Include="Restaurant\ViewAllOrders.aspx" />
+    <Content Include="Restaurant\ViewTransactions.aspx" />
     <Content Include="Users\UserDashboard.aspx" />
     <Content Include="Users\ViewMenu.aspx" />
     <Content Include="Users\ViewOrder.aspx" />
+    <Content Include="Users\ViewTransactions.aspx" />
     <Content Include="vendor\animate\animate.css" />
     <Content Include="vendor\animsition\css\animsition.css" />
     <Content Include="vendor\animsition\css\animsition.min.css" />
@@ -240,6 +242,13 @@
     <Compile Include="Restaurant\ViewAllOrders.aspx.designer.cs">
       <DependentUpon>ViewAllOrders.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Restaurant\ViewTransactions.aspx.cs">
+      <DependentUpon>ViewTransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\ViewTransactions.aspx.designer.cs">
+      <DependentUpon>ViewTransactions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Users\UsersMaster.Master.cs">
       <DependentUpon>UsersMaster.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -267,6 +276,13 @@
     </Compile>
     <Compile Include="Users\ViewOrder.aspx.designer.cs">
       <DependentUpon>ViewOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ViewTransactions.aspx.cs">
+      <DependentUpon>ViewTransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\ViewTransactions.aspx.designer.cs">
+      <DependentUpon>ViewTransactions.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
