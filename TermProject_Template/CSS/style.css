@@ -318,6 +318,14 @@ background-c
     border-radius: 2px;
 }
 
+.wrap-input101 {
+    width: 100%;
+    position: relative;
+    color: black;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+}
+
 
 /*---------------------------------------------*/
 .input100 {
