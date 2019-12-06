@@ -67,7 +67,7 @@
 
                     <span class="txt1 p-b-11">Restaurant Image
                     </span>
-                    <div class="wrap-input100 m-b-36">
+                    <div class="wrap-input101 m-b-36">
                         <asp:FileUpload ID="fuImage" runat="server" />
                     </div>
 
