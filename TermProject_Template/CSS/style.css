@@ -222,7 +222,7 @@ background-c
 
 .container-login101 {
     width: 100%;
-    min-height: 80vh;
+    min-height: 70vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -268,6 +268,13 @@ background-c
     margin-right: 25%;
 }
 
+.wrap-login103 {
+    font-family: Raleway-Regular;
+    color: black;
+    background: #e6e6e6;
+    border-radius: 10px;
+    position: relative;
+}
 
 /*==================================================================
 [ Form ]*/

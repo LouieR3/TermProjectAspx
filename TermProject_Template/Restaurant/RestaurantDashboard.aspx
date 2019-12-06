@@ -35,73 +35,55 @@
     <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <!--
-    <div class="Balance" style="top: 70px; padding-bottom: 10px; left: 0px; height: 35px;">
+    <div class="wrap-login103 p-l-85 p-r-85 p-t-55 p-b-45">
         <uc1:WalletBalance runat="server" ID="WalletBalance" />
     </div>
-    -->
-    <div class="limiter">
-        <!--
-        <div class="Restaurants" style="top: 90px; padding-bottom: 10px;">
-            <div>
-                <table style="width: 752px">
-                    <tr style="color: cornsilk; padding-left: 15px;">
-                        <th>Image</th>
-                        <th>Restaurant</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone Number</th>
-                    </tr>
-                    <asp:Repeater ID="rptRest" runat="server" OnItemCommand="repeaterRest_ItemCommand">
-                        <ItemTemplate>
-                            <tr>
-                                <td>
-                                    <asp:Label ID="lblRestImage" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestImage") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblRestName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestName") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblRestEmail" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestEmail") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblRestAddress" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestAddress") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblRestPhone" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestPhone") %>'></asp:Label>
-                                </td>
-                                <td>
-                                    <asp:Button ID="btnSelect" Text="Select Restaurant" runat="server" />
-                                </td>
-                                <br />
-                            </tr>
-                        </ItemTemplate>
-                        <SeparatorTemplate>
-                            <hr>
-                        </SeparatorTemplate>
-                    </asp:Repeater>
-                </table>
-            </div>
-            <input id="txtHidden" style="width: 28px" type="hidden" value="0"
-                runat="server" />
-            <hr />
-            <asp:LinkButton ID="lnkBtnPrev" runat="server" Font-Underline="False"
-                Font-Bold="True" OnClick="lnkBtnPrev_Click"><< Prev </asp:LinkButton>
-
-            <asp:LinkButton ID="lnkBtnNext" runat="server" Font-Underline="False"
-                Font-Bold="True" OnClick="lnkBtnNext_Click">Next >></asp:LinkButton>
+    <div class="container-login101 m-t-20">
+        <div class="wrap-login103 p-l-85 p-r-85 p-t-55 p-b-45">
+            <table style="width: 752px">
+                <tr>
+                    <th>Image</th>
+                    <th>Restaurant</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                </tr>
+                <asp:Repeater ID="rptRest" runat="server" OnItemCommand="repeaterRest_ItemCommand">
+                    <ItemTemplate>
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblRestImage" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestImage") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblRestName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestName") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblRestEmail" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestEmail") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblRestAddress" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestAddress") %>'></asp:Label>
+                            </td>
+                            <td>
+                                <asp:Label ID="lblRestPhone" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestPhone") %>'></asp:Label>
+                            </td>
+                            <br />
+                        </tr>
+                    </ItemTemplate>
+                    <SeparatorTemplate>
+                        <hr>
+                    </SeparatorTemplate>
+                </asp:Repeater>
+            </table>
+            <input id="txtHidden" style="width: 28px" type="hidden" value="0" runat="server" />
         </div>
-        -->
         <div class="container-login101">
             <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-45">
                 <uc1:EditWallet runat="server" ID="EditWallet" />
             </div>
-            <div class="wrap-login100 contentAlign p-l-85 p-r-85 p-t-42 p-b-38"  >
+            <div class="wrap-login100 contentAlign p-l-85 p-r-85 p-t-42 p-b-25">
                 <uc1:AccountSettings runat="server" ID="AccountSettings" />
             </div>
         </div>
         <div id="divOrders" class="wrap-login102 p-l-50 p-r-50 p-t-55 p-b-45" runat="server"></div>
     </div>
-
-
 </asp:Content>

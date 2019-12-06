@@ -44,17 +44,6 @@ namespace TermProject_Template.Users
                 displayPreviousOrders(accountID);
             }
         }
-        protected void lnkBtnNext_Click(object sender, EventArgs e)
-        {
-            txtHidden.Value = Convert.ToString(Convert.ToInt16(txtHidden.Value) + 5);
-            bindData();
-        }
-
-        protected void lnkBtnPrev_Click(object sender, EventArgs e)
-        {
-            txtHidden.Value = Convert.ToString(Convert.ToInt16(txtHidden.Value) - 5);
-            bindData();
-        }
         public void bindData()
         {
             objCommand.Parameters.Clear();
@@ -68,23 +57,6 @@ namespace TermProject_Template.Users
             }
             rptRest.DataSource = dsRest;
             rptRest.DataBind();
-
-            if (countValue <= 0)
-            {
-                lnkBtnPrev.Visible = false;
-                lnkBtnNext.Visible = true;
-            }
-
-            if (countValue >= 5)
-            {
-                lnkBtnPrev.Visible = true;
-                lnkBtnNext.Visible = true;
-            }
-
-            if ((countValue + 5) >= total)
-            {
-                lnkBtnNext.Visible = false;
-            }
         }
 
         protected void repeaterRest_ItemCommand(object source, RepeaterCommandEventArgs e)
