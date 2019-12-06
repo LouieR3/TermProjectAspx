@@ -83,18 +83,35 @@ namespace TermProject_Template.Restaurant
                              "<td> Order Name </td>" +
                              "<td> Order Email </td>" +
                              "<td> Restaurant Email </td>" +
-                             "<td> Order Status </td>" +
                              "<td> Order Cost </td>" +
+                             "<td> Order Status </td>" +
                              "</tr>";
                 for (int row = 0; row < dtPreviousOrders.Rows.Count; row++)
                 {
                     drPreviousOrders = dtPreviousOrders.Rows[row];
                     Button select = new Button();
                     String selectHTML = "";
+                    String ddlHTML = "";
                     select.Text = "View Order";
-                    select.ID = "btn"+ drPreviousOrders["Order_ID"].ToString();
+                    select.ID = drPreviousOrders["Order_ID"].ToString();
                     select.Click += new EventHandler(this.SelectButtonHandler);
                     select.Width = 120;
+
+                    List<string> countries = new List<string>();
+                    countries.Add("Submitted");
+                    countries.Add("Being Prepared");
+                    countries.Add("Being Delivered");
+                    countries.Add("Completed");
+                    countries.Add("Problem Occurred");
+                    DropDownList ddlStatus = new DropDownList();
+                    ddlStatus.DataSource = countries;
+                    ddlStatus.DataBind();
+                    ddlStatus.SelectedValue = drPreviousOrders["Order_Status"].ToString();
+                    ddlStatus.ID = drPreviousOrders["Order_ID"].ToString();
+                    //ddlStatus.ViewStateMode = ViewStateMode.Enabled;
+                    ddlStatus.AutoPostBack = true;
+                    ddlStatus.EnableViewState = true;
+                    ddlStatus.SelectedIndexChanged += new EventHandler (this.DDLStatus_StatusChange);
 
                     StringBuilder strBuilder = new StringBuilder();
                     StringWriter strWriter = new StringWriter(strBuilder);
@@ -103,13 +120,20 @@ namespace TermProject_Template.Restaurant
                     select.RenderControl(htmlWriter);
                     selectHTML = strBuilder.ToString();
 
+                    StringBuilder strBuilderList = new StringBuilder();
+                    StringWriter strWriterList = new StringWriter(strBuilderList);
+                    HtmlTextWriter htmlWriterList = new HtmlTextWriter(strWriterList);
+
+                    ddlStatus.RenderControl(htmlWriterList);
+                    ddlHTML = strBuilderList.ToString();
+
                     strHTML = strHTML + "<tr>" +
                                         "<td>" + drPreviousOrders["Order_ID"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_name"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_User_Email"] + "</td>" +
                                         "<td>" + drPreviousOrders["Restaurant_Email"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_Status"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_Cost"] + "</td>" +
+                                        "<td>" + ddlHTML + "</td>" +
                                         "<td>" + selectHTML + "</td>" +
                                         "</tr>";
                 }
@@ -121,6 +145,10 @@ namespace TermProject_Template.Restaurant
         {
             Button button = (Button)sender;
            
+        }
+        public void DDLStatus_StatusChange(Object sender, EventArgs e)
+        {
+            DropDownList ddlStatus = (DropDownList)sender;
         }
     }
 }
