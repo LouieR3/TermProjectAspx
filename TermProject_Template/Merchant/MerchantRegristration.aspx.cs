@@ -9,13 +9,17 @@ using System.Web.Script.Serialization;
 using System.IO;
 using System.Net;
 using System.Collections;
+using Utilities;
 namespace TermProject_Template
 {
 
     public partial class MerchantRegristration : System.Web.UI.Page
     {
+        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPI/api/service/PaymentProcessor/";
         Validation validate = new Validation();
         private string APIKey = "";
+        Merchant merch = new Merchant();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -23,7 +27,8 @@ namespace TermProject_Template
 
         protected void btnEnterMerchant_Click(object sender, EventArgs e)
         {
-            int count = validate.CheckMerchantExists(txtContactEmail.Text);
+            //int count = validate.CheckMerchantExists(txtContactEmail.Text);
+            int count = 1;
             if (txtContactEmail.Text == "" || txtMerchantsName.Text == "")
             {
                 Response.Write(@"<script langauge='text/javascript'>alert
@@ -34,19 +39,25 @@ namespace TermProject_Template
             {
                 if (count == 1)
                 {
-                    String url = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/Project4API/CreateMerchant/"
-                    + txtMerchantsName.Text + "/" + txtContactEmail.Text;
-                    // Create an HTTP Web Request and get the HTTP Web Response from the server.
-                    WebRequest request = WebRequest.Create(url);
-                    WebResponse response = request.GetResponse();
+                    merch.Name = txtMerchantsName.Text;
+                    merch.Email = txtContactEmail.Text;
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    String jsonCustomer = js.Serialize(merch);
+                    WebRequest request = WebRequest.Create(webApiUrl + "CreateMerchant/");
+                    request.Method = "POST";
+                    request.ContentLength = jsonCustomer.Length;
+                    request.ContentType = "application/json";
+                    // Write the JSON data to the Web Request
+                    StreamWriter writer = new StreamWriter(request.GetRequestStream());
+                    writer.Write(jsonCustomer);
+                    writer.Flush();
+                    writer.Close();
                     // Read the data from the Web Response, which requires working with streams.
+                    WebResponse response = request.GetResponse();
                     Stream theDataStream = response.GetResponseStream();
                     StreamReader reader = new StreamReader(theDataStream);
                     String data = reader.ReadToEnd();
-                    reader.Close();
-                    response.Close();
-                    // Deserialize a JSON string into a double.
-                    JavaScriptSerializer js = new JavaScriptSerializer();
+
                     string result = js.Deserialize<string>(data);
                     Response.Write(@"<script langauge='text/javascript'>alert
                 ('" + result + "');</script>");

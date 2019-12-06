@@ -22,15 +22,6 @@ namespace TermProject_Template.Restaurant {
         protected global::System.Web.UI.WebControls.Button btnEdit;
         
         /// <summary>
-        /// gvMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMenu;
-        
-        /// <summary>
         /// btnDelete control.
         /// </summary>
         /// <remarks>
@@ -56,5 +47,14 @@ namespace TermProject_Template.Restaurant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNewItem;
+        
+        /// <summary>
+        /// gvMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMenu;
     }
 }

@@ -16,9 +16,11 @@ namespace TermProject_Template.Restaurant
         Validation validate = new Validation();
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
+        SqlCommand objCommand = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string email = Session["AccountID"].ToString();
+            //string email = Session["AccountID"].ToString();
+            string email = "burger@gmail.com";
             FillGvMenu(email);
         }
 
@@ -30,19 +32,41 @@ namespace TermProject_Template.Restaurant
         }
         public void FillGvMenu(string email)
         {
-            dbCommand.Parameters.Clear();
-            dbCommand.CommandType = CommandType.StoredProcedure;
-            dbCommand.CommandText = "TP_FillMenu";
-            SqlParameter inputItemID = new SqlParameter("@Email", email);
-
-            inputItemID.Direction = ParameterDirection.Input;
-            inputItemID.SqlDbType = SqlDbType.VarChar;
-
-            dbCommand.Parameters.Add(inputItemID);
-
-            DataSet data = db.GetDataSetUsingCmdObj(dbCommand);
-            gvMenu.DataSource = data;
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "Tp_GetMenu";
+            SqlParameter inputEmail = new SqlParameter("@Email", email);
+            objCommand.Parameters.Add(inputEmail);
+            DataSet result = db.GetDataSetUsingCmdObj(objCommand);
+            gvMenu.DataSource = result;
             gvMenu.DataBind();
+
+            ListBox lb;
+            for (int i = 0; i < result.Tables[0].Rows.Count; i++)
+            {
+                objCommand.Parameters.Clear();
+                objCommand.CommandType = CommandType.StoredProcedure;
+                objCommand.CommandText = "Tp_GetMenuID";
+                SqlParameter menuID = new SqlParameter("@theEmail", email);
+                objCommand.Parameters.Add(menuID);
+                DataSet idResult = db.GetDataSetUsingCmdObj(objCommand);
+                string theMenuID = Convert.ToString(idResult.Tables[0].Rows[i]["Menu_ID"]);
+                int mID = int.Parse(theMenuID);
+                for (int j = 0; j < idResult.Tables[0].Rows.Count; j++)
+                {
+                    objCommand.Parameters.Clear();
+                    objCommand.CommandType = CommandType.StoredProcedure;
+                    objCommand.CommandText = "Tp_GetAddOns";
+                    SqlParameter menuAddOn = new SqlParameter("@MenuID", mID);
+                    objCommand.Parameters.Add(menuAddOn);
+                    DataSet lbResult = db.GetDataSetUsingCmdObj(objCommand);
+                    lb = (ListBox)gvMenu.Rows[i].FindControl("lbAddOns");
+                    lb.DataSource = lbResult;
+                    lb.DataTextField = "Add_On_Name";
+                    lb.DataValueField = "Add_On_Name";
+                    lb.DataBind();
+                }
+            }
         }
         public void FillGvMenuAddOns(int It)
         {
