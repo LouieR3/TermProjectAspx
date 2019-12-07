@@ -66,7 +66,7 @@
                                 <asp:Label ID="lblRestPhone" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestPhone") %>'></asp:Label>
                             </td>
                             <td>
-                                <asp:Button ID="btnSelect" Text="Select Restaurant" runat="server" />
+                                <asp:Button ID="btnSelect" CssClass="smallButton" Text="Select Restaurant" runat="server" />
                             </td>
                             <br />
                         </tr>

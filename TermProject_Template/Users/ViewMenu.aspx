@@ -91,5 +91,4 @@
             <asp:Button ID="btnPlaceOrder" runat="server" class="logButton placeOrder" Text="Place Order" OnClick="btnPlaceOrder_Click" />
         </div>
     </div>
-
 </asp:Content>
