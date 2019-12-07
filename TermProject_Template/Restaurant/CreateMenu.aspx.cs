@@ -17,18 +17,15 @@ namespace TermProject_Template.Restaurant
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
         SqlCommand objCommand = new SqlCommand();
+        string email;
         protected void Page_Load(object sender, EventArgs e)
         {
             //string email = Session["AccountID"].ToString();
-            string email = "burger@gmail.com";
-            FillGvMenu(email);
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            gvMenu.Columns[0].Visible = true;
-            btnChange.Visible = true;
-            btnDelete.Visible = true;
+            email = "burger@gmail.com";
+            if (!IsPostBack)
+            {
+                FillGvMenu(email);
+            }
         }
         public void FillGvMenu(string email)
         {
@@ -97,20 +94,18 @@ namespace TermProject_Template.Restaurant
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            CheckBox check = new CheckBox();
             int count = 0;
             string ID = "";
+            validate.CheckSelectedMenuID(gvMenu, out count, out ID);
             if (count == 1)
             {
-                validate.CheckSelectedMenuItem(gvMenu, out count, out ID);
                 dbCommand.Parameters.Clear();
                 dbCommand.CommandType = CommandType.StoredProcedure;
                 dbCommand.CommandText = "TP_DeleteMenuItem";
-                SqlParameter inputItemID = new SqlParameter("ItemID", ID);
+                SqlParameter inputItemID = new SqlParameter("@ItemID", ID);
 
                 inputItemID.Direction = ParameterDirection.Input;
                 inputItemID.SqlDbType = SqlDbType.Int;
-
                 dbCommand.Parameters.Add(inputItemID);
 
                 int insert = db.DoUpdateUsingCmdObj(dbCommand);
@@ -118,7 +113,7 @@ namespace TermProject_Template.Restaurant
                 {
 
                 }
-                gvMenu.DataBind();
+                FillGvMenu(email);
             }
 
         }

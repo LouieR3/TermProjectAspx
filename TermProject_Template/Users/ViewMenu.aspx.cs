@@ -45,7 +45,7 @@ namespace TermProject_Template.Users
             objCommand.Parameters.Clear();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "Tp_GetMenu";
-            SqlParameter inputEmail = new SqlParameter("@Email", restaurantID);
+            SqlParameter inputEmail = new SqlParameter("@Email", restID);
             objCommand.Parameters.Add(inputEmail);
             DataSet result = db.GetDataSetUsingCmdObj(objCommand);
             gvMenu.DataSource = result;
@@ -57,7 +57,7 @@ namespace TermProject_Template.Users
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "Tp_CheckAddOns";
-                SqlParameter restEmail = new SqlParameter("@theEmail", restaurantID);
+                SqlParameter restEmail = new SqlParameter("@theEmail", restID);
                 objCommand.Parameters.Add(restEmail);
                 string stringID = Convert.ToString(result.Tables[0].Rows[i]["Menu_ID"]);
                 int theID = Int32.Parse(stringID);

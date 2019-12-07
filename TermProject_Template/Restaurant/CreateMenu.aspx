@@ -29,16 +29,16 @@
     <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <asp:Button ID="btnEdit" runat="server" Style="z-index: 1; left: 491px; top: 53px; position: absolute; right: 472px;" Text="Edit" OnClick="Button1_Click" />
-    <asp:Button ID="btnDelete" runat="server" Style="z-index: 1; left: 543px; top: 52px; position: absolute" Text="Delete" Visible="False" OnClick="btnDelete_Click" />
-    <asp:Button ID="btnChange" runat="server" Style="z-index: 1; left: 615px; top: 52px; position: absolute" Text="Change" Visible="False" OnClick="btnChange_Click" />
+    
+    <asp:Button ID="btnDelete" runat="server" Style="z-index: 1; left: 543px; top: 52px; position: absolute" Text="Delete" OnClick="btnDelete_Click" />
+    <asp:Button ID="btnChange" runat="server" Style="z-index: 1; left: 615px; top: 52px; position: absolute" Text="Change" OnClick="btnChange_Click" />
     <asp:Button ID="btnNewItem" runat="server" Style="z-index: 1; left: 395px; top: 54px; position: absolute" Text="New Item" OnClick="btnNewItem_Click" />
     <asp:GridView ID="gvMenu" runat="server" AutoGenerateColumns="False" class="gv" CellPadding="3" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:TemplateField HeaderText="Select" ItemStyle-HorizontalAlign="Center" Visible="False">
+            <asp:TemplateField HeaderText="Select" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:CheckBox ID="chkSelect" runat="server" />
+                    <asp:CheckBox ID="chkSelect" runat="server"  />
                 </ItemTemplate>
                 <HeaderStyle ForeColor="White" />
                 <ItemStyle ForeColor="Black" />
