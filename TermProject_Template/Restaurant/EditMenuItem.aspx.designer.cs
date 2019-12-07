@@ -148,15 +148,6 @@ namespace TermProject_Template.Restaurant {
         protected global::System.Web.UI.WebControls.Button btnUpdate;
         
         /// <summary>
-        /// btnCreateItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateItem;
-        
-        /// <summary>
         /// btnDeleteAddOn control.
         /// </summary>
         /// <remarks>

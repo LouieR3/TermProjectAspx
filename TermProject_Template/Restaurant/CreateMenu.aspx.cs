@@ -125,7 +125,15 @@ namespace TermProject_Template.Restaurant
 
         protected void btnChange_Click(object sender, EventArgs e)
         {
-
+            int count = 0;
+            string id = "";
+            validate.CheckSelectedMenuID(gvMenu, out count, out id);
+            if(count == 1)
+            {
+                Session["MenuID"] = int.Parse(id);
+                Response.Redirect("EditMenuItem.aspx");
+            }
+            
         }
     }
 }

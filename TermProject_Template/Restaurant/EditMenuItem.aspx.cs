@@ -25,17 +25,17 @@ namespace TermProject_Template.Restaurant
         protected void Page_Load(object sender, EventArgs e)
         {
             email = "burger@gmail.com";
-            menuID = int.Parse(Session["MenuID"].ToString());
-            SetForNotNull(menuID);
+            if (!IsPostBack)
+            {
+                menuID = int.Parse(Session["MenuID"].ToString());
+                SetForNotNull(menuID);
+            }
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             DBConnect objDB = new DBConnect();
             SqlCommand objCommand = new SqlCommand();
-            string fileName = "";
-            string photoPath = "";
-            string fileExtension = "";
 
             dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;
@@ -45,18 +45,7 @@ namespace TermProject_Template.Restaurant
             SqlParameter inputItemType = new SqlParameter("@ItemType", ddlType.SelectedValue.ToString());
             SqlParameter inputItemPrice = new SqlParameter("@ItemPrice", double.Parse(txtItemPrice.Text));
             SqlParameter inputItemEmail = new SqlParameter("@Email", email);
-            SqlParameter inputPhoto = new SqlParameter();
-            if (fleuplItemImage.HasFile)
-            {
-                fileName = fleuplItemImage.FileName;
-                fileExtension = fileName.Substring(fileName.LastIndexOf("."));
-                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".bmp" || fileExtension == ".gif" || fileExtension == ".png")
-                {
-                    photoPath = "~/images/" + fileName;
-                    fleuplItemImage.SaveAs(Server.MapPath(@"~\images\" + fileName));
-                    inputPhoto = new SqlParameter("@ItemPhoto", photoPath);
-                }
-            }
+           
 
             inputItemName.Direction = ParameterDirection.Input;
             inputItemName.SqlDbType = SqlDbType.VarChar;
@@ -72,12 +61,27 @@ namespace TermProject_Template.Restaurant
             dbCommand.Parameters.Add(inputItemType);
             dbCommand.Parameters.Add(inputItemPrice);
             dbCommand.Parameters.Add(inputItemEmail);
-            dbCommand.Parameters.Add(inputPhoto);
 
             int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
+            if(countMenuItem >= 1)
+            {
+                lblStatus.Visible = true;
+                lblStatus.Text = "Updated";
+                txtItemName.Enabled = false;
+                txtItemPrice.Enabled = false;
+                ddlType.Enabled = false;
+                btnNewAddOn.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDeleteAddOn.Enabled = false;
+                btnEdit.Enabled = true;
+            }
         }
         public void SetForNotNull(int menuID)
         {
+            txtItemName.Enabled = false;
+            txtItemPrice.Enabled = false;
+            fleuplItemImage.Enabled = false;
+            ddlType.Enabled = false;
             dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;
             dbCommand.CommandText = "TP_GetMenuItem";
@@ -86,9 +90,9 @@ namespace TermProject_Template.Restaurant
             inputMenuID.SqlDbType = SqlDbType.Int;
             dbCommand.Parameters.Add(inputMenuID);
             DataSet ds = db.GetDataSetUsingCmdObj(dbCommand);
-            txtItemName.Text = dbCommand.Parameters["Item_Name"].Value.ToString();
-            txtItemPrice.Text = dbCommand.Parameters["Item_Price"].Value.ToString();
-            ddlType.SelectedValue = dbCommand.Parameters["Item_Type"].Value.ToString();
+            txtItemName.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Name"]);
+            txtItemPrice.Text = Convert.ToString(ds.Tables[0].Rows[0]["Item_Price"]);
+            ddlType.SelectedValue = Convert.ToString(ds.Tables[0].Rows[0]["Item_Type"]);
 
             dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;
@@ -101,6 +105,107 @@ namespace TermProject_Template.Restaurant
             gvAddOn.DataSource = Ds;
             gvAddOn.DataBind();
 
+        }
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            int MenuID = int.Parse(Session["MenuID"].ToString());
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_NewAddOns";
+
+            SqlParameter inputAddOnName = new SqlParameter("@AddOnName", txtNewAddOn.Text);
+            SqlParameter inputAddOnEmail = new SqlParameter("@Email", email);
+            SqlParameter inputAddOnMenuID = new SqlParameter("@MenuID", MenuID);
+
+            inputAddOnName.Direction = ParameterDirection.Input;
+            inputAddOnName.SqlDbType = SqlDbType.VarChar;
+            inputAddOnEmail.Direction = ParameterDirection.Input;
+            inputAddOnEmail.SqlDbType = SqlDbType.VarChar;
+            inputAddOnMenuID.Direction = ParameterDirection.Input;
+            inputAddOnMenuID.SqlDbType = SqlDbType.Int;
+            dbCommand.Parameters.Add(inputAddOnName);
+            dbCommand.Parameters.Add(inputAddOnEmail);
+            dbCommand.Parameters.Add(inputAddOnMenuID);
+
+            int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
+            LoadAddOns(MenuID);
+            if (countMenuItem == 1)
+            {
+                lblStatus.Text = "Add-On was Added to menu";
+                txtNewAddOn.Visible = false;
+                btnAdd.Visible = false;
+                btnNewAddOn.Enabled = true;
+                btnDeleteAddOn.Visible = true;
+                btnDeleteAddOn.Enabled = true;
+            }
+        }
+        protected void btnNewAddOn_Click(object sender, EventArgs e)
+        {
+            btnDeleteAddOn.Enabled = false;
+            btnNewAddOn.Enabled = false;
+            txtNewAddOn.Visible = true;
+            btnAdd.Visible = true;
+
+        }
+        protected void btnDeleteAddOn_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            string AddOnID = "";
+            validate.CheckSelectedMenuItem(gvAddOn, out count, out AddOnID);
+            int.TryParse(AddOnID, out int ID);
+            if (count == 1)
+            {
+
+                dbCommand.Parameters.Clear();
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "TP_DeleteAddOn";
+
+                SqlParameter inputName = new SqlParameter("@AddOnID", ID);
+
+                inputName.Direction = ParameterDirection.Input;
+                inputName.SqlDbType = SqlDbType.VarChar;
+
+                dbCommand.Parameters.Add(inputName);
+                int delete = db.DoUpdateUsingCmdObj(dbCommand);
+                if (delete == 1)
+                {
+                    LoadAddOns(menuID);
+                    lblStatus.Text = "AddOn Deleted";
+                }
+            }
+        }
+        protected void btnMenu_Click(object sender, EventArgs e)
+        {
+            Session.Remove("MenuID");
+            Response.Redirect("CreateMenu.Aspx");
+        }
+        public void LoadAddOns(int ID)
+        {
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_GetAddOns";
+
+            SqlParameter inputName = new SqlParameter("@MenuID", ID);
+
+            inputName.Direction = ParameterDirection.Input;
+            inputName.SqlDbType = SqlDbType.VarChar;
+
+            dbCommand.Parameters.Add(inputName);
+            DataSet ds = db.GetDataSetUsingCmdObj(dbCommand);
+            gvAddOn.DataSource = ds;
+            gvAddOn.DataBind();
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            txtItemName.Enabled = true;
+            txtItemPrice.Enabled = true;
+            fleuplItemImage.Enabled = false;
+            btnEdit.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnNewAddOn.Enabled = true;
+            ddlType.Enabled = true;
+            btnDeleteAddOn.Enabled = true;
         }
     }
 }

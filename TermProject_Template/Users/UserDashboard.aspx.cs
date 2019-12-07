@@ -20,7 +20,7 @@ namespace TermProject_Template.Users
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPITest/api/service/PaymentProcessor/";
+        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/TermProject/api/service/PaymentProcessor/";
         int total = 0;
         DataSet dsRest = new DataSet();
         SqlCommand objCommand = new SqlCommand();

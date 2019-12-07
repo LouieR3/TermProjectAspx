@@ -11,7 +11,11 @@ namespace TermProject_Template.Restaurant
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string orderID = "";
+            if (!IsPostBack)
+            {
+                orderID = Session["OrderID"].ToString();
+            }
         }
     }
 }

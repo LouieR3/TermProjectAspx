@@ -270,7 +270,7 @@ namespace Utilities
                 CBox = (CheckBox)gvCurrent.Rows[row].FindControl("chkSelect");
                 if (CBox.Checked)
                 {
-                    emailId = gvCurrent.Rows[row].Cells[6].Text;
+                    emailId = gvCurrent.Rows[row].Cells[2].Text;
                     count = count + 1;
                 }
 
