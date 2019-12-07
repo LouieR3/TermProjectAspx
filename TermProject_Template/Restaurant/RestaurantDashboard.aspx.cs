@@ -149,6 +149,9 @@ namespace TermProject_Template.Restaurant
         public void DDLStatus_StatusChange(Object sender, EventArgs e)
         {
             DropDownList ddlStatus = (DropDownList)sender;
+            Response.Write(@"<script language='text/javascript'>alert
+            ('Please fill out all the fields before creating an account');</script>");
+            return;
         }
     }
 }

@@ -230,7 +230,7 @@ namespace TermProject_Template.Restaurant
                 btnNewAddOn.Visible = true;
             }
         }
-        public int GetMenuID( string name, string email)
+        public int GetMenuID(string name, string email)
         {
             dbCommand.Parameters.Clear();
             dbCommand.CommandType = CommandType.StoredProcedure;

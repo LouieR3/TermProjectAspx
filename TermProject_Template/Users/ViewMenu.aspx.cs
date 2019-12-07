@@ -45,7 +45,7 @@ namespace TermProject_Template.Users
             objCommand.Parameters.Clear();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "Tp_GetMenu";
-            SqlParameter inputEmail = new SqlParameter("@Email", restID);
+            SqlParameter inputEmail = new SqlParameter("@Email", email);
             objCommand.Parameters.Add(inputEmail);
             DataSet result = db.GetDataSetUsingCmdObj(objCommand);
             gvMenu.DataSource = result;
@@ -56,18 +56,25 @@ namespace TermProject_Template.Users
             {
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
-                objCommand.CommandText = "Tp_GetMenuID";
-                SqlParameter menuID = new SqlParameter("@theEmail", restID);
-                objCommand.Parameters.Add(menuID);
+                objCommand.CommandText = "Tp_CheckAddOns";
+                SqlParameter restEmail = new SqlParameter("@theEmail", email);
+                objCommand.Parameters.Add(restEmail);
+                string stringID = Convert.ToString(result.Tables[0].Rows[i]["Menu_ID"]);
+                int theID = Int32.Parse(stringID);
+                objCommand.Parameters.AddWithValue("@theID", theID);
                 DataSet idResult = db.GetDataSetUsingCmdObj(objCommand);
-                string theMenuID = Convert.ToString(idResult.Tables[0].Rows[i]["Menu_ID"]);
-                int mID = int.Parse(theMenuID);
-                for (int j = 0; j < idResult.Tables[0].Rows.Count; j++)
+                int size = idResult.Tables[0].Rows.Count;
+                if (size == 0)
+                {
+                    lb = (ListBox)gvMenu.Rows[i].FindControl("lbAddOns");
+                    lb.Visible = false;
+                }
+                else
                 {
                     objCommand.Parameters.Clear();
                     objCommand.CommandType = CommandType.StoredProcedure;
                     objCommand.CommandText = "Tp_GetAddOns";
-                    SqlParameter menuAddOn = new SqlParameter("@MenuID", mID);
+                    SqlParameter menuAddOn = new SqlParameter("@MenuID", theID);
                     objCommand.Parameters.Add(menuAddOn);
                     DataSet lbResult = db.GetDataSetUsingCmdObj(objCommand);
                     lb = (ListBox)gvMenu.Rows[i].FindControl("lbAddOns");
