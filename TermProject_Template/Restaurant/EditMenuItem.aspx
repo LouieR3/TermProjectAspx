@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Restaurant/RestaurantAccountMaster.Master" AutoEventWireup="true" CodeBehind="BuildMenuItem.aspx.cs" Inherits="TermProject_Template.Restaurant.BuildMenuItem" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Restaurant/RestaurantAccountMaster.Master" AutoEventWireup="true" CodeBehind="EditMenuItem.aspx.cs" Inherits="TermProject_Template.Restaurant.EditMenuItem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
@@ -54,6 +54,8 @@
         <asp:ListItem>Drink</asp:ListItem>
     </asp:DropDownList>
     
+    <asp:Button ID="btnEdit" runat="server" style="z-index: 1; left: 387px; top: 52px; position: absolute" Text="Edit" OnClick="btnEdit_Click" Visible="False" />
+    <asp:Button ID="btnUpdate" runat="server" style="z-index: 1; left: 450px; top: 52px; position: absolute" Text="Update" Enabled="False" OnClick="btnUpdate_Click" />
     <asp:Button ID="btnCreateItem" runat="server" style="z-index: 1; left: 96px; top: 250px; position: absolute" Text="Create Item" OnClick="btnCreateItem_Click" />
     <asp:Button ID="btnDeleteAddOn" runat="server" style="z-index: 1; left: 297px; top: 345px; position: absolute" Text="Delete Add On" OnClick="btnDeleteAddOn_Click" Visible="False" />
     <asp:Label ID="lblStatus" runat="server" style="z-index: 1; left: 394px; top: 123px; position: absolute" Text="Label"></asp:Label>

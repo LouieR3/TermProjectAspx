@@ -276,6 +276,22 @@ namespace Utilities
 
             }
         }
+        public void CheckSelectedMenuID(GridView gvCurrent, out int count, out string emailId)
+        {
+            count = 0;
+            emailId = "";
+            for (int row = 0; row < gvCurrent.Rows.Count; row++)
+            {
+                CheckBox CBox;
+                CBox = (CheckBox)gvCurrent.Rows[row].FindControl("chkSelect");
+                if (CBox.Checked)
+                {
+                    emailId = gvCurrent.Rows[row].Cells[1].Text;
+                    count = count + 1;
+                }
+
+            }
+        }
         public string GetUserBalance(string email)
         {
             string balance = "";
