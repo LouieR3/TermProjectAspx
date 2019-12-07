@@ -79,6 +79,7 @@ namespace TermProject_Template.Restaurant
             {
                 strHTML = strHTML + "<table>" +
                              "<tr style='font-weight:bold'>" +
+                             "<td>  </td>" +
                              "<td> OrderID </td>" +
                              "<td> Order Name </td>" +
                              "<td> Order Email </td>" +
@@ -97,6 +98,17 @@ namespace TermProject_Template.Restaurant
                     select.Click += new EventHandler(this.SelectButtonHandler);
                     select.Width = 120;
 
+                    Button submit = new Button();
+                    //submit.Click += new EventHandler(submit_Click);
+
+
+
+                    String submitHTML = "";
+                    submit.Text = "Submit";
+                    submit.ID = drPreviousOrders["Order_ID"].ToString();
+                    submit.Click += new EventHandler(this.SubmitButtonHandler);
+                    submit.Width = 120;
+
                     List<string> countries = new List<string>();
                     countries.Add("Submitted");
                     countries.Add("Being Prepared");
@@ -114,11 +126,17 @@ namespace TermProject_Template.Restaurant
                     ddlStatus.SelectedIndexChanged += new EventHandler (this.DDLStatus_StatusChange);
 
                     StringBuilder strBuilder = new StringBuilder();
+                    StringBuilder strBuilder2 = new StringBuilder();
                     StringWriter strWriter = new StringWriter(strBuilder);
+                    StringWriter strWriter2 = new StringWriter(strBuilder2);
                     HtmlTextWriter htmlWriter = new HtmlTextWriter(strWriter);
+                    HtmlTextWriter htmlWriter2 = new HtmlTextWriter(strWriter2);
 
                     select.RenderControl(htmlWriter);
                     selectHTML = strBuilder.ToString();
+
+                    submit.RenderControl(htmlWriter2);
+                    submitHTML = strBuilder2.ToString();
 
                     StringBuilder strBuilderList = new StringBuilder();
                     StringWriter strWriterList = new StringWriter(strBuilderList);
@@ -128,30 +146,37 @@ namespace TermProject_Template.Restaurant
                     ddlHTML = strBuilderList.ToString();
 
                     strHTML = strHTML + "<tr>" +
+                                        "<td>" + selectHTML + "</td>" +
                                         "<td>" + drPreviousOrders["Order_ID"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_name"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_User_Email"] + "</td>" +
                                         "<td>" + drPreviousOrders["Restaurant_Email"] + "</td>" +
                                         "<td>" + drPreviousOrders["Order_Cost"] + "</td>" +
                                         "<td>" + ddlHTML + "</td>" +
-                                        "<td>" + selectHTML + "</td>" +
+                                        "<td>" + submitHTML + "</td>" +
                                         "</tr>";
                 }
                 strHTML += "</table>";
             }
             divOrders.InnerHtml = strHTML;
         }
+        public void submit_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            Response.Redirect("RestaurantRegistration.aspx");
+        }
         public void SelectButtonHandler(Object sender, EventArgs e)
         {
             Button button = (Button)sender;
-           
+        }
+        public void SubmitButtonHandler(Object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            
         }
         public void DDLStatus_StatusChange(Object sender, EventArgs e)
         {
             DropDownList ddlStatus = (DropDownList)sender;
-            Response.Write(@"<script language='text/javascript'>alert
-            ('Please fill out all the fields before creating an account');</script>");
-            return;
         }
     }
 }

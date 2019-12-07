@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Restaurant/RestaurantAccountMaster.Master" AutoEventWireup="true" CodeBehind="RestaurantDashboard.aspx.cs" Inherits="TermProject_Template.Restaurant.ResturantDashboard" %>
 
-<%@ Register Src="../CustomControls/AccountSettings.ascx" TagPrefix="uc1" TagName="AccountSettings" %>
+<%@ Register Src="../CustomControls/RestaurantSettings.ascx" TagPrefix="uc1" TagName="RestaurantSettings" %>
 <%@ Register Src="~/CustomControls/EditWallet.ascx" TagPrefix="uc1" TagName="EditWallet" %>
 <%@ Register Src="~/CustomControls/WalletBalance.ascx" TagPrefix="uc1" TagName="WalletBalance" %>
 
@@ -80,10 +80,10 @@
             <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-45">
                 <uc1:EditWallet runat="server" ID="EditWallet" />
             </div>
-            <div class="wrap-login100 contentAlign p-l-85 p-r-85 p-t-42 p-b-25">
-                <uc1:AccountSettings runat="server" ID="AccountSettings" />
+            <div class="wrap-login100 contentAlign p-l-85 p-r-85 p-t-65 p-b-55">
+                <uc1:RestaurantSettings runat="server" ID="RestaurantSettings" />
             </div>
         </div>
-        <div id="divOrders" class="wrap-login102 p-l-50 p-r-50 p-t-55 p-b-45" runat="server"></div>
+        <div id="divOrders" class="wrap-login104 p-l-50 p-r-50 p-t-55 p-b-45" runat="server"></div>
     </div>
 </asp:Content>

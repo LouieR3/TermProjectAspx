@@ -29,6 +29,7 @@ namespace TermProject_Template
             string pass = txtCreatePW.Text;
             string billing = txtBilling.Text;
             string delivery = txtDelivery.Text;
+            //string state = ddlState.SelectedValue.ToString();
 
             if (validationOBJ.checkCreateAccount(first, last, email, pass, billing, delivery) == 1)
             {
