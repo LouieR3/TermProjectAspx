@@ -337,5 +337,25 @@ namespace Utilities
             int number = customers.CardNumber;
             return number;
         }
+        public string getAccountName(string email)
+        {
+            dbCommand.Parameters.Clear();
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.CommandText = "TP_GetAccountName";
+            SqlParameter inputEmail = new SqlParameter("@Account_Email", email);
+            SqlParameter outputName = new SqlParameter("@Account_Name", "");
+            inputEmail.Direction = ParameterDirection.Input;
+            inputEmail.SqlDbType = SqlDbType.VarChar;
+            outputName.Direction = ParameterDirection.Output;
+            outputName.SqlDbType = SqlDbType.VarChar;
+            outputName.Size = 50;
+
+            dbCommand.Parameters.Add(inputEmail);
+            dbCommand.Parameters.Add(outputName);
+
+            db.GetDataSetUsingCmdObj(dbCommand);
+            string name = dbCommand.Parameters["@Account_Name"].Value.ToString();
+            return name;
+        }
     }
 }
