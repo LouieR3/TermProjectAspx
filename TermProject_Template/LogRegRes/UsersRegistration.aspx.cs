@@ -9,7 +9,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Net;
 using System.IO;
-
+using System.Web.Script.Serialization;
 namespace TermProject_Template
 {
     public partial class UsersRegristration : System.Web.UI.Page
@@ -35,6 +35,7 @@ namespace TermProject_Template
             string pass = txtCreatePW.Text;
             string billing = txtBilling.Text;
             string delivery = txtDelivery.Text;
+            //string state = ddlState.SelectedValue.ToString();
 
             if (validationOBJ.checkCreateAccount(first, last, email, pass, billing, delivery) == 1)
             {
@@ -99,6 +100,33 @@ namespace TermProject_Template
 
                     // Execute the stored procedure using the DBConnect object and the SQLCommand object
                     DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+
+                    wall = new Wallet();
+                    wall.Name = txtFirstName.Text + " " + txtLastName.Text;
+                    wall.Address = txtBilling.Text;
+                    wall.Email = txtCreateEmail.Text;
+                    wall.BankName = txtBankName.Text;
+                    wall.CardType = ddlCardType.Text;
+                    wall.CardNumber = int.Parse(txtCardNum.Text);
+                    wall.MerchantAccountID = MerchantAccountID;
+
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    String jsonCustomer = js.Serialize(wall);
+
+                    WebRequest request = WebRequest.Create(webApiUrl + "CreateVirtualWallet/" + APIKey);
+                    request.Method = "POST";
+                    request.ContentType = "application/json";
+
+                    StreamWriter writer = new StreamWriter(request.GetRequestStream());
+                    writer.Write(jsonCustomer);
+                    writer.Flush();
+                    writer.Close();
+                    WebResponse response = request.GetResponse();
+                    Stream theDataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(theDataStream);
+                    String data = reader.ReadToEnd();
+                    reader.Close();
+                    response.Close();
                 }
                 else
                 {
@@ -149,35 +177,34 @@ namespace TermProject_Template
 
                     // Execute the stored procedure using the DBConnect object and the SQLCommand object
                     DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
-                    
-                        wall = new Wallet();
-                        wall.Name = txtFirstName.Text + " " + txtLastName.Text;
-                        wall.Address = txtBilling.Text;
-                        wall.Email = txtCreateEmail.Text;
-                        wall.BankName = txt;
-                        wall.CardType = ddlCardType.Text;
-                        wall.CardNumber = int.Parse(txtCardNum.Text);
-                        wall.MerchantAccountID = MerchantAccountID;
 
-                        JavaScriptSerializer js = new JavaScriptSerializer();
-                        String jsonCustomer = js.Serialize(wall);
+                    wall = new Wallet();
+                    wall.Name = txtFirstName.Text + " " + txtLastName.Text;
+                    wall.Address = txtBilling.Text;
+                    wall.Email = txtCreateEmail.Text;
+                    wall.BankName = txtBankName.Text;
+                    wall.CardType = ddlCardType.Text;
+                    wall.CardNumber = int.Parse(txtCardNum.Text);
+                    wall.MerchantAccountID = MerchantAccountID;
 
-                        WebRequest request = WebRequest.Create(webApiUrl + "CreateVirtualWallet/" + APIKey);
-                        request.Method = "POST";
-                        request.ContentType = "application/json";
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    String jsonCustomer = js.Serialize(wall);
 
-                        StreamWriter writer = new StreamWriter(request.GetRequestStream());
-                        writer.Write(jsonCustomer);
-                        writer.Flush();
-                        writer.Close();
-                        WebResponse response = request.GetResponse();
-                        Stream theDataStream = response.GetResponseStream();
-                        StreamReader reader = new StreamReader(theDataStream);
-                        String data = reader.ReadToEnd();
-                        reader.Close();
-                        response.Close();
-                    
+                    WebRequest request = WebRequest.Create(webApiUrl + "CreateVirtualWallet/" + APIKey);
+                    request.Method = "POST";
+                    request.ContentType = "application/json";
 
+                    StreamWriter writer = new StreamWriter(request.GetRequestStream());
+                    writer.Write(jsonCustomer);
+                    writer.Flush();
+                    writer.Close();
+                    WebResponse response = request.GetResponse();
+                    Stream theDataStream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(theDataStream);
+                    String data = reader.ReadToEnd();
+                    reader.Close();
+                    response.Close();
+                }
                 Response.Redirect("Login.aspx");
             }
         }

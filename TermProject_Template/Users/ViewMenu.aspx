@@ -88,7 +88,7 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
-            <asp:Button ID="btnPlaceOrder" runat="server" class="logButton placeOrder" Text="Place Order" OnClick="btnPlaceOrder_Click" />
+            <asp:Button ID="btnPlaceOrder" runat="server" class="logButton placeOrder1" Text="Place Order" OnClick="btnPlaceOrder_Click" />
         </div>
     </div>
 </asp:Content>

@@ -274,6 +274,17 @@ background-c
     background: #e6e6e6;
     border-radius: 10px;
     position: relative;
+    margin-bottom: 2%;
+}
+
+.wrap-login104 {
+    font-family: Raleway-Regular;
+    color: black;
+    background: #e6e6e6;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 5%;
+    margin-top: 1%;
 }
 
 /*==================================================================

@@ -73,6 +73,7 @@
     <Content Include="CSS\util.css" />
     <Content Include="CustomControls\AccountSettings.ascx" />
     <Content Include="CustomControls\EditWallet.ascx" />
+    <Content Include="CustomControls\RestaurantSettings.ascx" />
     <Content Include="CustomControls\WalletBalance.ascx" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="CustomControls\EditWallet.ascx.designer.cs">
       <DependentUpon>EditWallet.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RestaurantSettings.ascx.cs">
+      <DependentUpon>RestaurantSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControls\RestaurantSettings.ascx.designer.cs">
+      <DependentUpon>RestaurantSettings.ascx</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\WalletBalance.ascx.cs">
       <DependentUpon>WalletBalance.ascx</DependentUpon>
