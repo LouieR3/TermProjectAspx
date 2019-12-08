@@ -30,18 +30,18 @@ namespace TermProject_Template.Users
         string accountID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            accountID = "gav@gmail.com";
+            Session["AccountID"] = accountID;
+            displayPreviousOrders(accountID);
             if (!IsPostBack)
             {
-                //string accountID = Session["AccountID"].ToString();
-                accountID = "gav@gmail.com";
-                Session["AccountID"] = accountID;
+                //string accountID = Session["AccountID"].ToString();             
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_GetRestaurants";
                 dsRest = db.GetDataSetUsingCmdObj(objCommand);
                 rptRest.DataSource = dsRest;
                 rptRest.DataBind();
-                displayPreviousOrders(accountID);
             }
         }
         public void bindData()
@@ -69,62 +69,66 @@ namespace TermProject_Template.Users
         }
         public void displayPreviousOrders(string ID)
         {
-            string strHTML = "";
             objCommand.Parameters.Clear();
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "Tp_GetUserOrders";
             SqlParameter inputEmail = new SqlParameter("@Email", accountID);
-
             objCommand.Parameters.Add(inputEmail);
             DataSet result = db.GetDataSetUsingCmdObj(objCommand);
-
-            DataTable dtPreviousOrders = result.Tables[0];
-            DataRow drPreviousOrders;
-            if (dtPreviousOrders.Rows.Count != 0)
+            DataTable dtOrders = result.Tables[0];
+            DataRow drOrderRecord;
+            dtOrders = result.Tables[0];
+            MyPlaceHolder.Controls.Clear();
+            if (dtOrders.Rows.Count != 0)
             {
-                strHTML = strHTML + "<table>" +
-                             "<tr style='font-weight:bold'>" +
-                             "<td> OrderID </td>" +
-                             "<td> Order Name </td>" +
-                             "<td> Order Email </td>" +
-                             "<td> Restaurant Email </td>" +
-                             "<td> Order Status </td>" +
-                             "<td> Order Cost </td>" +
-                             "</tr>";
-                for (int row = 0; row < dtPreviousOrders.Rows.Count; row++)
+                Table tblRecords = new Table();
+                tblRecords.ForeColor = System.Drawing.Color.Black;
+                MyPlaceHolder.Controls.Add(tblRecords);
+                
+                for (int row = 0; row < dtOrders.Rows.Count; row++)
                 {
-                    drPreviousOrders = dtPreviousOrders.Rows[row];
-                    Button select = new Button();
-                    String selectHTML = "";
-                    select.Text = "View Order";
-                    select.ID = "btn" + drPreviousOrders["Order_ID"].ToString();
-                    select.Click += new EventHandler(this.SelectButtonHandler);
-                    select.Width = 120;
+                    TableRow productRow = new TableRow();
+                    TableCell OrderIDCell = new TableCell();
+                    TableCell OrderNameCell = new TableCell();
+                    TableCell OrderUserEmailCell = new TableCell();
+                    TableCell OrderRestEmailCell = new TableCell();  
+                    TableCell selectOrderCell = new TableCell();
+                    TableCell OrderCostCell = new TableCell();
+                    TableCell OrderStatus = new TableCell();
 
-                    StringBuilder strBuilder = new StringBuilder();
-                    StringWriter strWriter = new StringWriter(strBuilder);
-                    HtmlTextWriter htmlWriter = new HtmlTextWriter(strWriter);
+                    drOrderRecord = dtOrders.Rows[row];
+                    OrderIDCell.Text = drOrderRecord["Order_ID"].ToString();
+                    OrderNameCell.Text = drOrderRecord["Order_Name"].ToString();
+                    OrderUserEmailCell.Text = drOrderRecord["Order_User_Email"].ToString();
+                    OrderRestEmailCell.Text = drOrderRecord["Restaurant_Email"].ToString();
+                    OrderCostCell.Text = drOrderRecord["Order_Cost"].ToString();
+                    OrderStatus.Text = drOrderRecord["Order_Status"].ToString();
 
-                    select.RenderControl(htmlWriter);
-                    selectHTML = strBuilder.ToString();
+                    // Create a Button used select an item
 
-                    strHTML = strHTML + "<tr>" +
-                                        "<td>" + drPreviousOrders["Order_ID"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_name"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_User_Email"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Restaurant_Email"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_Status"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_Cost"] + "</td>" +
-                                        "<td>" + selectHTML + "</td>" +
-                                        "</tr>";
+                    Button objButton = new Button();
+                    objButton.Text = "Select Product";
+                    objButton.ID = drOrderRecord["Order_ID"].ToString();
+                    objButton.Width = 120;
+                    objButton.Click += new EventHandler(this.SelectButtonHandler);
+                    selectOrderCell.Controls.Add(objButton);
+
+                    productRow.Cells.Add(OrderIDCell);
+                    productRow.Cells.Add(OrderNameCell);
+                    productRow.Cells.Add(OrderStatus);
+                    productRow.Cells.Add(OrderUserEmailCell);
+                    productRow.Cells.Add(OrderRestEmailCell);
+                    productRow.Cells.Add(OrderCostCell);
+                    productRow.Cells.Add(selectOrderCell);
+                    tblRecords.Rows.Add(productRow);
                 }
-                strHTML += "</table>";
             }
-            divOrders.InnerHtml = strHTML;
         }
         public void SelectButtonHandler(Object sender, EventArgs e)
         {
             Button button = (Button)sender;
+            Session["OrderID"] = button.ID;
+            Response.Redirect("ViewOrder.aspx");
 
         }
     }

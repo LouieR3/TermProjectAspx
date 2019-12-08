@@ -19,7 +19,7 @@ namespace TermProject_Template.Restaurant
         string email = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            email = "gav@gmail.com";
+            email = Session["AccountID"].ToString();
             DisplayTransactions(email);
         }
         public void DisplayTransactions(string email)

@@ -198,7 +198,7 @@ namespace TermProject_Template.Users
             {
                 for (int row = 0; row < gvMenu.Rows.Count; row++)
                 {
-                    ArrayList addOns = new ArrayList();
+                    List<string> addOns = new List<string>();
                     CheckBox CBox;
                     // Get the reference for the chkSelect control in the current row
                     CBox = (CheckBox)gvMenu.Rows[row].FindControl("chkSelect");
@@ -210,10 +210,11 @@ namespace TermProject_Template.Users
                         float ItemPrice = float.Parse(Price);
                         
                         string ItemType = gvMenu.Rows[row].Cells[3].Text;
-                        for (int a = 0; a <= lb.GetSelectedIndices().Count(); a++)
+                        for (int a = 0; a < lb.GetSelectedIndices().Count(); a++)
                         {
                             addOns.Add(lb.SelectedValue);
                         }
+                        string AddOns = string.Join(",", addOns);
 
                         objCommand.Parameters.Clear();
                         objCommand.CommandType = CommandType.StoredProcedure;
@@ -221,7 +222,7 @@ namespace TermProject_Template.Users
                         
                         SqlParameter inputItemName = new SqlParameter("@OrderItemName", ItemName);
                         SqlParameter inputItemCost = new SqlParameter("@OrderItemCost", ItemPrice);
-                        SqlParameter inputItemAddOns = new SqlParameter("@OrderItemAddOns", addOns);
+                        SqlParameter inputItemAddOns = new SqlParameter("@OrderItemAddOns", AddOns);
                         SqlParameter inputItemType = new SqlParameter("@OrderItemType", ItemType);
                         SqlParameter inputOrderID = new SqlParameter("@OrderID", orderID);
                         objCommand.Parameters.Add(inputItemName);

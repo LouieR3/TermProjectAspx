@@ -21,6 +21,7 @@
                     <li><img class="imageT" src="../images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
                     <li><a href="RestaurantDashboard.aspx">Dashboard</a></li>
                     <li><a href="CreateMenu.aspx">Create Menu</a></li>
+                    <li><a href="ViewTransactions.aspx">Previous Transactions</a></li>
                 </ul>
             </div>
             <div>

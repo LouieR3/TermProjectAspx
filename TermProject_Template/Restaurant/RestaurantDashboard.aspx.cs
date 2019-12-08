@@ -144,7 +144,9 @@ namespace TermProject_Template.Restaurant
         public void SelectButtonHandler(Object sender, EventArgs e)
         {
             Button button = (Button)sender;
-           
+            Session["OrderID"] = button.ID;
+            Response.Redirect("ViewOrder.aspx");
+
         }
         public void DDLStatus_StatusChange(Object sender, EventArgs e)
         {
