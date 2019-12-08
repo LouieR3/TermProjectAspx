@@ -34,10 +34,10 @@ namespace TermProject_Template.LogRegRes
             string pass = txtRPass.Text;
             string address = txtRAddress.Text;
             string phone = txtRPhone.Text;
-            string image = fuImage.ToString();
             string cardNum = txtCardNum.Text;
             string bankName = txtBankName.Text;
             string cardType = ddlCardType.Text;
+            string image = fuImage.FileName;
 
             if (validationOBJ.checkRestuarant(name, email, address, phone, image, pass, cardNum, cardType, bankName) == 1)
             {
@@ -98,44 +98,52 @@ namespace TermProject_Template.LogRegRes
                 inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
                 dbCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@theImage", image);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                inputParameter.Size = 50;                                // 50-bytes ~ varchar(50)
-                dbCommand.Parameters.Add(inputParameter);
+                string fileName = "";
+                string photoPath = "";
+                string fileExtension = "";
+                SqlParameter inputPhoto = new SqlParameter();
+                if (fuImage.HasFile)
+                {
+                    fileName = fuImage.FileName;
+                    fileExtension = fileName.Substring(fileName.LastIndexOf("."));
+                    if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".bmp" || fileExtension == ".gif" || fileExtension == ".png")
+                    {
+                        photoPath = "~/images/" + fileName;
+                        fuImage.SaveAs(Server.MapPath(@"~\images\" + fileName));
+                        inputPhoto = new SqlParameter("@theImage", photoPath);
+                    }
+                }
+                
+                dbCommand.Parameters.Add(inputPhoto);
 
                 //Execute the stored procedure using the DBConnect object and the SQLCommand object
-                int count = db.DoUpdateUsingCmdObj(dbCommand);
-                
-                if(count == 1)
-                {
-                    wall = new Wallet();
-                    wall.Name = txtRName.Text;
-                    wall.Address = txtRAddress.Text;
-                    wall.Email = txtContactEmail.Text;
-                    wall.BankName = txtBankName.Text;
-                    wall.CardType = ddlCardType.Text;
-                    wall.CardNumber = int.Parse(txtCardNum.Text);
-                    wall.MerchantAccountID = MerchantAccountID;
-                    
-                    JavaScriptSerializer js = new JavaScriptSerializer();
-                    String jsonCustomer = js.Serialize(wall);
+                DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
+                wall = new Wallet();
+                wall.Name = txtRName.Text;
+                wall.Address = txtRAddress.Text;
+                wall.Email = txtContactEmail.Text;
+                wall.BankName = txtBankName.Text;
+                wall.CardType = ddlCardType.Text;
+                wall.CardNumber = int.Parse(txtCardNum.Text);
+                wall.MerchantAccountID = MerchantAccountID;
 
-                    WebRequest request = WebRequest.Create(webApiUrl + "CreateVirtualWallet/" + APIKey);
-                    request.Method = "POST";
-                    request.ContentType = "application/json";
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                String jsonCustomer = js.Serialize(wall);
 
-                    StreamWriter writer = new StreamWriter(request.GetRequestStream());
-                    writer.Write(jsonCustomer);
-                    writer.Flush();
-                    writer.Close();
-                    WebResponse response = request.GetResponse();
-                    Stream theDataStream = response.GetResponseStream();
-                    StreamReader reader = new StreamReader(theDataStream);
-                    String data = reader.ReadToEnd();
-                    reader.Close();
-                    response.Close();
-                }
+                WebRequest request = WebRequest.Create(webApiUrl + "CreateVirtualWallet/" + APIKey);
+                request.Method = "POST";
+                request.ContentType = "application/json";
+
+                StreamWriter writer = new StreamWriter(request.GetRequestStream());
+                writer.Write(jsonCustomer);
+                writer.Flush();
+                writer.Close();
+                WebResponse response = request.GetResponse();
+                Stream theDataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(theDataStream);
+                String data = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
 
                 Response.Redirect("Login.aspx");
             }

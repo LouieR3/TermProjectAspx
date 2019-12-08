@@ -268,7 +268,12 @@ table img{
 }
 
 .placeOrder1 {
-    margin-left: 45%;
+    margin-top: 3%;
+    margin-left: 43%;
+}
+
+.placeOrder2 {
+    margin-left: 35%;
 }
 
 #forgotPage {

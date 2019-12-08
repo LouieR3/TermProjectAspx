@@ -49,13 +49,13 @@ namespace TermProject_Template.Restaurant {
         protected global::TermProject_Template.CustomControls.EditWallet EditWallet;
         
         /// <summary>
-        /// AccountSettings control.
+        /// RestaurantSettings control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject_Template.CustomControls.AccountSettings AccountSettings;
+        protected global::TermProject_Template.CustomControls.RestaurantSettings RestaurantSettings;
         
         /// <summary>
         /// divOrders control.
