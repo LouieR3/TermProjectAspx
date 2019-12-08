@@ -10,7 +10,6 @@ using System.Data.SqlClient;
 using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
-
 namespace TermProject_Template
 {
     public partial class UsersRegristration : System.Web.UI.Page

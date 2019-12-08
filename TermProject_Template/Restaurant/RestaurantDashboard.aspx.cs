@@ -27,17 +27,21 @@ namespace TermProject_Template.Restaurant
         string accountID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
+            accountID = "quickeats@gmail.com";
+            Session["AccountID"] = accountID;
+            displayPreviousOrders(accountID);
             if (!IsPostBack)
             {
                 //string accountID = Session["AccountID"].ToString();
-                accountID = "gav@gmail.com";
-                Session["AccountID"] = accountID;
                 objCommand.Parameters.Clear();
                 objCommand.CommandType = CommandType.StoredProcedure;
                 objCommand.CommandText = "TP_GetRestaurants";
                 dsRest = db.GetDataSetUsingCmdObj(objCommand);
                 rptRest.DataSource = dsRest;
                 rptRest.DataBind();
+            }
+            else
+            {
                 displayPreviousOrders(accountID);
             }
         }
@@ -64,50 +68,61 @@ namespace TermProject_Template.Restaurant
         }
         public void displayPreviousOrders(string ID)
         {
-            string strHTML = "";
             objCommand.Parameters.Clear();
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "Tp_GetUserOrders";
+            objCommand.CommandText = "TP_GetOrders";
             SqlParameter inputEmail = new SqlParameter("@Email", accountID);
-
             objCommand.Parameters.Add(inputEmail);
             DataSet result = db.GetDataSetUsingCmdObj(objCommand);
-
-            DataTable dtPreviousOrders = result.Tables[0];
-            DataRow drPreviousOrders;
-            if (dtPreviousOrders.Rows.Count != 0)
+            DataTable dtOrders = result.Tables[0];
+            DataRow drOrderRecord;
+            dtOrders = result.Tables[0];
+            MyPlaceHolder.Controls.Clear();
+            if (dtOrders.Rows.Count != 0)
             {
-                strHTML = strHTML + "<table>" +
-                             "<tr style='font-weight:bold'>" +
-                             "<td>  </td>" +
-                             "<td> OrderID </td>" +
-                             "<td> Order Name </td>" +
-                             "<td> Order Email </td>" +
-                             "<td> Restaurant Email </td>" +
-                             "<td> Order Cost </td>" +
-                             "<td> Order Status </td>" +
-                             "</tr>";
-                for (int row = 0; row < dtPreviousOrders.Rows.Count; row++)
+                Table tblRecords = new Table();
+                TableHeaderRow thr = new TableHeaderRow();
+                TableHeaderCell OrderID = new TableHeaderCell();
+                TableHeaderCell OrderName = new TableHeaderCell();
+                TableHeaderCell OrderUserEmail = new TableHeaderCell();
+                TableHeaderCell OrderRestEmail = new TableHeaderCell();
+                TableHeaderCell OrderCost = new TableHeaderCell();
+                TableHeaderCell Status = new TableHeaderCell();
+                TableHeaderCell OrderSelect = new TableHeaderCell();
+                OrderID.Text = "ID";
+                OrderName.Text = "Name";
+                OrderUserEmail.Text = "Order Email";
+                OrderRestEmail.Text = "Rest Email";
+                OrderCost.Text = "Cost";
+                Status.Text = "Status";
+                OrderSelect.Text = "View Order";
+                thr.Cells.Add(OrderID);
+                thr.Cells.Add(OrderName);
+                thr.Cells.Add(OrderUserEmail);
+                thr.Cells.Add(OrderRestEmail);
+                thr.Cells.Add(OrderCost);
+                thr.Cells.Add(Status);
+                thr.Cells.Add(OrderSelect);
+                tblRecords.Rows.Add(thr);
+                tblRecords.ForeColor = System.Drawing.Color.Black;
+                MyPlaceHolder.Controls.Add(tblRecords);
+
+                for (int row = 0; row < dtOrders.Rows.Count; row++)
                 {
-                    drPreviousOrders = dtPreviousOrders.Rows[row];
-                    Button select = new Button();
-                    String selectHTML = "";
-                    String ddlHTML = "";
-                    select.Text = "View Order";
-                    select.ID = drPreviousOrders["Order_ID"].ToString();
-                    select.Click += new EventHandler(this.SelectButtonHandler);
-                    select.Width = 120;
-
-                    Button submit = new Button();
-                    //submit.Click += new EventHandler(submit_Click);
-
-
-
-                    String submitHTML = "";
-                    submit.Text = "Submit";
-                    submit.ID = drPreviousOrders["Order_ID"].ToString();
-                    //submit.Click += new EventHandler(this.SubmitButtonHandler);
-                    submit.Width = 120;
+                    TableRow productRow = new TableRow();
+                    TableCell OrderIDCell = new TableCell();
+                    TableCell OrderNameCell = new TableCell();
+                    TableCell OrderUserEmailCell = new TableCell();
+                    TableCell OrderRestEmailCell = new TableCell();
+                    TableCell selectOrderCell = new TableCell();
+                    TableCell OrderCostCell = new TableCell();
+                    TableCell dropDownStatus = new TableCell();
+                    drOrderRecord = dtOrders.Rows[row];
+                    OrderIDCell.Text = drOrderRecord["Order_ID"].ToString();
+                    OrderNameCell.Text = drOrderRecord["Order_Name"].ToString();
+                    OrderUserEmailCell.Text = drOrderRecord["Order_User_Email"].ToString();
+                    OrderRestEmailCell.Text = drOrderRecord["Restaurant_Email"].ToString();
+                    OrderCostCell.Text = drOrderRecord["Order_Cost"].ToString();
 
                     List<string> countries = new List<string>();
                     countries.Add("Submitted");
@@ -115,50 +130,41 @@ namespace TermProject_Template.Restaurant
                     countries.Add("Being Delivered");
                     countries.Add("Completed");
                     countries.Add("Problem Occurred");
+
+                    // Create a Button used select an item
+                    Button btnUpdate = new Button();
+                    btnUpdate.Text = "Update Status";
+                    btnUpdate.ID = "btnUpdate" + drOrderRecord["Order_ID"].ToString();
+                    btnUpdate.Width = 120;
+                    btnUpdate.Click += new EventHandler(this.UpdateButtonHandler);
+                    
+
                     DropDownList ddlStatus = new DropDownList();
                     ddlStatus.DataSource = countries;
                     ddlStatus.DataBind();
-                    ddlStatus.SelectedValue = drPreviousOrders["Order_Status"].ToString();
-                    ddlStatus.ID = drPreviousOrders["Order_ID"].ToString();
-                    //ddlStatus.ViewStateMode = ViewStateMode.Enabled;
-                    ddlStatus.AutoPostBack = true;
-                    ddlStatus.EnableViewState = true;
-                    ddlStatus.SelectedIndexChanged += new EventHandler (this.DDLStatus_StatusChange);
+                    ddlStatus.SelectedValue = drOrderRecord["Order_Status"].ToString();
+                    ddlStatus.ID = "ddl" + drOrderRecord["Order_ID"].ToString();
+                    ddlStatus.Width = 120;
+                    dropDownStatus.Controls.Add(ddlStatus);
+                    dropDownStatus.Controls.Add(btnUpdate);
 
-                    StringBuilder strBuilder = new StringBuilder();
-                    StringBuilder strBuilder2 = new StringBuilder();
-                    StringWriter strWriter = new StringWriter(strBuilder);
-                    StringWriter strWriter2 = new StringWriter(strBuilder2);
-                    HtmlTextWriter htmlWriter = new HtmlTextWriter(strWriter);
-                    HtmlTextWriter htmlWriter2 = new HtmlTextWriter(strWriter2);
+                    Button objButton = new Button();
+                    objButton.Text = "Select Product";
+                    objButton.ID = drOrderRecord["Order_ID"].ToString();
+                    objButton.Width = 120;
+                    objButton.Click += new EventHandler(this.SelectButtonHandler);
+                    selectOrderCell.Controls.Add(objButton);
 
-                    select.RenderControl(htmlWriter);
-                    selectHTML = strBuilder.ToString();
-
-                    submit.RenderControl(htmlWriter2);
-                    submitHTML = strBuilder2.ToString();
-
-                    StringBuilder strBuilderList = new StringBuilder();
-                    StringWriter strWriterList = new StringWriter(strBuilderList);
-                    HtmlTextWriter htmlWriterList = new HtmlTextWriter(strWriterList);
-
-                    ddlStatus.RenderControl(htmlWriterList);
-                    ddlHTML = strBuilderList.ToString();
-
-                    strHTML = strHTML + "<tr>" +
-                                        "<td>" + selectHTML + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_ID"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_name"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_User_Email"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Restaurant_Email"] + "</td>" +
-                                        "<td>" + drPreviousOrders["Order_Cost"] + "</td>" +
-                                        "<td>" + ddlHTML + "</td>" +
-                                        "<td>" + submitHTML + "</td>" +
-                                        "</tr>";
+                    productRow.Cells.Add(OrderIDCell);
+                    productRow.Cells.Add(OrderNameCell);
+                    productRow.Cells.Add(OrderUserEmailCell);
+                    productRow.Cells.Add(OrderRestEmailCell);
+                    productRow.Cells.Add(OrderCostCell);
+                    productRow.Cells.Add(dropDownStatus);
+                    productRow.Cells.Add(selectOrderCell);
+                    tblRecords.Rows.Add(productRow);
                 }
-                strHTML += "</table>";
             }
-            divOrders.InnerHtml = strHTML;
         }
         public void submit_Click(object sender, EventArgs e)
         {
@@ -169,11 +175,25 @@ namespace TermProject_Template.Restaurant
         {
             Button button = (Button)sender;
             Session["OrderID"] = button.ID;
-            Response.Redirect("ViewOrder.aspx");
+            Response.Redirect("ViewAllOrders.aspx");
         }
-        public void DDLStatus_StatusChange(Object sender, EventArgs e)
+        public void UpdateButtonHandler(Object sender, EventArgs e)
         {
-            DropDownList ddlStatus = (DropDownList)sender;
+            Button btn = (Button)sender;
+            string id = btn.ID.Replace("btnUpdate", "");
+            string idStatus = "ddl" + id;
+            DropDownList ddlStatus =(DropDownList)MyPlaceHolder.FindControl(idStatus);
+            string status = ddlStatus.SelectedValue;
+
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "TP_UpdateOrderStatus";
+            SqlParameter inputID = new SqlParameter("@OrderID", id);
+            SqlParameter inputStatus = new SqlParameter("@Status", status);
+            objCommand.Parameters.Add(inputID);
+            objCommand.Parameters.Add(inputStatus);
+            int count = db.DoUpdateUsingCmdObj(objCommand);
+            displayPreviousOrders(accountID);
         }
     }
 }

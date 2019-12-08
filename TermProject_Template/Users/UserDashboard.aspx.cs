@@ -82,6 +82,29 @@ namespace TermProject_Template.Users
             if (dtOrders.Rows.Count != 0)
             {
                 Table tblRecords = new Table();
+                TableHeaderRow thr = new TableHeaderRow();
+                TableHeaderCell OrderID = new TableHeaderCell();
+                TableHeaderCell OrderName = new TableHeaderCell();
+                TableHeaderCell OrderUserEmail = new TableHeaderCell();
+                TableHeaderCell OrderRestEmail = new TableHeaderCell();
+                TableHeaderCell OrderCost = new TableHeaderCell();
+                TableHeaderCell Status = new TableHeaderCell();
+                TableHeaderCell OrderSelect = new TableHeaderCell();
+                OrderID.Text = "ID";
+                OrderName.Text = "Name";
+                OrderUserEmail.Text = "Order Email";
+                OrderRestEmail.Text = "Rest Email";
+                OrderCost.Text = "Cost";
+                Status.Text = "Status";
+                OrderSelect.Text = "View Order";
+                thr.Cells.Add(OrderID);
+                thr.Cells.Add(OrderName);
+                thr.Cells.Add(OrderUserEmail);
+                thr.Cells.Add(OrderRestEmail);
+                thr.Cells.Add(OrderCost);
+                thr.Cells.Add(Status);
+                thr.Cells.Add(OrderSelect);
+                tblRecords.Rows.Add(thr);
                 tblRecords.ForeColor = System.Drawing.Color.Black;
                 MyPlaceHolder.Controls.Add(tblRecords);
                 
@@ -115,10 +138,10 @@ namespace TermProject_Template.Users
 
                     productRow.Cells.Add(OrderIDCell);
                     productRow.Cells.Add(OrderNameCell);
-                    productRow.Cells.Add(OrderStatus);
                     productRow.Cells.Add(OrderUserEmailCell);
                     productRow.Cells.Add(OrderRestEmailCell);
                     productRow.Cells.Add(OrderCostCell);
+                    productRow.Cells.Add(OrderStatus);
                     productRow.Cells.Add(selectOrderCell);
                     tblRecords.Rows.Add(productRow);
                 }

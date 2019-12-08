@@ -52,7 +52,7 @@
                     <ItemTemplate>
                         <tr>
                             <td>
-                                <asp:Label ID="lblRestImage" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestImage") %>'></asp:Label>
+                                <asp:Image ID="lblRestImage" runat="server" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "RestImage") %>'></asp:Image>
                             </td>
                             <td>
                                 <asp:Label ID="lblRestName" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "RestName") %>'></asp:Label>
@@ -84,6 +84,8 @@
                 <uc1:RestaurantSettings runat="server" ID="RestaurantSettings" />
             </div>
         </div>
-        <div id="divOrders" class="wrap-login104 p-l-50 p-r-50 p-t-55 p-b-45" runat="server"></div>
+        <asp:PlaceHolder ID="MyPlaceHolder" runat="server" >
+
+        </asp:PlaceHolder>
     </div>
 </asp:Content>

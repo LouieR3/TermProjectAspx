@@ -7,63 +7,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TermProject_Template.Restaurant {
+namespace TermProject_Template.Users {
     
     
-    public partial class ResturantDashboard {
+    public partial class NewOrderaspx {
         
         /// <summary>
-        /// WalletBalance control.
+        /// lblOrders control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject_Template.CustomControls.WalletBalance WalletBalance;
+        protected global::System.Web.UI.WebControls.Label lblOrders;
         
         /// <summary>
-        /// rptRest control.
+        /// lblOrderName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptRest;
+        protected global::System.Web.UI.WebControls.Label lblOrderName;
         
         /// <summary>
-        /// txtHidden control.
+        /// lblUserEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txtHidden;
+        protected global::System.Web.UI.WebControls.Label lblUserEmail;
         
         /// <summary>
-        /// EditWallet control.
+        /// lblRestaurantEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject_Template.CustomControls.EditWallet EditWallet;
+        protected global::System.Web.UI.WebControls.Label lblRestaurantEmail;
         
         /// <summary>
-        /// RestaurantSettings control.
+        /// lblOrderStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject_Template.CustomControls.RestaurantSettings RestaurantSettings;
+        protected global::System.Web.UI.WebControls.Label lblOrderStatus;
         
         /// <summary>
-        /// MyPlaceHolder control.
+        /// lblOrderCost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder MyPlaceHolder;
+        protected global::System.Web.UI.WebControls.Label lblOrderCost;
+        
+        /// <summary>
+        /// lblOrderDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrderDate;
+        
+        /// <summary>
+        /// ViewOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewOrder;
     }
 }
