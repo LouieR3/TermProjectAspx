@@ -206,6 +206,22 @@ namespace Utilities
             }
         }
 
+        public int checkBuildItem(string name, string price, string image, string type)
+        {
+            if (name == "" || price == "" || image == "" || type == "")
+            {
+                return 1;
+            }
+            else if (price.Contains("qwertyuiop[]\asdfghjkl;'zxcvbnm,/_~`!@#$%^&*()+"))
+            {
+                return 2;
+            }
+            else
+            {
+                return 3;
+            }
+        }
+
         public int checkRestuarant(string name, string email, string address, string phone, string image, string pass, string cardNum, string bankName, string cardType)
         {
             if (name == "" || email == "" || address == "" || phone == "" || image == "" || pass == "" || cardNum == "" || cardType == "" || bankName == "")

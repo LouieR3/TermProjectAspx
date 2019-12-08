@@ -94,7 +94,7 @@
                     <div class="wrap-input101 m-b-36">
                         <asp:FileUpload ID="fuImage" runat="server" />
                     </div>
-
+                    
                     <span class="txt1 p-b-11">Password
                     </span>
                     <div class="wrap-input100 validate-input m-b-12">

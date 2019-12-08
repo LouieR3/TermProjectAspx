@@ -34,7 +34,7 @@
     <!--===============================================================================================-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
-    <div class="wrap-login103 p-l-85 p-r-85 p-t-55 p-b-45">
+    <div class="wrap-login103 p-l-85 p-r-85 p-t-25 p-b-45">
         <uc1:WalletBalance runat="server" ID="WalletBalance" />
     </div>
     <div class="container-login101 m-t-20">
@@ -86,8 +86,7 @@
                 <uc1:AccountSettings runat="server" ID="AccountSettings" />
             </div>
         </div>
-        <asp:PlaceHolder ID="MyPlaceHolder" runat="server" >
-
+        <asp:PlaceHolder ID="MyPlaceHolder" runat="server">
         </asp:PlaceHolder>
     </div>
 </asp:Content>

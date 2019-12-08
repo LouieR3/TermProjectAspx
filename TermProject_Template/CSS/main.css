@@ -276,6 +276,11 @@ table img{
     margin-left: 35%;
 }
 
+.placeOrder3 {
+    margin-top: 2%;
+    margin-left: 30%;
+}
+
 #forgotPage {
     padding-top: 19%;
     text-align: center;
@@ -329,4 +334,8 @@ table img{
 .back2Dash{
     margin-top: 5%;
     margin-left: 36%;
+}
+
+.btnStyle{
+    text-align: center;
 }

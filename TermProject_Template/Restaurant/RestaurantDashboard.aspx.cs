@@ -106,7 +106,7 @@ namespace TermProject_Template.Restaurant
                     String submitHTML = "";
                     submit.Text = "Submit";
                     submit.ID = drPreviousOrders["Order_ID"].ToString();
-                    submit.Click += new EventHandler(this.SubmitButtonHandler);
+                    //submit.Click += new EventHandler(this.SubmitButtonHandler);
                     submit.Width = 120;
 
                     List<string> countries = new List<string>();

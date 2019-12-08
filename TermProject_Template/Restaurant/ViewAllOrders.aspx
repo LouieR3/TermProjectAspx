@@ -31,15 +31,15 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
     <div class="container-login101">
-        <div >
-            <asp:Label ID="lblOrders" runat="server" Text="Order Information:" ForeColor="Black" Style="z-index: 1; left: 7px; top: 55px; position: absolute"></asp:Label>
-            <asp:Label ID="lblOrderName" runat="server" Text="Label" ForeColor="Black" Style="z-index: 1; left: 204px; top: 101px; position: absolute"></asp:Label>
-            <asp:Label ID="lblUserEmail" runat="server" Text="Label" ForeColor="Black" Style="z-index: 1; left: 35px; top: 104px; position: absolute"></asp:Label>
-            <asp:Label ID="lblRestaurantEmail" runat="server" Text="Label" ForeColor="Black" Style="z-index: 1; left: 349px; top: 101px; position: absolute"></asp:Label>
-            <asp:Label ID="lblOrderStatus" runat="server" Text="Label" Style="z-index: 1; left: 510px; top: 100px; position: absolute" ForeColor="Black"></asp:Label>
-            <asp:Label ID="lblOrderCost" runat="server" Text="Label" ForeColor="Black" Style="z-index: 1; left: 669px; top: 100px; position: absolute"></asp:Label>
-            <asp:Label ID="lblOrderDate" runat="server" Text="Label" ForeColor="Black" Style="z-index: 1; left: 803px; top: 93px; position: absolute"></asp:Label>
-            <div id="ViewOrder" runat="server"  class="wrap-login104 p-l-85 p-r-85 p-t-35 p-b-45"></div>
+        <div class="wrap-login104 p-l-85 p-r-85 p-t-55 p-b-45" style="margin-top: 3%;">
+            <span class="login100-form-title p-b-32">Order Informatin:</span>
+            <asp:Label ID="lblOrderName" runat="server" Text="Label" ForeColor="Black" class="txt10 p-b-11"></asp:Label><br /><br />
+            <asp:Label ID="lblUserEmail" runat="server" Text="Label" ForeColor="Black" class="txt10 p-b-11"></asp:Label><br /><br />
+            <asp:Label ID="lblRestaurantEmail" runat="server" Text="Label" ForeColor="Black" class="txt10 p-b-11"></asp:Label><br /><br />
+            <asp:Label ID="lblOrderStatus" runat="server" Text="Label" class="txt10 p-b-11" ForeColor="Black"></asp:Label><br /><br />
+            <asp:Label ID="lblOrderCost" runat="server" Text="Label" ForeColor="Black" class="txt10 p-b-11"></asp:Label><br /><br />
+            <asp:Label ID="lblOrderDate" runat="server" Text="Label" ForeColor="Black" class="txt10 p-b-11"></asp:Label><br /><br />
+            <div id="ViewOrder" runat="server" class="wrap-login104 p-l-85 p-r-85 p-t-35"></div>
         </div>
     </div>
 </asp:Content>

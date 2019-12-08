@@ -33,7 +33,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Content1" runat="server">
     <div class="container-login101 m-t-20">
-        <div class="wrap-login10 p-l-85 p-r-85 p-t-35 p-b-45">
+        <div class="wrap-login12 p-l-85 p-r-85 p-t-35 p-b-45">
             <div>
                 <uc1:WalletBalance runat="server" ID="WalletBalance" />
             </div>
