@@ -15,6 +15,10 @@ namespace TermProject_Template
         Validation validationOBJ = new Validation();
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
+        Wallet wall;
+        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPI/api/service/PaymentProcessor/";
+        private int MerchantAccountID = 2;
+        private string APIKey = "nV17vFTeaH";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -144,7 +148,34 @@ namespace TermProject_Template
 
                     // Execute the stored procedure using the DBConnect object and the SQLCommand object
                     DataSet myDS = db.GetDataSetUsingCmdObj(dbCommand);
-                }
+                    
+                        wall = new Wallet();
+                        wall.Name = txtFirstName.Text + " " + txtLastName.Text;
+                        wall.Address = txtBilling.Text;
+                        wall.Email = txtCreateEmail.Text;
+                        wall.BankName = txt;
+                        wall.CardType = ddlCardType.Text;
+                        wall.CardNumber = int.Parse(txtCardNum.Text);
+                        wall.MerchantAccountID = MerchantAccountID;
+
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        String jsonCustomer = js.Serialize(wall);
+
+                        WebRequest request = WebRequest.Create(webApiUrl + "CreateVirtualWallet/" + APIKey);
+                        request.Method = "POST";
+                        request.ContentType = "application/json";
+
+                        StreamWriter writer = new StreamWriter(request.GetRequestStream());
+                        writer.Write(jsonCustomer);
+                        writer.Flush();
+                        writer.Close();
+                        WebResponse response = request.GetResponse();
+                        Stream theDataStream = response.GetResponseStream();
+                        StreamReader reader = new StreamReader(theDataStream);
+                        String data = reader.ReadToEnd();
+                        reader.Close();
+                        response.Close();
+                    
 
                 Response.Redirect("Login.aspx");
             }

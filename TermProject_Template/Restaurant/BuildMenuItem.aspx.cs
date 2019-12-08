@@ -63,12 +63,15 @@ namespace TermProject_Template.Restaurant
                 lblStatus.Text = "Add-On was Added to menu";
                 txtNewAddOn.Visible = false;
                 btnAdd.Visible = false;
+                btnNewAddOn.Enabled = true;
                 btnDeleteAddOn.Visible = true;
+                btnDeleteAddOn.Enabled = true;
             }
         }
 
         protected void btnNewAddOn_Click(object sender, EventArgs e)
         {
+            btnDeleteAddOn.Enabled = false;
             btnNewAddOn.Enabled = false;
             txtNewAddOn.Visible = true;
             btnAdd.Visible = true;
@@ -141,10 +144,15 @@ namespace TermProject_Template.Restaurant
             Session["MenuID"] = menuID;
             if(menuID >= 1)
             {
+                btnCreateItem.Enabled = false;
+                txtItemName.Enabled = false;
+                txtItemPrice.Enabled = false;
+                fleuplItemImage.Enabled = false;
                 gvAddOn.Visible = true;
                 lblAddOns.Visible = true;
                 lblAddOns.Text = "Create Item Add Ons";
                 btnNewAddOn.Visible = true;
+                ddlType.Enabled = false;
             }
         }
         public int GetMenuID(string name, string email)
@@ -193,6 +201,7 @@ namespace TermProject_Template.Restaurant
                 int delete = db.DoUpdateUsingCmdObj(dbCommand);
                 if(delete == 1)
                 {
+                    LoadAddOns(MenuID);
                     lblStatus.Text = "AddOn Deleted";
                 }
             }

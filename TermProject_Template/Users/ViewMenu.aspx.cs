@@ -34,7 +34,7 @@ namespace TermProject_Template.Users
             if (!IsPostBack)
             {
                 /*email = Session["AccountID"].ToString()*/;
-                email = "gav@gmail.com";
+                Session["AccountID"] = "gav@gmail.com";
                 restaurantID = "burger@gmail.com";
                 LoadMenu(restaurantID);
             }
@@ -92,7 +92,7 @@ namespace TermProject_Template.Users
             OrderItem item;
             validate.checkChecks(gvMenu, out check);
             float orderPrice =0;
-            if (check >= 1)
+            if (check > 0)
             {
                 for (int row = 0; row < gvMenu.Rows.Count; row++)
                 {
@@ -115,7 +115,7 @@ namespace TermProject_Template.Users
                         }
                     }
                 }
-                PlaceOrder(orderPrice);
+                ProcessPayment(orderPrice);
             }
             else
             {
@@ -124,10 +124,9 @@ namespace TermProject_Template.Users
                 return;
             }
         }
-        public void PlaceOrder(float orderPrice)
+        public void ProcessPayment(float orderPrice)
         {
-            email = "gav@gmail.com";
-            restaurantID = "Neal@gmail.com";
+            email = Session["AccountId"].ToString();
             float balance = float.Parse(validate.GetUserBalance(email));
             if (orderPrice < balance)
             {
@@ -153,6 +152,10 @@ namespace TermProject_Template.Users
                 String data = reader.ReadToEnd();
                 reader.Close();
                 response.Close();
+                if(data == "true")
+                {
+                    CreateOrder(orderPrice);
+                }
 
             }
             else
@@ -160,5 +163,79 @@ namespace TermProject_Template.Users
                 
             }
         }
+        public void CreateOrder(float orderPrice)
+        {
+            email = Session["AccountId"].ToString();
+            objCommand.Parameters.Clear();
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "Tp_NewOrder";
+            string name = validate.getAccountName(email);
+            DateTime date = DateTime.Today;
+            SqlParameter inputName = new SqlParameter("@Order_Name", name);
+            SqlParameter inputEmail = new SqlParameter("@Order_User_Email", email);
+            SqlParameter inputRestEmail = new SqlParameter("@Order_Rest_Email", restaurantID);
+            SqlParameter inputCost = new SqlParameter("@Order_Cost", orderPrice);
+            SqlParameter inputDate = new SqlParameter("@Order_Date", date);
+            SqlParameter outputID = new SqlParameter("@Order_ID", 0);
+
+            outputID.Direction = ParameterDirection.Output;
+            outputID.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(inputName);
+            objCommand.Parameters.Add(inputEmail);
+            objCommand.Parameters.Add(inputRestEmail);
+            objCommand.Parameters.Add(inputCost);
+            objCommand.Parameters.Add(inputDate);
+            objCommand.Parameters.Add(outputID);
+            db.DoUpdateUsingCmdObj(objCommand);
+            int orderID = int.Parse(objCommand.Parameters["@Order_ID"].Value.ToString());
+            Session["OrderID"] = orderID;
+            int check = 0;
+            int itemCount = 0;
+            validate.checkChecks(gvMenu, out check);
+            
+            if (check >= 1)
+            {
+                for (int row = 0; row < gvMenu.Rows.Count; row++)
+                {
+                    List<string> addOns = new List<string>();
+                    CheckBox CBox;
+                    // Get the reference for the chkSelect control in the current row
+                    CBox = (CheckBox)gvMenu.Rows[row].FindControl("chkSelect");
+                    ListBox lb = (ListBox)gvMenu.Rows[row].FindControl("lbAddOns");
+                    if (CBox.Checked == true)
+                    {                       
+                        string ItemName = gvMenu.Rows[row].Cells[2].Text;
+                        string Price = gvMenu.Rows[row].Cells[5].Text.Replace("$", "");
+                        float ItemPrice = float.Parse(Price);
+                        
+                        string ItemType = gvMenu.Rows[row].Cells[3].Text;
+                        for (int a = 0; a < lb.GetSelectedIndices().Count(); a++)
+                        {
+                            addOns.Add(lb.SelectedValue);
+                        }
+                        string AddOns = string.Join(",", addOns);
+
+                        objCommand.Parameters.Clear();
+                        objCommand.CommandType = CommandType.StoredProcedure;
+                        objCommand.CommandText = "Tp_NewOrderItem";
+                        
+                        SqlParameter inputItemName = new SqlParameter("@OrderItemName", ItemName);
+                        SqlParameter inputItemCost = new SqlParameter("@OrderItemCost", ItemPrice);
+                        SqlParameter inputItemAddOns = new SqlParameter("@OrderItemAddOns", AddOns);
+                        SqlParameter inputItemType = new SqlParameter("@OrderItemType", ItemType);
+                        SqlParameter inputOrderID = new SqlParameter("@OrderID", orderID);
+                        objCommand.Parameters.Add(inputItemName);
+                        objCommand.Parameters.Add(inputItemCost);
+                        objCommand.Parameters.Add(inputItemAddOns);
+                        objCommand.Parameters.Add(inputItemType);
+                        objCommand.Parameters.Add(inputOrderID);
+                       
+                        itemCount += db.DoUpdateUsingCmdObj(objCommand);
+
+                    }
+                }
+                Response.Redirect("ViewOrder.aspx");
+        }   }
     }
 }
