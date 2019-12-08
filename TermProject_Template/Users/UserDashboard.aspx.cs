@@ -71,7 +71,7 @@ namespace TermProject_Template.Users
         {
             objCommand.Parameters.Clear();
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "Tp_GetOrders";
+            objCommand.CommandText = "Tp_GetUserOrders";
             SqlParameter inputEmail = new SqlParameter("@Email", accountID);
             objCommand.Parameters.Add(inputEmail);
             DataSet result = db.GetDataSetUsingCmdObj(objCommand);
@@ -90,11 +90,11 @@ namespace TermProject_Template.Users
                 TableHeaderCell OrderCost = new TableHeaderCell();
                 TableHeaderCell Status = new TableHeaderCell();
                 TableHeaderCell OrderSelect = new TableHeaderCell();
-                OrderID.Text = "Order ID";
-                OrderName.Text = "Order Name";
-                OrderUserEmail.Text = "Customer Email";
-                OrderRestEmail.Text = "Restaurant Email";
-                OrderCost.Text = "Order Cost";
+                OrderID.Text = "ID";
+                OrderName.Text = "Name";
+                OrderUserEmail.Text = "Order Email";
+                OrderRestEmail.Text = "Rest Email";
+                OrderCost.Text = "Cost";
                 Status.Text = "Status";
                 OrderSelect.Text = "View Order";
                 thr.Cells.Add(OrderID);
@@ -138,10 +138,10 @@ namespace TermProject_Template.Users
 
                     productRow.Cells.Add(OrderIDCell);
                     productRow.Cells.Add(OrderNameCell);
-                    productRow.Cells.Add(OrderStatus);
                     productRow.Cells.Add(OrderUserEmailCell);
                     productRow.Cells.Add(OrderRestEmailCell);
                     productRow.Cells.Add(OrderCostCell);
+                    productRow.Cells.Add(OrderStatus);
                     productRow.Cells.Add(selectOrderCell);
                     tblRecords.Rows.Add(productRow);
                 }

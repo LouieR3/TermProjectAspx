@@ -102,6 +102,7 @@
     <Content Include="Restaurant\RestaurantDashboard.aspx" />
     <Content Include="Restaurant\ViewAllOrders.aspx" />
     <Content Include="Restaurant\ViewTransactions.aspx" />
+    <Content Include="Users\NewOrderaspx.aspx" />
     <Content Include="Users\UserDashboard.aspx" />
     <Content Include="Users\ViewMenu.aspx" />
     <Content Include="Users\ViewOrder.aspx" />
@@ -266,6 +267,13 @@
     </Compile>
     <Compile Include="Restaurant\ViewTransactions.aspx.designer.cs">
       <DependentUpon>ViewTransactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Users\NewOrderaspx.aspx.cs">
+      <DependentUpon>NewOrderaspx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\NewOrderaspx.aspx.designer.cs">
+      <DependentUpon>NewOrderaspx.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\UsersMaster.Master.cs">
       <DependentUpon>UsersMaster.Master</DependentUpon>

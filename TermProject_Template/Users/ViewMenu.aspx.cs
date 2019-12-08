@@ -235,7 +235,7 @@ namespace TermProject_Template.Users
 
                     }
                 }
-                Response.Redirect("ViewOrder.aspx");
+                Response.Redirect("NewOrderaspx.aspx");
         }   }
     }
 }
