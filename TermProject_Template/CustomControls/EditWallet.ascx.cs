@@ -22,10 +22,9 @@ namespace TermProject_Template.CustomControls
         string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/WebAPI/api/service/PaymentProcessor/";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //email = Session["AccountID"].ToString();
             if (!IsPostBack)
             {
-                email = "gav@gmail.com";
+                email = Session["AccountID"].ToString();
                 DisplayWalletInformation();
             }
         }

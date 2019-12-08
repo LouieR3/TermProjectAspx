@@ -22,8 +22,7 @@ namespace TermProject_Template.CustomControls
         private string APIKey = "nV17vFTeaH";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //email = Session["AccountID"].ToString();
-            email = "gav@gmail.com";
+            email = Session["AccountID"].ToString();
             string Balance = validate.GetUserBalance(email);
             lblBalance.Text = Balance;
         }

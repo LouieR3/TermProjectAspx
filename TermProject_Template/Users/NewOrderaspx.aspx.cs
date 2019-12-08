@@ -40,7 +40,7 @@ namespace TermProject_Template.Users
             string strTO = "orderconfirmation@quickeats.com";
             string strFROM = accountID;
             string strSubject = "Order";
-            string strMessage= ""
+            string strMessage = "";
             
             string strHTML = "";
             objCommand.Parameters.Clear();

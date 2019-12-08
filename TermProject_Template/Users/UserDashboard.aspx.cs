@@ -20,18 +20,13 @@ namespace TermProject_Template.Users
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string webApiUrl = "http://cis-iis2.temple.edu/Fall2019/CIS3342_tug45415/TermProject/api/service/PaymentProcessor/";
-        int total = 0;
         DataSet dsRest = new DataSet();
         SqlCommand objCommand = new SqlCommand();
         DBConnect db = new DBConnect();
-        private string APIKey = "nV17vFTeaH";
-        private int MerchantAccountID = 2;
         string accountID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            accountID = "gav@gmail.com";
-            Session["AccountID"] = accountID;
+            accountID =  Session["AccountID"].ToString();
             displayPreviousOrders(accountID);
             if (!IsPostBack)
             {

@@ -27,8 +27,7 @@ namespace TermProject_Template.Restaurant
         string accountID = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            accountID = "quickeats@gmail.com";
-            Session["AccountID"] = accountID;
+            accountID = Session["AccountID"].ToString();
             displayPreviousOrders(accountID);
             if (!IsPostBack)
             {

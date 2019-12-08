@@ -20,8 +20,7 @@ namespace TermProject_Template.Restaurant
         string email;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string email = Session["AccountID"].ToString();
-            email = "burger@gmail.com";
+            email = Session["AccountID"].ToString();
             if (!IsPostBack)
             {
                 FillGvMenu(email);

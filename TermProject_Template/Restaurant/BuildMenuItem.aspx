@@ -37,12 +37,12 @@
             <br />
             <asp:Label ID="lblItemName" class="txt1 p-b-11" runat="server" Text="Item Name:" ForeColor="Black"></asp:Label>
             <div class="wrap-input100 validate-input m-b-12">
-                <asp:TextBox ID="txtItemPrice" class="input100" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtItemName" class="input100" runat="server"></asp:TextBox>
             </div>
 
             <asp:Label ID="lblItemPrice" class="txt1 p-b-11" runat="server" Text="Item Price:" ForeColor="Black"></asp:Label>
             <div class="wrap-input100 validate-input m-b-12">
-                <asp:TextBox ID="txtItemName" class="input100" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtItemPrice" class="input100" runat="server"></asp:TextBox>
             </div>
 
             <asp:Label ID="lblItemImage" class="txt1 p-b-11" runat="server" Text="Upload Image:" ForeColor="Black"></asp:Label>

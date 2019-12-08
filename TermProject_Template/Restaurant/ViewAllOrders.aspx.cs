@@ -26,8 +26,7 @@ namespace TermProject_Template.Restaurant
         {
             if (!IsPostBack)
             {
-                //OrderID = int.Parse(Session["OrderID"].ToString());
-                OrderID = 7;
+                OrderID = int.Parse(Session["OrderID"].ToString());
                 loadOrder(OrderID);
             }
 

@@ -33,9 +33,8 @@ namespace TermProject_Template.Users
         {
             if (!IsPostBack)
             {
-                /*email = Session["AccountID"].ToString()*/;
-                Session["AccountID"] = "gav@gmail.com";
-                restaurantID = "burger@gmail.com";
+                email = Session["AccountID"].ToString();
+                restaurantID = Session["RestaurantID"].ToString();
                 LoadMenu(restaurantID);
             }
         }

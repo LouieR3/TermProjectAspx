@@ -24,7 +24,7 @@ namespace TermProject_Template.Restaurant
         int menuID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            email = "burger@gmail.com";
+            email = Session["AccountID"].ToString();
             if (!IsPostBack)
             {
                 menuID = int.Parse(Session["MenuID"].ToString());
@@ -192,6 +192,12 @@ namespace TermProject_Template.Restaurant
                     ('AddOn Deleted');</script>");
                     return;
                 }
+            }
+            else
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                    ('You must select an Add On first');</script>");
+                return;
             }
         }
         protected void btnMenu_Click(object sender, EventArgs e)

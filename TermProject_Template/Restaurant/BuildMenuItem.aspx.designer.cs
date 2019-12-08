@@ -31,13 +31,13 @@ namespace TermProject_Template.Restaurant {
         protected global::System.Web.UI.WebControls.Label lblItemName;
         
         /// <summary>
-        /// txtItemPrice control.
+        /// txtItemName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtItemPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtItemName;
         
         /// <summary>
         /// lblItemPrice control.
@@ -49,13 +49,13 @@ namespace TermProject_Template.Restaurant {
         protected global::System.Web.UI.WebControls.Label lblItemPrice;
         
         /// <summary>
-        /// txtItemName control.
+        /// txtItemPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtItemName;
+        protected global::System.Web.UI.WebControls.TextBox txtItemPrice;
         
         /// <summary>
         /// lblItemImage control.

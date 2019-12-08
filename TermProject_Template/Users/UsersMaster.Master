@@ -21,6 +21,7 @@
                     <li><img class="imageT" src="../images/Temple-T.png" /><a href="HomePage.aspx"></a></li>
                     <li><a href="UserDashboard.aspx">Dashboard</a></li>
                     <li><a href="ViewTransactions.aspx">Previous Transaction</a></li>
+                    <li><a href="Login.aspx">Log Out</a></li>
                 </ul>
             </div>
             <div>

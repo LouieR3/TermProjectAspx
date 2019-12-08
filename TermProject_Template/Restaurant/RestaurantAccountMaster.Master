@@ -22,6 +22,7 @@
                     <li><a href="RestaurantDashboard.aspx">Dashboard</a></li>
                     <li><a href="CreateMenu.aspx">Create Menu</a></li>
                     <li><a href="ViewTransactions.aspx">Previous Transactions</a></li>
+                    <li><a href="Login.aspx">Log Out</a></li>
                 </ul>
             </div>
             <div>

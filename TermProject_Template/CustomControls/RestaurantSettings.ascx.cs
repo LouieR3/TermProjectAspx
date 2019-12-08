@@ -21,8 +21,7 @@ namespace TermProject_Template.CustomControls
         {
             if (!IsPostBack)
             {
-                email = "burger@gmail.com";
-                    //Session["AccountID"].ToString();
+                email = Session["AccountID"].ToString();
                 DisplayAccountInformation(email);
             }
         }

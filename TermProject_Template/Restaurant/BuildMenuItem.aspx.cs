@@ -26,8 +26,7 @@ namespace TermProject_Template.Restaurant
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //email = Session["AccountID"].ToString();
-            email = "burger@gmail.com";
+            email = Session["AccountID"].ToString();
 
             if (!IsPostBack)
             {
@@ -220,6 +219,12 @@ namespace TermProject_Template.Restaurant
                     LoadAddOns(MenuID);
                     lblStatus.Text = "AddOn Deleted";
                 }
+            }
+            else
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('You must select at least one Add On');</script>");
+                return;
             }
         }
 
