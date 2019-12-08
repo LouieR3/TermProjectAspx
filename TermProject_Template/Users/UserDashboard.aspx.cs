@@ -152,7 +152,6 @@ namespace TermProject_Template.Users
             Button button = (Button)sender;
             Session["OrderID"] = button.ID;
             Response.Redirect("ViewOrder.aspx");
-
         }
     }
 }

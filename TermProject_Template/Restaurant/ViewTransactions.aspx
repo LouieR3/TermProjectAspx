@@ -52,7 +52,9 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#383838" />
             </asp:GridView>
-            <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" class="logButton back2Dash" Text="Back to Dashboard" />
+            <div class="btnStyle">
+                <asp:Button ID="btnDashboard" runat="server" OnClick="btnDashboard_Click" class="logButton back2Dash" Text="Back to Dashboard" />
+            </div>
         </div>
     </div>
 

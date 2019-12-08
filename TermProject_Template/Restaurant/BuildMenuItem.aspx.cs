@@ -22,16 +22,16 @@ namespace TermProject_Template.Restaurant
         DBConnect db = new DBConnect();
         SqlCommand dbCommand = new SqlCommand();
         string email = "";
-        int MenuID; 
-        
+        int MenuID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //email = Session["AccountID"].ToString();
             email = "burger@gmail.com";
 
             if (!IsPostBack)
-            {             
-                SetForNull();             
+            {
+                SetForNull();
             }
         }
 
@@ -58,7 +58,7 @@ namespace TermProject_Template.Restaurant
 
             int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
             LoadAddOns(MenuID);
-            if(countMenuItem == 1)
+            if (countMenuItem == 1)
             {
                 lblStatus.Text = "Add-On was Added to menu";
                 txtNewAddOn.Visible = false;
@@ -75,10 +75,8 @@ namespace TermProject_Template.Restaurant
             btnNewAddOn.Enabled = false;
             txtNewAddOn.Visible = true;
             btnAdd.Visible = true;
-
         }
 
-        
         public void SetForNull()
         {
             txtItemName.Visible = true;
@@ -90,69 +88,87 @@ namespace TermProject_Template.Restaurant
             lblItemName.Visible = true;
             lblItemPrice.Visible = true;
             lblAddOns.Text = "Create Item and Then you will be able to create Add Ons";
-            
         }
 
         protected void btnCreateItem_Click(object sender, EventArgs e)
         {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-            string fileName = "";
-            string photoPath = "";
-            string fileExtension = "";
-
-            dbCommand.Parameters.Clear();
-            dbCommand.CommandType = CommandType.StoredProcedure;
-            dbCommand.CommandText = "TP_NewMenuItem";
-
-            SqlParameter inputItemName = new SqlParameter("@ItemName", txtItemName.Text);
-            SqlParameter inputItemType = new SqlParameter("@ItemType", ddlType.SelectedValue.ToString());
-            SqlParameter inputItemPrice = new SqlParameter("@ItemPrice", double.Parse(txtItemPrice.Text));
-            SqlParameter inputItemEmail = new SqlParameter("@Email", email);
-            SqlParameter inputPhoto = new SqlParameter();
-            if (fleuplItemImage.HasFile)
+            string name = txtItemName.Text;
+            string price = txtItemPrice.Text;
+            string image = fleuplItemImage.FileName;
+            string type = ddlType.SelectedValue.ToString();
+            if (validate.checkBuildItem(name, price, image, type) == 1)
             {
-                fileName = fleuplItemImage.FileName;
-                fileExtension = fileName.Substring(fileName.LastIndexOf("."));
-                if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".bmp" || fileExtension == ".gif" || fileExtension == ".png")
-                {
-                    photoPath = "~/images/" + fileName;
-                    fleuplItemImage.SaveAs(Server.MapPath(@"~\images\" + fileName));
-                    inputPhoto = new SqlParameter("@ItemPhoto", photoPath);
-                }
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('Please fill out all fields');</script>");
+                return;
             }
-
-            inputItemName.Direction = ParameterDirection.Input;
-            inputItemName.SqlDbType = SqlDbType.VarChar;
-            inputItemType.Direction = ParameterDirection.Input;
-            inputItemType.SqlDbType = SqlDbType.VarChar;
-            inputItemPrice.Direction = ParameterDirection.Input;
-            inputItemPrice.SqlDbType = SqlDbType.Float;
-            inputItemEmail.Direction = ParameterDirection.Input;
-            inputItemEmail.SqlDbType = SqlDbType.VarChar;
-            inputItemEmail.Direction = ParameterDirection.Input;
-            inputItemEmail.SqlDbType = SqlDbType.VarChar;
-            dbCommand.Parameters.Add(inputItemName);
-            dbCommand.Parameters.Add(inputItemType);
-            dbCommand.Parameters.Add(inputItemPrice);
-            dbCommand.Parameters.Add(inputItemEmail);
-            dbCommand.Parameters.Add(inputPhoto);
-
-            int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
-            int menuID;
-            menuID = GetMenuID(txtItemName.Text, email);
-            Session["MenuID"] = menuID;
-            if(menuID >= 1)
+            else if (validate.checkBuildItem(name, price, image, type) == 2)
             {
-                btnCreateItem.Enabled = false;
-                txtItemName.Enabled = false;
-                txtItemPrice.Enabled = false;
-                fleuplItemImage.Enabled = false;
-                gvAddOn.Visible = true;
-                lblAddOns.Visible = true;
-                lblAddOns.Text = "Create Item Add Ons";
-                btnNewAddOn.Visible = true;
-                ddlType.Enabled = false;
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('The price should only represented with numbers and a '.' inbetween');</script>");
+                return;
+            }
+            else
+            {
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+                string fileName = "";
+                string photoPath = "";
+                string fileExtension = "";
+
+                dbCommand.Parameters.Clear();
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "TP_NewMenuItem";
+
+                SqlParameter inputItemName = new SqlParameter("@ItemName", txtItemName.Text);
+                SqlParameter inputItemType = new SqlParameter("@ItemType", ddlType.SelectedValue.ToString());
+                SqlParameter inputItemPrice = new SqlParameter("@ItemPrice", double.Parse(txtItemPrice.Text));
+                SqlParameter inputItemEmail = new SqlParameter("@Email", email);
+                SqlParameter inputPhoto = new SqlParameter();
+                if (fleuplItemImage.HasFile)
+                {
+                    fileName = fleuplItemImage.FileName;
+                    fileExtension = fileName.Substring(fileName.LastIndexOf("."));
+                    if (fileExtension == ".jpg" || fileExtension == ".jpeg" || fileExtension == ".bmp" || fileExtension == ".gif" || fileExtension == ".png")
+                    {
+                        photoPath = "~/images/" + fileName;
+                        fleuplItemImage.SaveAs(Server.MapPath(@"~\images\" + fileName));
+                        inputPhoto = new SqlParameter("@ItemPhoto", photoPath);
+                    }
+                }
+
+                inputItemName.Direction = ParameterDirection.Input;
+                inputItemName.SqlDbType = SqlDbType.VarChar;
+                inputItemType.Direction = ParameterDirection.Input;
+                inputItemType.SqlDbType = SqlDbType.VarChar;
+                inputItemPrice.Direction = ParameterDirection.Input;
+                inputItemPrice.SqlDbType = SqlDbType.Float;
+                inputItemEmail.Direction = ParameterDirection.Input;
+                inputItemEmail.SqlDbType = SqlDbType.VarChar;
+                inputItemEmail.Direction = ParameterDirection.Input;
+                inputItemEmail.SqlDbType = SqlDbType.VarChar;
+                dbCommand.Parameters.Add(inputItemName);
+                dbCommand.Parameters.Add(inputItemType);
+                dbCommand.Parameters.Add(inputItemPrice);
+                dbCommand.Parameters.Add(inputItemEmail);
+                dbCommand.Parameters.Add(inputPhoto);
+
+                int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
+                int menuID;
+                menuID = GetMenuID(txtItemName.Text, email);
+                Session["MenuID"] = menuID;
+                if (menuID >= 1)
+                {
+                    btnCreateItem.Enabled = false;
+                    txtItemName.Enabled = false;
+                    txtItemPrice.Enabled = false;
+                    fleuplItemImage.Enabled = false;
+                    gvAddOn.Visible = true;
+                    lblAddOns.Visible = true;
+                    lblAddOns.Text = "Create Item Add Ons";
+                    btnNewAddOn.Visible = true;
+                    ddlType.Enabled = false;
+                }
             }
         }
         public int GetMenuID(string name, string email)
@@ -185,7 +201,7 @@ namespace TermProject_Template.Restaurant
             string AddOnID = "";
             validate.CheckSelectedMenuItem(gvAddOn, out count, out AddOnID);
             int.TryParse(AddOnID, out int ID);
-            if(count ==1)
+            if (count == 1)
             {
 
                 dbCommand.Parameters.Clear();
@@ -199,7 +215,7 @@ namespace TermProject_Template.Restaurant
 
                 dbCommand.Parameters.Add(inputName);
                 int delete = db.DoUpdateUsingCmdObj(dbCommand);
-                if(delete == 1)
+                if (delete == 1)
                 {
                     LoadAddOns(MenuID);
                     lblStatus.Text = "AddOn Deleted";
@@ -229,5 +245,5 @@ namespace TermProject_Template.Restaurant
             gvAddOn.DataBind();
         }
     }
-    
+
 }

@@ -115,7 +115,12 @@ namespace TermProject_Template.Restaurant
                 }
                 FillGvMenu(email);
             }
-
+            else
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('You must select at least one item');</script>");
+                return;
+            }
         }
 
         protected void btnNewItem_Click(object sender, EventArgs e)
@@ -133,7 +138,12 @@ namespace TermProject_Template.Restaurant
                 Session["MenuID"] = int.Parse(id);
                 Response.Redirect("EditMenuItem.aspx");
             }
-            
+            else
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('You must select at least one item');</script>");
+                return;
+            }
         }
     }
 }

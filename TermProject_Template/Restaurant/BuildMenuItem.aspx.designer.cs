@@ -13,22 +13,13 @@ namespace TermProject_Template.Restaurant {
     public partial class BuildMenuItem {
         
         /// <summary>
-        /// lblItemPrice control.
+        /// btnMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblItemPrice;
-        
-        /// <summary>
-        /// txtItemName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtItemName;
+        protected global::System.Web.UI.WebControls.Button btnMenu;
         
         /// <summary>
         /// lblItemName control.
@@ -49,6 +40,24 @@ namespace TermProject_Template.Restaurant {
         protected global::System.Web.UI.WebControls.TextBox txtItemPrice;
         
         /// <summary>
+        /// lblItemPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblItemPrice;
+        
+        /// <summary>
+        /// txtItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtItemName;
+        
+        /// <summary>
         /// lblItemImage control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,24 @@ namespace TermProject_Template.Restaurant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fleuplItemImage;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// ddlType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
         /// lblAddOns control.
@@ -112,24 +139,6 @@ namespace TermProject_Template.Restaurant {
         protected global::System.Web.UI.WebControls.GridView gvAddOn;
         
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// ddlType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlType;
-        
-        /// <summary>
         /// btnCreateItem control.
         /// </summary>
         /// <remarks>
@@ -155,14 +164,5 @@ namespace TermProject_Template.Restaurant {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStatus;
-        
-        /// <summary>
-        /// btnMenu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMenu;
     }
 }

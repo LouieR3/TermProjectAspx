@@ -117,7 +117,6 @@ namespace TermProject_Template.Restaurant
                     TableCell selectOrderCell = new TableCell();
                     TableCell OrderCostCell = new TableCell();
                     TableCell dropDownStatus = new TableCell();
-
                     drOrderRecord = dtOrders.Rows[row];
                     OrderIDCell.Text = drOrderRecord["Order_ID"].ToString();
                     OrderNameCell.Text = drOrderRecord["Order_Name"].ToString();

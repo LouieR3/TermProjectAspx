@@ -34,46 +34,62 @@ namespace TermProject_Template.Restaurant
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            DBConnect objDB = new DBConnect();
-            SqlCommand objCommand = new SqlCommand();
-
-            dbCommand.Parameters.Clear();
-            dbCommand.CommandType = CommandType.StoredProcedure;
-            dbCommand.CommandText = "TP_UpdateMenuItem";
-
-            SqlParameter inputItemName = new SqlParameter("@ItemName", txtItemName.Text);
-            SqlParameter inputItemType = new SqlParameter("@ItemType", ddlType.SelectedValue.ToString());
-            SqlParameter inputItemPrice = new SqlParameter("@ItemPrice", double.Parse(txtItemPrice.Text));
-            SqlParameter inputItemEmail = new SqlParameter("@Email", email);
-           
-
-            inputItemName.Direction = ParameterDirection.Input;
-            inputItemName.SqlDbType = SqlDbType.VarChar;
-            inputItemType.Direction = ParameterDirection.Input;
-            inputItemType.SqlDbType = SqlDbType.VarChar;
-            inputItemPrice.Direction = ParameterDirection.Input;
-            inputItemPrice.SqlDbType = SqlDbType.Float;
-            inputItemEmail.Direction = ParameterDirection.Input;
-            inputItemEmail.SqlDbType = SqlDbType.VarChar;
-            inputItemEmail.Direction = ParameterDirection.Input;
-            inputItemEmail.SqlDbType = SqlDbType.VarChar;
-            dbCommand.Parameters.Add(inputItemName);
-            dbCommand.Parameters.Add(inputItemType);
-            dbCommand.Parameters.Add(inputItemPrice);
-            dbCommand.Parameters.Add(inputItemEmail);
-
-            int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
-            if(countMenuItem >= 1)
+            string price = txtItemPrice.Text;
+            if (txtItemName.Text != "" || ddlType.Text != "" || txtItemPrice.Text != "" || fleuplItemImage.FileName != "" || !price.Contains("qwertyuiop[]\asdfghjkl;'zxcvbnm,/_~`!@#$%^&*()+"))
             {
-                lblStatus.Visible = true;
-                lblStatus.Text = "Updated";
-                txtItemName.Enabled = false;
-                txtItemPrice.Enabled = false;
-                ddlType.Enabled = false;
-                btnNewAddOn.Enabled = false;
-                btnUpdate.Enabled = false;
-                btnDeleteAddOn.Enabled = false;
-                btnEdit.Enabled = true;
+                DBConnect objDB = new DBConnect();
+                SqlCommand objCommand = new SqlCommand();
+
+                dbCommand.Parameters.Clear();
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "TP_UpdateMenuItem";
+
+                SqlParameter inputItemName = new SqlParameter("@ItemName", txtItemName.Text);
+                SqlParameter inputItemType = new SqlParameter("@ItemType", ddlType.SelectedValue.ToString());
+                SqlParameter inputItemPrice = new SqlParameter("@ItemPrice", double.Parse(txtItemPrice.Text));
+                SqlParameter inputItemEmail = new SqlParameter("@Email", email);
+
+                inputItemName.Direction = ParameterDirection.Input;
+                inputItemName.SqlDbType = SqlDbType.VarChar;
+                inputItemType.Direction = ParameterDirection.Input;
+                inputItemType.SqlDbType = SqlDbType.VarChar;
+                inputItemPrice.Direction = ParameterDirection.Input;
+                inputItemPrice.SqlDbType = SqlDbType.Float;
+                inputItemEmail.Direction = ParameterDirection.Input;
+                inputItemEmail.SqlDbType = SqlDbType.VarChar;
+                inputItemEmail.Direction = ParameterDirection.Input;
+                inputItemEmail.SqlDbType = SqlDbType.VarChar;
+                dbCommand.Parameters.Add(inputItemName);
+                dbCommand.Parameters.Add(inputItemType);
+                dbCommand.Parameters.Add(inputItemPrice);
+                dbCommand.Parameters.Add(inputItemEmail);
+
+                int countMenuItem = db.DoUpdateUsingCmdObj(dbCommand);
+                if (countMenuItem >= 1)
+                {
+                    txtItemName.Enabled = false;
+                    txtItemPrice.Enabled = false;
+                    ddlType.Enabled = false;
+                    btnNewAddOn.Enabled = false;
+                    btnUpdate.Enabled = false;
+                    btnDeleteAddOn.Enabled = false;
+                    btnEdit.Enabled = true;
+                    Response.Write(@"<script langauge='text/javascript'>alert
+                    ('Updated');</script>");
+                    return;
+                }
+                else
+                {
+                    Response.Write(@"<script langauge='text/javascript'>alert
+                    ('Something went wrong with updating, make sure all fields are filled out correctly');</script>");
+                    return;
+                }
+            }
+            else
+            {
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('Please fill out all fields');</script>");
+                return;
             }
         }
         public void SetForNotNull(int menuID)
@@ -131,12 +147,14 @@ namespace TermProject_Template.Restaurant
             LoadAddOns(MenuID);
             if (countMenuItem == 1)
             {
-                lblStatus.Text = "Add-On was Added to menu";
                 txtNewAddOn.Visible = false;
                 btnAdd.Visible = false;
                 btnNewAddOn.Enabled = true;
                 btnDeleteAddOn.Visible = true;
                 btnDeleteAddOn.Enabled = true;
+                Response.Write(@"<script langauge='text/javascript'>alert
+                ('Add-On was Added to menu');</script>");
+                return;
             }
         }
         protected void btnNewAddOn_Click(object sender, EventArgs e)
@@ -170,7 +188,9 @@ namespace TermProject_Template.Restaurant
                 if (delete == 1)
                 {
                     LoadAddOns(menuID);
-                    lblStatus.Text = "AddOn Deleted";
+                    Response.Write(@"<script langauge='text/javascript'>alert
+                    ('AddOn Deleted');</script>");
+                    return;
                 }
             }
         }
