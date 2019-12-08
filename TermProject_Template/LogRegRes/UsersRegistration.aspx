@@ -140,6 +140,30 @@
                         <span class="focus-input100"></span>
                     </div>
 
+                    <span class="txt1 p-b-11">Bank Name
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtBankName" class="input100" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Card Type
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:DropDownList ID="ddlCardType" class="input100" runat="server">
+                            <asp:ListItem Value="Credit"> Credit </asp:ListItem>
+                            <asp:ListItem Value="Debit"> Debit </asp:ListItem>
+                        </asp:DropDownList>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">Card Number
+                    </span>
+                    <div class="wrap-input100 validate-input m-b-36">
+                        <asp:TextBox ID="txtCardNum" class="input100" runat="server"></asp:TextBox>
+                        <span class="focus-input100"></span>
+                    </div>
+
                     <span class="txt1 p-b-11">Password
                     </span>
                     <div class="wrap-input100 validate-input m-b-12">
