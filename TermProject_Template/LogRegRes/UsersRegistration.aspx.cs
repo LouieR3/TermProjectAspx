@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using Utilities;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
+using System.IO;
 
 namespace TermProject_Template
 {
